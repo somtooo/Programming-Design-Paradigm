@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="328.6011904761906" y="520.0">animals.HerpetologyAnimals</node>
+    <node x="374.45238095238096" y="0.0">animals.TypeOfSpecies</node>
+    <node x="0.0" y="170.0">animals.PhysicalCharacteristics</node>
+    <node x="618.452380952381" y="170.0">animals.PersonalFeatures</node>
+    <node x="183.0" y="363.0">animals.Animals</node>
+    <node x="367.45238095238096" y="170.0">animals.Species</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="animals.HerpetologyAnimals" target="animals.Species">
+      <point x="65.14285714285711" y="-104.5" />
+      <point x="621.7440476190477" y="500.0" />
+      <point x="567.6011904761905" y="500.0" />
+      <point x="567.6011904761905" y="333.0" />
+      <point x="559.952380952381" y="333.0" />
+      <point x="77.00000000000006" y="71.5" />
+    </edge>
+    <edge source="animals.HerpetologyAnimals" target="animals.PhysicalCharacteristics">
+      <point x="-195.42857142857156" y="-104.5" />
+      <point x="361.17261904761904" y="500.0" />
+      <point x="132.4940476190476" y="500.0" />
+      <point x="132.4940476190476" y="343.0" />
+      <point x="55.5" y="343.0" />
+      <point x="-111.0" y="71.5" />
+    </edge>
+    <edge source="animals.Animals" target="animals.PersonalFeatures">
+      <point x="111.66666666666669" y="-48.5" />
+      <point x="462.1666666666667" y="343.0" />
+      <point x="669.952380952381" y="343.0" />
+      <point x="-103.0" y="71.5" />
+    </edge>
+    <edge source="animals.Animals" target="animals.Species">
+      <point x="0.0" y="-48.5" />
+      <point x="350.5" y="343.0" />
+      <point x="405.95238095238096" y="343.0" />
+      <point x="-77.0" y="71.5" />
+    </edge>
+    <edge source="animals.HerpetologyAnimals" target="animals.PersonalFeatures">
+      <point x="195.42857142857144" y="-104.5" />
+      <point x="752.029761904762" y="500.0" />
+      <point x="806.9583333333333" y="500.0" />
+      <point x="806.9583333333333" y="343.0" />
+      <point x="875.952380952381" y="343.0" />
+      <point x="103.0" y="71.5" />
+    </edge>
+    <edge source="animals.HerpetologyAnimals" target="animals.Animals">
+      <point x="-65.14285714285722" y="-104.5" />
+      <point x="491.45833333333337" y="480.0" />
+      <point x="350.5" y="480.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="animals.Animals" target="animals.PhysicalCharacteristics">
+      <point x="-111.66666666666669" y="-48.5" />
+      <point x="238.83333333333331" y="343.0" />
+      <point x="277.5" y="343.0" />
+      <point x="111.0" y="71.5" />
+    </edge>
+    <edge source="animals.Species" target="animals.TypeOfSpecies">
+      <point x="-57.74999999999994" y="-71.5" />
+      <point x="425.20238095238096" y="145.0" />
+      <point x="428.70238095238096" y="145.0" />
+      <point x="-54.25" y="60.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="464.0" y="364.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
