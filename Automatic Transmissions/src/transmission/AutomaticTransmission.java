@@ -1,9 +1,14 @@
 package transmission;
 
+/**
+ * Automatic Transmission Represented as five threshold values.
+ */
 import java.time.temporal.ValueRange;
 import java.util.HashMap;
 
+
 public final class AutomaticTransmission implements Transmission {
+
 
   private final int speedThreshold1;
   private final int speedThreshold2;
@@ -13,6 +18,16 @@ public final class AutomaticTransmission implements Transmission {
   private  int speed;
   private  int gear;
   private HashMap<ValueRange, Integer> speedGear;
+
+  /**
+   * Constructor assigns gear values to appropriate speed threshold.
+   * @param speedThreshold1 in mph.
+   * @param speedThreshold2 in mph.
+   * @param speedThreshold3 in mph.
+   * @param speedThreshold4 in mph.
+   * @param speedThreshold5 in mph.
+   * @throws IllegalArgumentException if any argument is negative or equals to zero and also if argument is not in ascending order.
+   */
 
   public AutomaticTransmission(
       int speedThreshold1,
@@ -29,7 +44,7 @@ public final class AutomaticTransmission implements Transmission {
         && (speedThreshold2 < speedThreshold3)
         && (speedThreshold3 < speedThreshold4)
         && (speedThreshold4 < speedThreshold5))) {
-      throw new IllegalArgumentException("Threshold must be entered in increasing value");
+      throw new IllegalArgumentException("Threshold values must be in ascending order");
     }
 
     this.speedThreshold1 = speedThreshold1;
@@ -42,6 +57,11 @@ public final class AutomaticTransmission implements Transmission {
     gear = 0;
     assignSpeedValueRangeToGearValue();
   }
+
+  /**
+   *
+   * @return
+   */
 
   @Override
   public int getSpeed() {
@@ -56,7 +76,7 @@ public final class AutomaticTransmission implements Transmission {
   @Override
   public Transmission increaseSpeed() {
     int newSpeed = speed + 2;
-    int newGear = getNewGearValue(speed);
+    int newGear = getNewGearValue(newSpeed);
     AutomaticTransmission transmission = new AutomaticTransmission(speedThreshold1,
     speedThreshold2,
     speedThreshold3,
@@ -70,10 +90,10 @@ public final class AutomaticTransmission implements Transmission {
   @Override
   public Transmission decreaseSpeed() {
     int newSpeed = speed - 2;
-    if (speed < 0) {
+    if (newSpeed < 0) {
       throw new IllegalStateException("Speed is already 0m/s");
     }
-    int newGear = getNewGearValue(speed);
+    int newGear = getNewGearValue(newSpeed);
     AutomaticTransmission transmission = new AutomaticTransmission(speedThreshold1,
             speedThreshold2,
             speedThreshold3,
@@ -98,12 +118,13 @@ public final class AutomaticTransmission implements Transmission {
   }
 
   private int getNewGearValue(int newSpeed) {
-    int speed = -1;
+    int gear = 0;
     for (ValueRange index : speedGear.keySet()) {
       if (index.isValidIntValue(newSpeed)) {
-        speed = speedGear.get(index);
+        gear = speedGear.get(index);
       }
     }
-    return speed;
+    return gear;
   }
+
 }
