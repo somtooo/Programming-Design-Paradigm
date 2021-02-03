@@ -2,26 +2,52 @@ package animals;
 
 import java.time.temporal.ValueRange;
 
+/**
+ * Creates an object that tracks the temperature, preferred natural feature and size of the animal.
+ */
 public class PhysicalCharacteristics {
-    private final ValueRange temperature;
-    private final String naturalFeature;
-    private final String size;
+  private final ValueRange temperature;
+  private final String naturalFeature;
+  private final SizeofSpecies size;
 
-    public PhysicalCharacteristics(String size, ValueRange temperature, String naturalFeature) {
-        this.temperature = temperature;
-        this.naturalFeature = naturalFeature;
-        this.size = size;
-    }
+  /**
+   * Constructs a physical characteristics object with the specified parameters.
+   *
+   * @param size in medium, small or large
+   * @param temperature in celsius
+   * @param naturalFeature preferred natural features
+   */
+  public PhysicalCharacteristics(
+      SizeofSpecies size, ValueRange temperature, String naturalFeature) {
+    this.temperature = temperature;
+    this.naturalFeature = naturalFeature;
+    this.size = size;
+  }
 
-    public ValueRange getTemperature() {
-        return temperature;
-    }
+  /**
+   * Get the temperature range for the animal.
+   *
+   * @return ValueRange
+   */
+  public ValueRange getTemperature() {
+    return temperature;
+  }
 
-    public String getNaturalFeature() {
-        return naturalFeature;
-    }
+  /**
+   * Gets the natural feature preference for the animal.
+   *
+   * @return String
+   */
+  public String getNaturalFeature() {
+    return naturalFeature;
+  }
 
-    public String getSize() {
-        return size;
-    }
+  /**
+   * Gets the current size of the species.
+   *
+   * @return SizeofSpecies object.
+   */
+  public SizeofSpecies getSize() {
+    return size;
+  }
 }

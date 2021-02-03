@@ -1,9 +1,30 @@
 package animals;
 
+/**
+ * All Known Implementing Classes: HerpetologyAnimals.
+ * The user of this interface has the ability to
+ * require the Species, PhysicalCharacteristics and PersonalFeatures object of any implementing
+ * CLasses.
+ */
 public interface Animals {
-    Species getSpecies();
+  /**
+   * Gets the Species Object.
+   *
+   * @return Species
+   */
+  Species getSpecies();
 
-    PhysicalCharacteristics getPhysicalCharacteristics();
+  /**
+   * Gets the PhysicalCharacteristics object.
+   *
+   * @return PhysicalCharacteristics
+   */
+  PhysicalCharacteristics getPhysicalCharacteristics();
 
-    PersonalFeatures getPersonalFeatures();
+  /**
+   * Gets the PersonalFeatures object.
+   *
+   * @return PersonalFeatures
+   */
+  PersonalFeatures getPersonalFeatures();
 }
