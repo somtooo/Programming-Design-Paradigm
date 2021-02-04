@@ -1,3 +1,5 @@
+import animals.Animals;
+import animals.HerpetologyAnimals;
 import animals.TypeOfSpecies;
 import house.Habitat;
 import house.AbstractHabitat;
@@ -13,7 +15,7 @@ public class Test {
         ValueRange range = ValueRange.of(0,123);
         System.out.println(range);
 
-
+//        Animals sizeToBigToAddToHabitatAnimal = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
 
 
     }

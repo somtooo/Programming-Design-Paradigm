@@ -2,6 +2,8 @@ package house;
 
 import animals.Animals;
 
+import java.util.ArrayList;
+
 /** Abstract class that contains only abstract methods which is extended by the Habitat class. */
 public abstract class AbstractHabitat {
 
@@ -10,7 +12,7 @@ public abstract class AbstractHabitat {
    *
    * @return String[]
    */
-  public abstract String[] getNaturalFeatures();
+  public abstract ArrayList<String> getNaturalFeatures();
 
   /**
    * Gets the size of the habitat in msq.
@@ -32,5 +34,14 @@ public abstract class AbstractHabitat {
    * @param animal animal interface
    * @return AbstractHabitat
    */
-  protected abstract AbstractHabitat addAnimal(Animals animal);
+  protected abstract Boolean addAnimal(Animals animal);
+
+  public abstract String reportNaturalFeatures();
+  public abstract ArrayList<Animals> getAnimals();
+  public abstract String getSignOfHabitat();
+  public abstract String getMap();
+  public abstract String getIndex();
+  protected abstract void addNaturalFeature(String feature);
+
+
 }

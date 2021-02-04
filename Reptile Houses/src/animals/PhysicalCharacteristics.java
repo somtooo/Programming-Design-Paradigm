@@ -18,7 +18,8 @@ public class PhysicalCharacteristics {
    * @param naturalFeature preferred natural features
    */
   public PhysicalCharacteristics(
-      SizeofSpecies size, ValueRange temperature, String naturalFeature) {
+      SizeofSpecies size, ValueRange temperature, String naturalFeature) throws IllegalArgumentException {
+    if (naturalFeature.trim().isEmpty()) throw new IllegalArgumentException("Natural Feature can't be empty");
     this.temperature = temperature;
     this.naturalFeature = naturalFeature;
     this.size = size;
@@ -49,5 +50,16 @@ public class PhysicalCharacteristics {
    */
   public SizeofSpecies getSize() {
     return size;
+  }
+
+
+
+  /**
+   * Gets important details needed to describe the class.
+   * @return String
+   */
+  @Override
+  public String toString() {
+    return String.format("Temperature Range: %s, Preferred Natural Feature: %s, Size: %s", getTemperature(), getNaturalFeature(), getSize());
   }
 }

@@ -9,6 +9,7 @@ public class PersonalFeatures {
   private final Danger danger;
   private final Boolean canCohabitate;
 
+
   /**
    * Constructs Personal Features with the specified parameters.
    *
@@ -48,5 +49,14 @@ public class PersonalFeatures {
    */
   public Boolean getCanCohabitate() {
     return canCohabitate;
+  }
+
+  /**
+   * Gets important details that describe the object properties.
+   * @return String
+   */
+  @Override
+  public String toString() {
+    return String.format("Danger State: %s, Poisonous: %s, Cohabitate: %s", getDangerState(), getPoisonous(), getCanCohabitate());
   }
 }

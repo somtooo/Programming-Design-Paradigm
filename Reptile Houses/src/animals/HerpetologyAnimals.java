@@ -63,6 +63,6 @@ public final class HerpetologyAnimals implements Animals {
    */
   @Override
   public String toString() {
-    throw new IllegalCallerException();
+    return String.format("%s, %s, %s", getSpecies(), getPhysicalCharacteristics(), getPersonalFeatures());
   }
 }
