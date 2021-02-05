@@ -1,9 +1,13 @@
+import static org.junit.Assert.assertEquals;
+
 import animals.Danger;
 import animals.PersonalFeatures;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+/**
+ * Test all methods for Personal Features Class.
+ */
 
 public class PersonalFeaturesTest {
   PersonalFeatures personalFeatures;

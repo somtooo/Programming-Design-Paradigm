@@ -1,12 +1,15 @@
+import static org.junit.Assert.assertEquals;
+
 import animals.PhysicalCharacteristics;
 import animals.SizeofSpecies;
+import java.time.temporal.ValueRange;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.temporal.ValueRange;
 
-import static org.junit.Assert.assertEquals;
-
+/**
+ * Test's the methods and implementation of the PhysicalCharacteristics class.
+ */
 public class PhysicalCharacteristicsTest {
   PhysicalCharacteristics physicalCharacteristics;
 

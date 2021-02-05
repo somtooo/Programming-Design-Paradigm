@@ -1,14 +1,13 @@
 package animals;
 
 /**
- * Creates an object that tracks if the animal is poisonous, extinct or endeangered, and if they can
+ * Creates an object that tracks if the animal is poisonous, extinct or endangered, and if they can
  * coHabitatie.
  */
 public class PersonalFeatures {
   private final Boolean isPoisonous;
   private final Danger danger;
   private final Boolean canCohabitate;
-
 
   /**
    * Constructs Personal Features with the specified parameters.
@@ -27,7 +26,7 @@ public class PersonalFeatures {
   /**
    * Gets the danger level of the animal.
    *
-   * @return Danger Enum Type
+   * @return the danger level as an enum.
    */
   public Danger getDangerState() {
     return danger;
@@ -36,7 +35,7 @@ public class PersonalFeatures {
   /**
    * Gets if the animal is poisonous.
    *
-   * @return Boolean
+   * @return a boolean to determine if its true or false.
    */
   public Boolean getPoisonous() {
     return isPoisonous;
@@ -45,7 +44,7 @@ public class PersonalFeatures {
   /**
    * Gets if the animal can live with other species.
    *
-   * @return Boolean
+   * @return a Boolean to determine if its true or false.
    */
   public Boolean getCanCohabitate() {
     return canCohabitate;
@@ -53,10 +52,13 @@ public class PersonalFeatures {
 
   /**
    * Gets important details that describe the object properties.
-   * @return String
+   *
+   * @return a String representation of the objects fields.
    */
   @Override
   public String toString() {
-    return String.format("Danger State: %s, Poisonous: %s, Cohabitate: %s", getDangerState(), getPoisonous(), getCanCohabitate());
+    return String.format(
+        "Danger State: %s, Poisonous: %s, Cohabitate: %s",
+        getDangerState(), getPoisonous(), getCanCohabitate());
   }
 }

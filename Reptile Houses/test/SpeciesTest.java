@@ -1,10 +1,14 @@
+import static org.junit.Assert.assertEquals;
+
 import animals.Species;
 import animals.TypeOfSpecies;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 
+/**
+ * Test methods for Species Class.
+ */
 public class SpeciesTest {
   Species species;
 
@@ -16,11 +20,13 @@ public class SpeciesTest {
   @Test
   public void testConstructor() {
     Species reptileSpecies = new Species("turtle", TypeOfSpecies.REPTILE, "overweight");
-    Species amphibiansSpecies = new Species("salamander", TypeOfSpecies.AMPHIBIAN, "special skin");
     assertEquals("turtle", reptileSpecies.getSpeciesName());
     assertEquals(TypeOfSpecies.REPTILE, reptileSpecies.getSpeciesType());
+    assertEquals("overweight", reptileSpecies.getDefiningCharacteristics());
+    Species amphibiansSpecies = new Species("salamander", TypeOfSpecies.AMPHIBIAN, "special skin");
     assertEquals("salamander", amphibiansSpecies.getSpeciesName());
     assertEquals(TypeOfSpecies.AMPHIBIAN, amphibiansSpecies.getSpeciesType());
+    assertEquals("special skin", amphibiansSpecies.getDefiningCharacteristics());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -30,6 +36,7 @@ public class SpeciesTest {
 
   @Test
   public void testToString() {
-    assertEquals("Species: frog, Type: AMPHIBIAN", species.toString());
+    assertEquals(
+        "Species: frog, Type: AMPHIBIAN, Defining Characteristics: broken leg", species.toString());
   }
 }

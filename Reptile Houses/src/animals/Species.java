@@ -1,6 +1,6 @@
 package animals;
 
-/** Creates an object that tracks a species name and type. */
+/** Creates an object that tracks a species name, type and definingCharacteristics. */
 public class Species {
   private final String speciesName;
   private final TypeOfSpecies speciesType;
@@ -12,12 +12,14 @@ public class Species {
    * @param speciesName identify species.
    * @param speciesType identify if reptile or amphibian.
    * @param definingCharacteristics special feature of this species.
+   * @throws IllegalArgumentException if the speciesName is an empty string.
    */
   public Species(String speciesName, TypeOfSpecies speciesType, String definingCharacteristics)
       throws IllegalArgumentException {
     this.definingCharacteristics = definingCharacteristics;
-    if (speciesName.trim().isEmpty())
+    if (speciesName.trim().isEmpty()) {
       throw new IllegalArgumentException("Species Name can't be empty");
+    }
     this.speciesName = speciesName;
     this.speciesType = speciesType;
   }
@@ -25,7 +27,7 @@ public class Species {
   /**
    * Gets the species name.
    *
-   * @return String
+   * @return a String that contains the name of the Species object.
    */
   public String getSpeciesName() {
     return speciesName;
@@ -34,16 +36,16 @@ public class Species {
   /**
    * Gets the type of species.
    *
-   * @return TypeOsSpecies enum
+   * @return a TypeOsSpecies enum that contains the type of the Species object.
    */
   public TypeOfSpecies getSpeciesType() {
     return speciesType;
   }
 
   /**
-   * Gives important details about the class.
+   * Gets important details about the class.
    *
-   * @return String
+   * @return a String representation of the Species Object fields.
    */
   @Override
   public String toString() {
@@ -52,6 +54,11 @@ public class Species {
         speciesName, speciesType, definingCharacteristics);
   }
 
+  /**
+   * Gets the defining characteristics of the Species object.
+   *
+   * @return a String that has special feature of the animal.
+   */
   public String getDefiningCharacteristics() {
     return definingCharacteristics;
   }
