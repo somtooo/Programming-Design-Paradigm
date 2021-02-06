@@ -12,19 +12,19 @@ public interface Animals {
    *
    * @return the Species Object of the implementing class.
    */
-  Species getSpecies();
+  SpeciesInterface getSpecies();
 
   /**
    * Gets a PhysicalCharacteristics object.
    *
    * @return the PhysicalCharacteristics object of the implementing class.
    */
-  PhysicalCharacteristics getPhysicalCharacteristics();
+  PhysicalCharacteristicsInterface getPhysicalCharacteristics();
 
   /**
    * Gets a PersonalFeatures object.
    *
    * @return the PersonalFeatures object of the implementing class.
    */
-  PersonalFeatures getPersonalFeatures();
+  PersonalFeaturesInterface getPersonalFeatures();
 }

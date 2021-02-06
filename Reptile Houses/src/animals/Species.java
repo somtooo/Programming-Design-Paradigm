@@ -1,7 +1,7 @@
 package animals;
 
 /** Creates an object that tracks a species name, type and definingCharacteristics. */
-public class Species {
+public class Species implements SpeciesInterface {
   private final String speciesName;
   private final TypeOfSpecies speciesType;
   private final String definingCharacteristics;
@@ -12,32 +12,28 @@ public class Species {
    * @param speciesName identify species.
    * @param speciesType identify if reptile or amphibian.
    * @param definingCharacteristics special feature of this species.
-   * @throws IllegalArgumentException if the speciesName is an empty string.
+   * @throws IllegalArgumentException if the speciesName is an empty string and if
+   *        any other values are null.
    */
   public Species(String speciesName, TypeOfSpecies speciesType, String definingCharacteristics)
       throws IllegalArgumentException {
-    this.definingCharacteristics = definingCharacteristics;
+    if (speciesName == null || speciesType == null || definingCharacteristics == null) {
+      throw new IllegalArgumentException("Null not allowed");
+    }
     if (speciesName.trim().isEmpty()) {
       throw new IllegalArgumentException("Species Name can't be empty");
     }
     this.speciesName = speciesName;
     this.speciesType = speciesType;
+    this.definingCharacteristics = definingCharacteristics;
   }
 
-  /**
-   * Gets the species name.
-   *
-   * @return a String that contains the name of the Species object.
-   */
+  @Override
   public String getSpeciesName() {
     return speciesName;
   }
 
-  /**
-   * Gets the type of species.
-   *
-   * @return a TypeOsSpecies enum that contains the type of the Species object.
-   */
+  @Override
   public TypeOfSpecies getSpeciesType() {
     return speciesType;
   }
@@ -54,11 +50,7 @@ public class Species {
         speciesName, speciesType, definingCharacteristics);
   }
 
-  /**
-   * Gets the defining characteristics of the Species object.
-   *
-   * @return a String that has special feature of the animal.
-   */
+  @Override
   public String getDefiningCharacteristics() {
     return definingCharacteristics;
   }

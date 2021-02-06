@@ -4,27 +4,35 @@ import animals.Animals;
 import animals.Danger;
 import animals.HerpetologyAnimals;
 import animals.PersonalFeatures;
+import animals.PersonalFeaturesInterface;
 import animals.PhysicalCharacteristics;
+import animals.PhysicalCharacteristicsInterface;
 import animals.SizeofSpecies;
 import animals.Species;
+import animals.SpeciesInterface;
 import animals.TypeOfSpecies;
 import house.AbstractHabitat;
 import house.Habitat;
 import house.ReptileHouse;
+import house.ReptileHouseInterface;
 import java.time.temporal.ValueRange;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+
+
+
+
 /** Test Methods and Implementation of ReptileHouse class. */
 public class ReptileHouseTest {
-  ReptileHouse reptileHouse;
-
-  Species species = new Species("frog", TypeOfSpecies.AMPHIBIAN, "broken leg");
-  PhysicalCharacteristics physicalCharacteristics =
+  ReptileHouseInterface reptileHouseInterface;
+  SpeciesInterface speciesInterface = new Species("frog", TypeOfSpecies.AMPHIBIAN, "broken leg");
+  PhysicalCharacteristicsInterface physicalCharacteristicsInterface =
       new PhysicalCharacteristics(SizeofSpecies.LARGE, ValueRange.of(30, 33), "water");
-  PersonalFeatures personalFeatures = new PersonalFeatures(false, Danger.ENDANGERED, true);
+  PersonalFeaturesInterface personalFeaturesInterface =
+      new PersonalFeatures(false, Danger.ENDANGERED, true);
   List<String> features = new ArrayList<String>();
   List<AbstractHabitat> habitats = new ArrayList<AbstractHabitat>();
   List<String> featuresWithWater = new ArrayList<String>();
@@ -42,13 +50,13 @@ public class ReptileHouseTest {
     secondHabitat = new Habitat(featuresWithWater, 10, "Habitat B");
     habitats.add(habitat);
     habitats.add(secondHabitat);
-    reptileHouse = new ReptileHouse(habitats, 3);
+    reptileHouseInterface = new ReptileHouse(habitats, 3);
   }
 
   @Test
   public void testConstructor() {
-    assertEquals(habitats, reptileHouse.getHabitats());
-    assertEquals(3, reptileHouse.getNumOfHabitats());
+    assertEquals(habitats, reptileHouseInterface.getHabitats());
+    assertEquals(3, reptileHouseInterface.getNumOfHabitats());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -83,26 +91,34 @@ public class ReptileHouseTest {
 
   @Test
   public void addAnimalToHabitat() {
-    Animals animal = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
-    Animals animal2 = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
-    Animals animal3 = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
-    assertEquals(true, reptileHouse.addAnimalToHabitat(animal));
-    assertEquals(true, reptileHouse.addAnimalToHabitat(animal2));
-    assertEquals(false, reptileHouse.addAnimalToHabitat(animal3));
+    Animals animal =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
+    Animals animal2 =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
+    Animals animal3 =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
+    assertEquals(true, reptileHouseInterface.addAnimalToHabitat(animal));
+    assertEquals(true, reptileHouseInterface.addAnimalToHabitat(animal2));
+    assertEquals(false, reptileHouseInterface.addAnimalToHabitat(animal3));
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void addAnimalToHabitatNullTest() {
-    reptileHouse.addAnimalToHabitat(null);
+    reptileHouseInterface.addAnimalToHabitat(null);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddAnimalToHabitatDuplicate() {
-    PhysicalCharacteristics physicalCharacteristicsDup =
+    PhysicalCharacteristicsInterface physicalCharacteristicsInterfaceDup =
         new PhysicalCharacteristics(SizeofSpecies.LARGE, ValueRange.of(30, 33), "rock");
-    Animals animal = new HerpetologyAnimals(species, physicalCharacteristicsDup, personalFeatures);
-    reptileHouse.addAnimalToHabitat(animal);
-    reptileHouse.addAnimalToHabitat(animal);
+    Animals animal =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterfaceDup, personalFeaturesInterface);
+    reptileHouseInterface.addAnimalToHabitat(animal);
+    reptileHouseInterface.addAnimalToHabitat(animal);
   }
 
   @Test
@@ -112,45 +128,49 @@ public class ReptileHouseTest {
             + "remaining size is 10 square meters \n"
             + "The natural Features in HABITAT B are: [lilly, water] "
             + "and the remaining size is 10 square meters",
-        reptileHouse.reportNaturalFeatures());
+        reptileHouseInterface.reportNaturalFeatures());
   }
 
   @Test
   public void findSpeciesByHabitat() {
-    PhysicalCharacteristics physicalCharacteristicsDup =
+    PhysicalCharacteristicsInterface physicalCharacteristicsInterfaceDup =
         new PhysicalCharacteristics(SizeofSpecies.LARGE, ValueRange.of(30, 33), "rock");
-    Animals animal = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+    Animals animal =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     Animals homelessAnimal =
-        new HerpetologyAnimals(species, physicalCharacteristicsDup, personalFeatures);
-    assertEquals(true, reptileHouse.addAnimalToHabitat(animal));
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterfaceDup, personalFeaturesInterface);
+    assertEquals(true, reptileHouseInterface.addAnimalToHabitat(animal));
     assertEquals(
         "Species found in HABITAT A Species "
             + "not found in HABITAT B  and Species not found in Reptile House",
-        reptileHouse.findSpeciesByHabitat("frog"));
-    assertEquals(false, reptileHouse.addAnimalToHabitat(homelessAnimal));
+        reptileHouseInterface.findSpeciesByHabitat("frog"));
+    assertEquals(false, reptileHouseInterface.addAnimalToHabitat(homelessAnimal));
     assertEquals(
         "Species found in HABITAT A Species not "
             + "found in HABITAT B  and Species found in Reptile House",
-        reptileHouse.findSpeciesByHabitat("frog"));
+        reptileHouseInterface.findSpeciesByHabitat("frog"));
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullFindSpeciesByHabitat() {
-    reptileHouse.findSpeciesByHabitat("");
-    reptileHouse.findSpeciesByHabitat(null);
+    reptileHouseInterface.findSpeciesByHabitat("");
+    reptileHouseInterface.findSpeciesByHabitat(null);
   }
 
   @Test
   public void findSpeciesByHabitatWhenNotInHabitat() {
-    PhysicalCharacteristics physicalCharacteristicsDup =
+    PhysicalCharacteristicsInterface physicalCharacteristicsInterfaceDup =
         new PhysicalCharacteristics(SizeofSpecies.LARGE, ValueRange.of(30, 33), "rock");
     Animals homelessAnimal =
-        new HerpetologyAnimals(species, physicalCharacteristicsDup, personalFeatures);
-    assertEquals(false, reptileHouse.addAnimalToHabitat(homelessAnimal));
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterfaceDup, personalFeaturesInterface);
+    assertEquals(false, reptileHouseInterface.addAnimalToHabitat(homelessAnimal));
     assertEquals(
         "Species not found in HABITAT A Species not found in "
             + "HABITAT B  and Species found in Reptile House",
-        reptileHouse.findSpeciesByHabitat("frog"));
+        reptileHouseInterface.findSpeciesByHabitat("frog"));
   }
 
   @Test
@@ -158,29 +178,33 @@ public class ReptileHouseTest {
     assertEquals(
         "Species not found in HABITAT A Species not found in "
             + "HABITAT B  and Species not found in Reptile House",
-        reptileHouse.findSpeciesByHabitat("crocodile"));
+        reptileHouseInterface.findSpeciesByHabitat("crocodile"));
   }
 
   @Test
   public void addHabitat() {
     AbstractHabitat habitatToAdd = new Habitat(features, 20, "Habitat C");
-    reptileHouse.addHabitat(habitatToAdd);
-    assertEquals(3, reptileHouse.getHabitats().size());
+    reptileHouseInterface.addHabitat(habitatToAdd);
+    assertEquals(3, reptileHouseInterface.getHabitats().size());
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testAddHabitatDuplicate() {
     AbstractHabitat habitatToAdd = new Habitat(features, 20, "Habitat C");
-    reptileHouse.addHabitat(habitatToAdd);
-    reptileHouse.addHabitat(habitatToAdd);
+    reptileHouseInterface.addHabitat(habitatToAdd);
+    reptileHouseInterface.addHabitat(habitatToAdd);
   }
 
   @Test
   public void printSign() {
-    Animals animal = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
-    reptileHouse.addAnimalToHabitat(animal);
-    Animals animal2 = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
-    reptileHouse.addAnimalToHabitat(animal2);
+    Animals animal =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
+    reptileHouseInterface.addAnimalToHabitat(animal);
+    Animals animal2 =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
+    reptileHouseInterface.addAnimalToHabitat(animal2);
     assertEquals(
         "There are currently 1 frog in HABITAT A\n"
             + "Species: frog, Type: AMPHIBIAN, Defining Characteristics: broken leg, "
@@ -191,48 +215,59 @@ public class ReptileHouseTest {
             + "broken leg, Temperature Range: 30 - 33, Preferred Natural "
             + "Feature: water, Size: LARGE, Danger State: ENDANGERED, Poisonous: false, "
             + "Cohabitate: true\n",
-        reptileHouse.printSign());
+        reptileHouseInterface.printSign());
   }
 
   @Test
   public void printMap() {
-    Animals animal = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
-    reptileHouse.addAnimalToHabitat(animal);
-    Animals animal2 = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
-    reptileHouse.addAnimalToHabitat(animal2);
+    Animals animal =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
+    reptileHouseInterface.addAnimalToHabitat(animal);
+    Animals animal2 =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
+    reptileHouseInterface.addAnimalToHabitat(animal2);
     assertEquals(
         "HABITAT A in location 0 Natural Features are [water, pond] "
             + "There are currently 1 frog in HABITAT A\n"
             + "HABITAT B in location 1 Natural Features "
             + "are [water, lilly] There are currently 1 frog in HABITAT B\n",
-        reptileHouse.printMap());
+        reptileHouseInterface.printMap());
   }
 
   @Test
   public void printIndexTest() {
-    Animals animal = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
-    reptileHouse.addAnimalToHabitat(animal);
-    Animals animal2 = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
-    reptileHouse.addAnimalToHabitat(animal2);
+    Animals animal =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
+    reptileHouseInterface.addAnimalToHabitat(animal);
+    Animals animal2 =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
+    reptileHouseInterface.addAnimalToHabitat(animal2);
     assertEquals(
         "List of Species in HABITAT A: [frog]\n" + "List of Species in HABITAT B: [frog]\n",
-        reptileHouse.printIndex());
+        reptileHouseInterface.printIndex());
   }
 
   @Test
   public void printIndexTestWithHomelessAnimal() {
-    Animals animal = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
-    reptileHouse.addAnimalToHabitat(animal);
-    PhysicalCharacteristics physicalCharacteristicsHomeless =
+    Animals animal =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
+    reptileHouseInterface.addAnimalToHabitat(animal);
+    PhysicalCharacteristicsInterface physicalCharacteristicsInterfaceHomeless =
         new PhysicalCharacteristics(SizeofSpecies.LARGE, ValueRange.of(30, 33), "rock");
     Animals animal2 =
-        new HerpetologyAnimals(species, physicalCharacteristicsHomeless, personalFeatures);
-    reptileHouse.addAnimalToHabitat(animal2);
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterfaceHomeless, personalFeaturesInterface);
+    reptileHouseInterface.addAnimalToHabitat(animal2);
     assertEquals(
         "List of Species in HABITAT A: [frog]\n"
             + "There are no Species in HABITAT B\n"
             + "List of species not in any habitat: frog, ",
-        reptileHouse.printIndex());
+        reptileHouseInterface.printIndex());
   }
 
   @Test
@@ -240,23 +275,23 @@ public class ReptileHouseTest {
     assertEquals(
         "Reptile House is currently managing 2 Habitats and "
             + "there are currently 0 Animals not in any Habitat",
-        reptileHouse.toString());
+        reptileHouseInterface.toString());
   }
 
   @Test
   public void addNaturalFeatureTest() {
     AbstractHabitat habitatInvalid = new Habitat(features, 20, "Habitat B");
-    assertEquals(true, reptileHouse.addNaturalFeatureToHabitat(habitat, "water"));
+    assertEquals(true, reptileHouseInterface.addNaturalFeatureToHabitat(habitat, "water"));
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void addNaturalFeatureTestIllegal() {
     AbstractHabitat habitatInvalid = new Habitat(features, 20, "Habitat B");
-    reptileHouse.addNaturalFeatureToHabitat(habitatInvalid, "water");
+    reptileHouseInterface.addNaturalFeatureToHabitat(habitatInvalid, "water");
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void addNaturalFeatureTestIllegalNull() {
-    reptileHouse.addNaturalFeatureToHabitat(habitat, "");
+    reptileHouseInterface.addNaturalFeatureToHabitat(habitat, "");
   }
 }

@@ -3,32 +3,50 @@ import static org.junit.Assert.assertEquals;
 import animals.Danger;
 import animals.HerpetologyAnimals;
 import animals.PersonalFeatures;
+import animals.PersonalFeaturesInterface;
 import animals.PhysicalCharacteristics;
+import animals.PhysicalCharacteristicsInterface;
 import animals.SizeofSpecies;
 import animals.Species;
+import animals.SpeciesInterface;
 import animals.TypeOfSpecies;
 import java.time.temporal.ValueRange;
 import org.junit.Before;
 import org.junit.Test;
 
+
+
+
+
 /** Tests the HerpetologyAnimal class methods and implementation for correctness. */
 public class HerpetologyAnimalsTest {
-  Species species = new Species("frog", TypeOfSpecies.AMPHIBIAN, "broken leg");
-  PhysicalCharacteristics physicalCharacteristics =
+  SpeciesInterface speciesInterface = new Species("frog", TypeOfSpecies.AMPHIBIAN, "broken leg");
+  PhysicalCharacteristicsInterface physicalCharacteristicsInterface =
       new PhysicalCharacteristics(SizeofSpecies.LARGE, ValueRange.of(30, 33), "water");
-  PersonalFeatures personalFeatures = new PersonalFeatures(false, Danger.ENDANGERED, false);
+  PersonalFeaturesInterface personalFeaturesInterface =
+      new PersonalFeatures(false, Danger.ENDANGERED, false);
   HerpetologyAnimals herpetologyAnimals;
 
+  /**
+   * Sets up object that other functions will use.
+   */
   @Before
   public void setUp() {
-    herpetologyAnimals = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+    herpetologyAnimals =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
   }
 
   @Test
   public void testConstructor() {
-    assertEquals(species, herpetologyAnimals.getSpecies());
-    assertEquals(physicalCharacteristics, herpetologyAnimals.getPhysicalCharacteristics());
-    assertEquals(personalFeatures, herpetologyAnimals.getPersonalFeatures());
+    assertEquals(speciesInterface, herpetologyAnimals.getSpecies());
+    assertEquals(physicalCharacteristicsInterface, herpetologyAnimals.getPhysicalCharacteristics());
+    assertEquals(personalFeaturesInterface, herpetologyAnimals.getPersonalFeatures());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructorNull() {
+    new HerpetologyAnimals(null, physicalCharacteristicsInterface, personalFeaturesInterface);
   }
 
   @Test

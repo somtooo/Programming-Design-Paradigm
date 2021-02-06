@@ -4,7 +4,7 @@ package animals;
  * Creates an object that tracks if the animal is poisonous, extinct or endangered, and if they can
  * coHabitatie.
  */
-public class PersonalFeatures {
+public class PersonalFeatures implements PersonalFeaturesInterface {
   private final Boolean isPoisonous;
   private final Danger danger;
   private final Boolean canCohabitate;
@@ -15,37 +15,30 @@ public class PersonalFeatures {
    * @param isPoisonous if the animal is poisonous
    * @param danger the danger level of the animal
    * @param canCohabitate if the animal can live with other species
+   * @throws IllegalArgumentException if any input is null
    */
   public PersonalFeatures(Boolean isPoisonous, Danger danger, Boolean canCohabitate) {
+    if (isPoisonous == null || danger == null || canCohabitate == null) {
+      throw new IllegalArgumentException("Null not allowed");
+
+    }
     this.isPoisonous = isPoisonous;
     this.danger = danger;
 
     this.canCohabitate = canCohabitate;
   }
 
-  /**
-   * Gets the danger level of the animal.
-   *
-   * @return the danger level as an enum.
-   */
+  @Override
   public Danger getDangerState() {
     return danger;
   }
 
-  /**
-   * Gets if the animal is poisonous.
-   *
-   * @return a boolean to determine if its true or false.
-   */
+  @Override
   public Boolean getPoisonous() {
     return isPoisonous;
   }
 
-  /**
-   * Gets if the animal can live with other species.
-   *
-   * @return a Boolean to determine if its true or false.
-   */
+  @Override
   public Boolean getCanCohabitate() {
     return canCohabitate;
   }

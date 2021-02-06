@@ -5,7 +5,7 @@ import java.time.temporal.ValueRange;
 /**
  * Creates an object that tracks the temperature, preferred natural feature and size of an animal.
  */
-public class PhysicalCharacteristics {
+public class PhysicalCharacteristics implements PhysicalCharacteristicsInterface {
   private final ValueRange temperature;
   private final String naturalFeature;
   private final SizeofSpecies size;
@@ -15,11 +15,14 @@ public class PhysicalCharacteristics {
    *
    * @param size in medium, small or large.
    * @param temperature in celsius.
-   * @param naturalFeature preferred natural feature of the animal
-   * @throws IllegalArgumentException if the naturalFeature is an empty string.
+   * @param naturalFeature preferred natural feature of the animal.
+   * @throws IllegalArgumentException if the naturalFeature is an empty string or any input is null.
    */
   public PhysicalCharacteristics(SizeofSpecies size, ValueRange temperature, String naturalFeature)
       throws IllegalArgumentException {
+    if (size == null || temperature == null || naturalFeature == null) {
+      throw new IllegalArgumentException("null not allowed");
+    }
     if (naturalFeature.trim().isEmpty()) {
       throw new IllegalArgumentException("Natural Feature can't be empty");
     }
@@ -29,29 +32,17 @@ public class PhysicalCharacteristics {
     this.size = size;
   }
 
-  /**
-   * Get the temperature range for the animal.
-   *
-   * @return a ValueRange object that holds the temperature range.
-   */
+  @Override
   public ValueRange getTemperature() {
     return temperature;
   }
 
-  /**
-   * Gets the natural feature preference for the animal.
-   *
-   * @return a String representation of the animal's preferred natural feature.
-   */
+  @Override
   public String getNaturalFeature() {
     return naturalFeature;
   }
 
-  /**
-   * Gets the current size of the species.
-   *
-   * @return the size of species(large, medium or small) as ann enum object.
-   */
+  @Override
   public SizeofSpecies getSize() {
     return size;
   }

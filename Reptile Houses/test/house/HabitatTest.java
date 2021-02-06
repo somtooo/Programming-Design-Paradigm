@@ -6,9 +6,12 @@ import animals.Animals;
 import animals.Danger;
 import animals.HerpetologyAnimals;
 import animals.PersonalFeatures;
+import animals.PersonalFeaturesInterface;
 import animals.PhysicalCharacteristics;
+import animals.PhysicalCharacteristicsInterface;
 import animals.SizeofSpecies;
 import animals.Species;
+import animals.SpeciesInterface;
 import animals.TypeOfSpecies;
 import java.time.temporal.ValueRange;
 import java.util.ArrayList;
@@ -20,15 +23,15 @@ import org.junit.Test;
 
 
 
-
 /** Test's the Habitat class to achieve 100% coverage. */
 public class HabitatTest {
   List<String> features = new ArrayList<String>();
-  Species species = new Species("frog", TypeOfSpecies.AMPHIBIAN, "broken leg");
-  PhysicalCharacteristics physicalCharacteristics =
+  SpeciesInterface speciesInterface = new Species("frog", TypeOfSpecies.AMPHIBIAN, "broken leg");
+  PhysicalCharacteristicsInterface physicalCharacteristicsInterface =
       new PhysicalCharacteristics(SizeofSpecies.LARGE, ValueRange.of(30, 33), "water");
 
-  PersonalFeatures personalFeatures = new PersonalFeatures(false, Danger.ENDANGERED, true);
+  PersonalFeaturesInterface personalFeaturesInterface =
+      new PersonalFeatures(false, Danger.ENDANGERED, true);
 
   AbstractHabitat habitat;
 
@@ -97,18 +100,21 @@ public class HabitatTest {
   @Test
   public void testAddAnimalWithInvalidNaturalFeature() {
     Animals invalidNaturalFeatureAnimal =
-        new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     assertEquals(false, habitat.addAnimal(invalidNaturalFeatureAnimal));
   }
 
   @Test
   public void testIllegalCohabitate() {
     features.add("water");
-    PersonalFeatures falseCohabitate = new PersonalFeatures(false, Danger.ENDANGERED, false);
+    PersonalFeaturesInterface falseCohabitate =
+        new PersonalFeatures(false, Danger.ENDANGERED, false);
     Animals invalidNaturalFeatureAnimal =
-        new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     Animals cantHabitate =
-        new HerpetologyAnimals(species, physicalCharacteristics, falseCohabitate);
+        new HerpetologyAnimals(speciesInterface, physicalCharacteristicsInterface, falseCohabitate);
     assertEquals(true, habitat.addAnimal(invalidNaturalFeatureAnimal));
     assertEquals(false, habitat.addAnimal(cantHabitate));
   }
@@ -116,33 +122,36 @@ public class HabitatTest {
   @Test
   public void testAddHabitat() {
     features.add("water");
-    PersonalFeatures falseCohabitate = new PersonalFeatures(false, Danger.ENDANGERED, false);
+    PersonalFeaturesInterface falseCohabitate =
+        new PersonalFeatures(false, Danger.ENDANGERED, false);
     Animals invalidNaturalFeatureAnimal =
-        new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     Animals cantHabitate =
-        new HerpetologyAnimals(species, physicalCharacteristics, falseCohabitate);
+        new HerpetologyAnimals(speciesInterface, physicalCharacteristicsInterface, falseCohabitate);
     assertEquals(true, habitat.addAnimal(invalidNaturalFeatureAnimal));
     assertEquals(false, habitat.addAnimal(cantHabitate));
   }
 
   @Test
   public void testExtinctAnimal() {
-    PersonalFeatures extinctFeatures = new PersonalFeatures(false, Danger.EXTINCT, true);
+    PersonalFeaturesInterface extinctFeatures = new PersonalFeatures(false, Danger.EXTINCT, true);
     Animals extinctAnimal =
-        new HerpetologyAnimals(species, physicalCharacteristics, extinctFeatures);
+        new HerpetologyAnimals(speciesInterface, physicalCharacteristicsInterface, extinctFeatures);
     assertEquals(false, habitat.addAnimal(extinctAnimal));
   }
 
   @Test
   public void testInvalidTemperatureRange() {
-    PhysicalCharacteristics physicalCharacteristics =
+    PhysicalCharacteristicsInterface physicalCharacteristicsInterface =
         new PhysicalCharacteristics(SizeofSpecies.LARGE, ValueRange.of(30, 33), "rocks");
-    PhysicalCharacteristics invalidTemp =
+    PhysicalCharacteristicsInterface invalidTemp =
         new PhysicalCharacteristics(SizeofSpecies.LARGE, ValueRange.of(40, 43), "rocks");
     Animals validTemperatureRangeAnimal =
-        new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     Animals inValidTemperatureRangeAnimal =
-        new HerpetologyAnimals(species, invalidTemp, personalFeatures);
+        new HerpetologyAnimals(speciesInterface, invalidTemp, personalFeaturesInterface);
 
     assertEquals(true, habitat.addAnimal(validTemperatureRangeAnimal));
     assertEquals(false, habitat.addAnimal(inValidTemperatureRangeAnimal));
@@ -151,32 +160,38 @@ public class HabitatTest {
   @Test
   public void testIllegalSize() {
     features.add("water");
-    PhysicalCharacteristics mediumAnimal =
+    PhysicalCharacteristicsInterface mediumAnimal =
         new PhysicalCharacteristics(SizeofSpecies.MEDIUM, ValueRange.of(30, 33), "water");
-    PhysicalCharacteristics smallAnimal =
+    PhysicalCharacteristicsInterface smallAnimal =
         new PhysicalCharacteristics(SizeofSpecies.SMALL, ValueRange.of(30, 33), "water");
     Animals sizeToBigToAddToHabitatAnimal =
-        new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     Animals mediumSizeToBigToAddToHabitatAnimal =
-        new HerpetologyAnimals(species, mediumAnimal, personalFeatures);
+        new HerpetologyAnimals(speciesInterface, mediumAnimal, personalFeaturesInterface);
     Animals smallSizeToBigToAddToHabitatAnimal =
-        new HerpetologyAnimals(species, smallAnimal, personalFeatures);
+        new HerpetologyAnimals(speciesInterface, smallAnimal, personalFeaturesInterface);
     assertEquals(true, habitat.addAnimal(sizeToBigToAddToHabitatAnimal));
     assertEquals(true, habitat.addAnimal(mediumSizeToBigToAddToHabitatAnimal));
     assertEquals(true, habitat.addAnimal(smallSizeToBigToAddToHabitatAnimal));
     Animals sizeToBigToAddToHabitatAnimal2 =
-            new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     assertEquals(false, habitat.addAnimal(sizeToBigToAddToHabitatAnimal2));
   }
 
   @Test
   public void testAddingDifferentSpecies() {
     features.add("water");
-    Animals amphibian = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+    Animals amphibian =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     assertEquals(true, habitat.addAnimal(amphibian));
-    Species illegalSpecies = new Species("crocodile", TypeOfSpecies.REPTILE, "broken leg");
+    SpeciesInterface illegalSpeciesInterface =
+        new Species("crocodile", TypeOfSpecies.REPTILE, "broken leg");
     Animals reptile =
-        new HerpetologyAnimals(illegalSpecies, physicalCharacteristics, personalFeatures);
+        new HerpetologyAnimals(
+            illegalSpeciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     assertEquals(false, habitat.addAnimal(reptile));
   }
 
@@ -196,7 +211,7 @@ public class HabitatTest {
   public void reportNaturalFeaturesTest() {
     assertEquals(
         "The natural Features in HABITAT A are: [pond, rocks] "
-                + "and the remaining size is 20 square meters \n",
+            + "and the remaining size is 20 square meters \n",
         habitat.reportNaturalFeatures());
   }
 
@@ -204,7 +219,8 @@ public class HabitatTest {
   public void getAnimalTest() {
     features.add("water");
     Animals animalToAdd =
-        new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     habitat.addAnimal(animalToAdd);
     assertEquals(1, habitat.getAnimals().size());
   }
@@ -213,7 +229,9 @@ public class HabitatTest {
   public void testGetSignOfHabitat() {
     assertEquals("No Animal in HABITAT A", habitat.getSignOfHabitat());
     features.add("water");
-    Animals amphibian = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+    Animals amphibian =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     habitat.addAnimal(amphibian);
     assertEquals(
         "There are currently 1 frog in HABITAT A\nSpecies: frog, Type: AMPHIBIAN, Defining "
@@ -228,9 +246,12 @@ public class HabitatTest {
         "There are no species currently in HABITAT A. Natural Features contained are [rocks, pond]",
         habitat.getMap());
     features.add("water");
-    Animals amphibian = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+    Animals amphibian =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     Animals dupAmphibian =
-        new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     habitat.addAnimal(amphibian);
     assertEquals(
         "Natural Features are [rocks, pond, water] There are currently 1 frog in HABITAT A\n",
@@ -245,9 +266,12 @@ public class HabitatTest {
   public void testGetIndexOfHabitat() {
     assertEquals("There are no Species in HABITAT A", habitat.getIndex());
     features.add("water");
-    Animals amphibian = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+    Animals amphibian =
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     Animals duplicateAmphibian =
-        new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+        new HerpetologyAnimals(
+            speciesInterface, physicalCharacteristicsInterface, personalFeaturesInterface);
     habitat.addAnimal(amphibian);
     assertEquals("List of Species in HABITAT A: [frog]", habitat.getIndex());
     habitat.addAnimal(duplicateAmphibian);

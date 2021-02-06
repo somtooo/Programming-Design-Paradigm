@@ -8,42 +8,45 @@ package animals;
  * @author somtoo.
  */
 public final class HerpetologyAnimals implements Animals {
-  private final Species species;
-  private final PhysicalCharacteristics physicalCharacteristics;
-  private final PersonalFeatures personalFeatures;
+  private final SpeciesInterface speciesInterface;
+  private final PhysicalCharacteristicsInterface physicalCharacteristicsInterface;
+  private final PersonalFeaturesInterface personalFeaturesInterface;
 
   /**
    * Constructs an Herpetology Animal Class with the associated parameters.
    *
-   * @param species can be reptile or amphibians.
-   * @param physicalCharacteristics tracks the temperature, natural feature and size.
-   * @param personalFeatures tracks if animal is poisonous and in danger.
+   * @param speciesInterface can be reptile or amphibians.
+   * @param physicalCharacteristicsInterface tracks the temperature, natural feature and size.
+   * @param personalFeaturesInterface tracks if animal is poisonous and in danger.
+   * @throws IllegalArgumentException if the value is null.
    */
   public HerpetologyAnimals(
-      Species species,
-      PhysicalCharacteristics physicalCharacteristics,
-      PersonalFeatures personalFeatures) {
-    this.species = species;
-    this.physicalCharacteristics = physicalCharacteristics;
-    this.personalFeatures = personalFeatures;
+      SpeciesInterface speciesInterface,
+      PhysicalCharacteristicsInterface physicalCharacteristicsInterface,
+      PersonalFeaturesInterface personalFeaturesInterface) {
+    if (speciesInterface == null
+        | physicalCharacteristicsInterface == null
+        | personalFeaturesInterface == null) {
+      throw new IllegalArgumentException("Null not allowed");
+    }
+    this.speciesInterface = speciesInterface;
+    this.physicalCharacteristicsInterface = physicalCharacteristicsInterface;
+    this.personalFeaturesInterface = personalFeaturesInterface;
   }
 
-
   @Override
-  public Species getSpecies() {
-    return species;
+  public SpeciesInterface getSpecies() {
+    return speciesInterface;
   }
 
-
   @Override
-  public PhysicalCharacteristics getPhysicalCharacteristics() {
-    return physicalCharacteristics;
+  public PhysicalCharacteristicsInterface getPhysicalCharacteristics() {
+    return physicalCharacteristicsInterface;
   }
 
-
   @Override
-  public PersonalFeatures getPersonalFeatures() {
-    return personalFeatures;
+  public PersonalFeaturesInterface getPersonalFeatures() {
+    return personalFeaturesInterface;
   }
 
   /**

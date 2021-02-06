@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ReptileHouse:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ReptileHouse_jar</output-path>
+    <root id="archive" name="ReptileHouse.jar">
+      <element id="module-output" name="ReptileHouse" />
+    </root>
+  </artifact>
+</component>
