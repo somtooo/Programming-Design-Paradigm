@@ -23,16 +23,10 @@ public abstract class AbstractQuestion implements Question {
   }
 
   public int compareToMultipleChoice(Question o) {
-    if (o instanceof TrueFalse) {
-      return 1;
-    }
     return -1;
   }
 
   public int compareToMultipleSelect(Question o) {
-    if (o instanceof TrueFalse | o instanceof MultipleChoice) {
-      return 1;
-    }
     return -1;
   }
 }

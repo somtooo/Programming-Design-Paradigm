@@ -5,10 +5,10 @@ public class TrueFalse extends AbstractQuestion {
 
   public TrueFalse(String question, String answer) throws IllegalArgumentException {
     super(question);
-    if (!answer.toLowerCase().trim().equals("true")
-        | !answer.toLowerCase().trim().equals("false")) {
-      throw new IllegalArgumentException(" Answer must be True or False");
-    }
+//    if (!answer.toLowerCase().trim().equals("true")
+//        | !answer.toLowerCase().trim().equals("false")) {
+//      throw new IllegalArgumentException(" Answer must be True or False");
+//    }
 
     this.answer = answer;
   }
@@ -32,6 +32,19 @@ public class TrueFalse extends AbstractQuestion {
 
   @Override
   public int compareToTrueFalse(Question o) {
-    return o.getText().compareTo(question);
+    System.out.println(this.getText());
+    System.out.println(o.getText());
+    System.out.println();
+    return o.getText().compareTo(this.getText());
+  }
+
+  @Override
+  public int compareToMultipleChoice(Question o) {
+    return 1;
+  }
+
+  @Override
+  public int compareToMultipleSelect(Question o) {
+    return 1;
   }
 }
