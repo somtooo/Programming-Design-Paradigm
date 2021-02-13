@@ -35,7 +35,7 @@ public class Likert extends AbstractQuestion {
       ArrayList<Question> questions = new ArrayList<Question>();
       Likert a = new Likert("Which one of these options accurately describes your experience in Assignment 2");
       MultipleSelect ms = new MultipleSelect("types of pimples","1","1 2","3 4");
-      MultipleChoice mc = new MultipleChoice("are dogs bad","2","1 2","3 4");
+      MultipleChoice mc = new MultipleChoice("are dogs bad","2","1","3","4","5");
       TrueFalse tf = new TrueFalse("Anne","true");
       TrueFalse t = new TrueFalse("Tom","false");
       MultipleChoice mc2 = new MultipleChoice("are dogs bad like bad","2","1 2","3 4");

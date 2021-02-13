@@ -27,7 +27,7 @@ public class TrueFalse extends AbstractQuestion {
       AbstractQuestion aQuestion = (AbstractQuestion) o;
       return aQuestion.compareToTrueFalse(this);
     }
-    return 1;
+    throw new IllegalArgumentException("ff");
   }
 
   @Override
