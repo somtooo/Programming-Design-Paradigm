@@ -1,64 +1,63 @@
 package questions;
 
-import java.util.ArrayList;
-import java.util.Collections;
 
+/**
+ * This class represents the a Likert question type builder that can be answered on a fixed, 5-point
+ * scale.
+ */
 public class Likert extends AbstractQuestion {
 
+  /**
+   * Initializes a Likert Object with the provided parameters.
+   *
+   * @param question the Likert type question.
+   */
   public Likert(String question) {
     super(question);
   }
 
+
   @Override
   public String answer(String answer) {
     if (answer.trim().matches("[1-5]")) {
-      return "Correct";
+      return CORRECT;
     }
-    return "Incorrect";
+    return INCORRECT;
   }
 
+  /**
+   * Compares other object of type AbstractQuestion to determine the right ordering.
+   *
+   * @param object the object to compare too.
+   * @return an int value that determines the ordering.
+   */
   @Override
-  public int compareTo(Question o) {
-    if (o instanceof AbstractQuestion) {
-      AbstractQuestion aQuestion = (AbstractQuestion) o;
-      return aQuestion.compareToLikert(this);
+  public int compareTo(Question object) {
+    if (object instanceof AbstractQuestion) {
+      AbstractQuestion question = (AbstractQuestion) object;
+      return question.compareToLikert(this);
     }
-    return 1;
+    throw new IllegalArgumentException("Not abstract question class");
   }
 
+  /**
+   * Compares same likert object and orders lexicographically based on their questions.
+   *
+   * @param object likert object to compare to.
+   * @return an int determining which is greater or smaller.
+   */
   @Override
-  public int compareToLikert(Question o) {
-    return o.getText().compareTo(this.getText());
+  public int compareToLikert(Question object) {
+    return object.getText().compareTo(this.getText());
   }
 
-    public static void main(String[] args) {
-      ArrayList<Question> questions = new ArrayList<Question>();
-      Likert a = new Likert("Which one of these options accurately describes your experience in Assignment 2");
-      MultipleSelect ms = new MultipleSelect("types of pimples","1","1 2","3 4");
-      MultipleChoice mc = new MultipleChoice("are dogs bad","2","1","3","4","5");
-      TrueFalse tf = new TrueFalse("Anne","true");
-      TrueFalse t = new TrueFalse("Tom","false");
-      MultipleChoice mc2 = new MultipleChoice("are dogs bad like bad","2","1 2","3 4");
-
-
-
-      questions.add(tf);
-      questions.add(ms);
-      questions.add(mc);
-
-      questions.add(a);
-      questions.add(t);
-
-//        System.out.println(t.compareTo(mc));
-//      System.out.println(mc.compareTo(t));
-
-
-      Collections.sort(questions);
-      for (Question i : questions){
-          System.out.println(i.getText());
-      }
-      System.out.println(questions);
-
-
+  /**
+   * String representation of the objects properties.
+   *
+   * @return string that describes object
+   */
+  @Override
+  public String toString() {
+    return String.format("Question: %s ", question);
   }
 }

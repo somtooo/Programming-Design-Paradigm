@@ -2,115 +2,93 @@ package questions;
 
 import java.util.Arrays;
 
+/**
+ * This class represents the MultipleChoice question type builder that has an answer per multiple
+ * options.
+ */
 public class MultipleChoice extends AbstractQuestion {
   private final String correctAnswer;
-//  private final String op1;
-//  private  String op2;
-//  private  String op3;
-//  private  String op4;
-  private String options;
+  private final String[] options;
 
+  /**
+   * Initializes the MultipleChoice object with the required parameters.
+   *
+   * @param question the multiple choice type question
+   * @param correctAnswer the right answer to the question.
+   * @param option the options that the correct answer will be taken from
+   * @throws IllegalArgumentException if the number of options isn't between 3 or 8.
+   */
+  public MultipleChoice(String question, String correctAnswer, String... option)
+      throws IllegalArgumentException {
 
-  public MultipleChoice(String question, String correctAnswer, String ...optionList)
-          throws IllegalArgumentException {
-      super(question);
-      options = "";
-      for (String value: optionList) {
-        if (! (value.replaceAll("\\s+", "").length() > 8 | value.replaceAll("\\s+", "").length() < 3)){
-          throw new
-                  IllegalArgumentException("gg");
-        }
-      }
+    super(question);
+    if (option.length < 3 | option.length > 8) {
+      throw new IllegalArgumentException("Only three to eight options allowed");
+    }
 
-//    if (options.replaceAll("\\s+", "").matches("[1-8]+")) {
-//      throw new IllegalArgumentException(" numbers from 1 - 8 needed");
-//    }
+    try {
+      Arrays.asList(option).contains(option[Integer.parseInt(correctAnswer) - 1]);
+    } catch (Exception e) {
+      throw new IllegalArgumentException("Answer not in option");
+    }
 
-//    else if (options.replaceAll("\\s+", "").length() < 3 | options.trim().length() > 8) {
-//      throw new IllegalArgumentException("3 to 8 options needed");
-//    } else if (!correctAnswer.trim().matches("[1-6]")) {
-//      throw new IllegalArgumentException("Single Number from 1-8");
-//    } else if (correctAnswer.trim().length() != 1) {
-//      throw new IllegalArgumentException("Only choose one option");
-//    } else if (!options.replaceAll("\\s+", "").contains(correctAnswer.trim())) {
-//      throw new IllegalArgumentException("Answer must be in option");
-//    }
     this.correctAnswer = correctAnswer;
-
+    this.options = option;
   }
-
-//  public MultipleChoice(String question, String correctAnswer, String op1, String op2, String op3)
-//          throws IllegalArgumentException {
-//    super(question);
-//
-//    options = op1 + op2 + op3;
-//    if (!options.replaceAll("\\s+", "").matches("[1-6]+")) {
-//      throw new IllegalArgumentException(" numbers from 1 - 8 needed");
-//    } else if (options.replaceAll("\\s+", "").length() < 3 | options.trim().length() > 8) {
-//      throw new IllegalArgumentException("3 to 8 options needed");
-//    } else if (!correctAnswer.trim().matches("[1-6]")) {
-//      throw new IllegalArgumentException("Single Number from 1-8");
-//    } else if (correctAnswer.trim().length() != 1) {
-//      throw new IllegalArgumentException("Only choose one option");
-//    } else if (!options.replaceAll("\\s+", "").contains(correctAnswer.trim())) {
-//      throw new IllegalArgumentException("Answer must be in option");
-//    }
-//    this.correctAnswer = correctAnswer;
-//    this.op1 = op1;
-//    this.op2 = op2;
-//    this.op3 = op3;
-//  }
-//
-//  public MultipleChoice(String question, String correctAnswer, String op1, String op2, String op3, String op4)
-//          throws IllegalArgumentException {
-//    super(question);
-//
-//    options = op1 + op2 + op3 + op4;
-////    if (!options.replaceAll("\\s+", "").matches("[1-8]+")) {
-////      throw new IllegalArgumentException(" numbers from 1 - 8 needed");
-////    } else if (options.replaceAll("\\s+", "").length() < 3 | options.trim().length() > 8) {
-////      throw new IllegalArgumentException("3 to 8 options needed");
-////    } else if (!correctAnswer.trim().matches("[1-8]")) {
-////      throw new IllegalArgumentException("Single Number from 1-8");
-////    } else if (correctAnswer.trim().length() != 1) {
-////      throw new IllegalArgumentException("Only choose one option");
-////    } else if (!options.replaceAll("\\s+", "").contains(correctAnswer.trim())) {
-////      throw new IllegalArgumentException("Answer must be in option");
-////    }
-//    this.correctAnswer = correctAnswer;
-//    this.op1 = op1;
-//    this.op2 = op2;
-//    this.op3 = op3;
-//    this.op4 = op4;
-//  }
 
   @Override
   public String answer(String answer) {
-//    if (!(options.replaceAll("\\s+", "").contains(answer.replaceAll("\\s+", "")))) {
-//      return "Incorrect";
-//    }
     if (answer.replaceAll("\\s+", "").equals(correctAnswer.replaceAll("\\s+", ""))) {
-      return "Correct";
+      return CORRECT;
     }
-    return "Incorrect";
+    return INCORRECT;
   }
 
+  /**
+   * Compares other object of type AbstractQuestion to determine the right ordering.
+   *
+   * @param object the object to compare too. *
+   * @return an int value that determines the ordering.
+   */
   @Override
-  public int compareTo(Question o) {
-    if (o instanceof AbstractQuestion) {
-      AbstractQuestion aQuestion = (AbstractQuestion) o;
-      return aQuestion.compareToMultipleChoice(this);
+  public int compareTo(Question object) {
+    if (object instanceof AbstractQuestion) {
+      AbstractQuestion question = (AbstractQuestion) object;
+      return question.compareToMultipleChoice(this);
     }
+    throw new IllegalArgumentException("not abstract question class");
+  }
+
+  /**
+   * Compares same MultipleChoice object and orders lexicographically based on their questions.
+   *
+   * @param object MultipleChoice object to compare to.
+   * @return an int determining which is greater or smaller.
+   */
+  @Override
+  public int compareToMultipleChoice(Question object) {
+    return object.getText().compareTo(this.getText());
+  }
+
+  /**
+   * Compares MultipleChoice object with Multiple select to enforce true false to be greater.
+   *
+   * @param object Multiple select object that's to be compared.
+   * @return an int determining true false as greater.
+   */
+  @Override
+  public int compareToMultipleSelect(Question object) {
     return 1;
   }
 
+  /**
+   * String representation of the objects properties.
+   *
+   * @return string that describes object
+   */
   @Override
-  public int compareToMultipleChoice(Question o) {
-    return o.getText().compareTo(this.getText());
-  }
-
-  @Override
-  public int compareToMultipleSelect(Question o) {
-    return 1;
+  public String toString() {
+    return String.format(
+        "Question: %s, Answer: %s, Options: %s", question, correctAnswer, Arrays.toString(options));
   }
 }
