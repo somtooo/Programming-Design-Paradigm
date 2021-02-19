@@ -1,6 +1,7 @@
 package wearable;
 
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,7 +24,18 @@ public interface Wearable extends Comparable<Wearable> {
     /**
      * Temporarily boosts the attack or defence power of an item.
      */
-    void boostPower();
+    void wearOut();
+
+    /**
+     * Finds out if an Item wears out after use.
+     * @return returns a boolean true or false if the item is wears out or not.
+     */
+    boolean isWearOut();
+
+    boolean isSameClass(Wearable object);
+
+
+
 
 
 
