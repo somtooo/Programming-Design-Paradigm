@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 import wearable.AbstractWearable;
 import wearable.AttackWearable;
@@ -15,9 +16,9 @@ public class FootWearTest {
     Wearable footWearClassTest;
 
     /**
-     * Sets up a footwear object that's to be used by other test functions
+     * Sets up a footwear object that's to be used by other test functions.
      */
-    @org.junit.Before
+    @Before
     public void setUp() {
         footwear = new FootWear(FootWearName.BOOTS," of speed", false,100);
         footWearClassTest = new FootWear(FootWearName.BOOTS," of speed", false,120);
@@ -55,7 +56,7 @@ public class FootWearTest {
     }
 
     @Test
-    public void isFootSlot() {
+    public void isFootWear() {
         AbstractWearable footwear =  new FootWear(FootWearName.BOOTS," of speed", false,100);
         assertTrue(footwear.isFootWear());
     }

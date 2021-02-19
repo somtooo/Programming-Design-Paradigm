@@ -4,7 +4,6 @@ import wearable.AbstractWearable;
 import wearable.DefenceWearable;
 import wearable.Wearable;
 
-
 /** Represents a head gear item one of the types of clothing in the role playing game. */
 public class HeadGear extends AbstractWearable implements DefenceWearable {
   private final HeadGearName headGearName;
@@ -17,10 +16,14 @@ public class HeadGear extends AbstractWearable implements DefenceWearable {
    * @param headGearName the name of head gear.
    * @param description the description of the head gear.
    * @param wearsOut if the item wears out after use or not.
+   * @throws IllegalArgumentException if name is null.
    */
   public HeadGear(
-      HeadGearName headGearName, String description, boolean wearsOut, int defensePower) {
+      HeadGearName headGearName, String description, boolean wearsOut, int defensePower) throws IllegalArgumentException {
     super(description, wearsOut);
+    if (headGearName == null) {
+      throw new IllegalArgumentException("null not allowed");
+    }
     this.defensePower = defensePower;
     this.headGearName = headGearName;
   }
@@ -46,14 +49,12 @@ public class HeadGear extends AbstractWearable implements DefenceWearable {
 
   @Override
   public boolean isSameClass(Wearable object) {
-      if (object instanceof AbstractWearable) {
-          AbstractWearable wearable = (AbstractWearable) object;
-          return wearable.isHeadGear();
-      }
-      return false;
+    if (object instanceof AbstractWearable) {
+      AbstractWearable wearable = (AbstractWearable) object;
+      return wearable.isHeadGear();
+    }
+    return false;
   }
-
-
 
   //    /**
   //     * Compares this object with the specified object for order.  Returns a
@@ -104,5 +105,14 @@ public class HeadGear extends AbstractWearable implements DefenceWearable {
   @Override
   public int getDefensePower() {
     return defensePower;
+  }
+
+  /**
+   * Returns a string representation of the object.
+   * @return a string representation of the object.
+   */
+  @Override
+  public String toString() {
+    return String.format("Name: %s, Description: %s, DefensePower: %s, Wears Out: %s ", headGearName,description,defensePower,wearsOut);
   }
 }
