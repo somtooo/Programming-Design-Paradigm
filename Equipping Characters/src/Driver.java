@@ -1,7 +1,6 @@
 
 import character.Character;
-import factoryWearable.WearableFactory;
-import wearable.AttackWearable;
+import character.CharacterInterFace;
 import wearable.Wearable;
 import wearable.footWear.FootWear;
 import wearable.footWear.FootWearName;
@@ -19,8 +18,8 @@ public class Driver {
     private final int numberOfHandGear;
     private final int numberOfJewelry;
     private final List<Wearable> chest;
-    private final AttackWearable headGearDummy;
     private final Wearable handGearDummy;
+    private final Wearable headGearDummy;
     private  final Wearable footWearDummy;
     private final Wearable jewelryDummy;
     private int numberOfTimesEquipped;
@@ -30,9 +29,8 @@ public class Driver {
         this.numberOfFootWear = numberOfFootWear;
         this.numberOfHandGear = numberOfHandGear;
         this.numberOfJewelry = numberOfJewelry;
-        headGearDummy = new WearableFactory().createAttackWearable();
-        headGearDummy.getAttackPower();
         footWearDummy = new FootWear(FootWearName.BOOTS, "of height",false,20);
+        headGearDummy = new HeadGear(HeadGearName.HATS, "of love", false, 100);
         jewelryDummy =  new Jewelry(JewelryName.AMULET, "of flight", false, 100, 50);
         handGearDummy = new HandGear(HandGearName.GLOVE, "of flight", false, 100,40);
         chest = new ArrayList<Wearable>();
@@ -106,7 +104,7 @@ public class Driver {
 
 
 
-    public void equipCharacter(Character character) {
+    public void equipCharacter(CharacterInterFace character) {
         if (numberOfTimesEquipped > 0 ) {
             character.wearOutWearableItems();
         }
@@ -119,7 +117,7 @@ public class Driver {
     }
 
 
-    private void findCorrespondingClassAndAddGiveCharacter(Wearable wearable, Character character) {
+    private void findCorrespondingClassAndAddGiveCharacter(Wearable wearable, CharacterInterFace character) {
         if (headGearDummy.equals(wearable)) {
             character.addToHeadSlot(wearable);
         } else if (footWearDummy.equals(wearable)) {
@@ -131,7 +129,7 @@ public class Driver {
         }
     }
 
-    public void predict(Character firstCharacter, Character secondCharacter) {
+    public void predict(CharacterInterFace firstCharacter, CharacterInterFace secondCharacter) {
         int firstCharacterDamage = secondCharacter.getAttackPower() - firstCharacter.getDefensePower();
         int secondCharacterDamage = firstCharacter.getAttackPower() - secondCharacter.getDefensePower();
         if (firstCharacterDamage < 1) {

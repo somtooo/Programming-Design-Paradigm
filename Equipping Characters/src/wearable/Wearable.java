@@ -1,11 +1,7 @@
 package wearable;
 
-
-import java.util.List;
-import java.util.Map;
-
 /**
- * This interface represents a Jewelry and a Hand Gear item in a role playing game.
+ * This interface represents different types of Gears in a role playing game.
  */
 public interface Wearable extends Comparable<Wearable> {
 
@@ -32,7 +28,13 @@ public interface Wearable extends Comparable<Wearable> {
      */
     boolean isWearOut();
 
-    boolean isSameClass(Wearable object);
+    /**
+     * Checks if the object passed in is from the same class as the function caller.
+     * @param object the object to compare
+     * @return a boolean stating if its the same or not
+     * @throws IllegalArgumentException if object is null.
+     */
+    boolean isSameClass(Wearable object) throws IllegalArgumentException;
 
 
 

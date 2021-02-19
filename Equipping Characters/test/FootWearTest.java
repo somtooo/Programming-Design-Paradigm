@@ -5,6 +5,8 @@ import wearable.AttackWearable;
 import wearable.Wearable;
 import wearable.footWear.FootWear;
 import wearable.footWear.FootWearName;
+import wearable.headGear.HeadGear;
+import wearable.headGear.HeadGearName;
 
 import static org.junit.Assert.*;
 
@@ -14,19 +16,21 @@ import static org.junit.Assert.*;
 public class FootWearTest {
     Wearable footwear;
     Wearable footWearClassTest;
+    Wearable cursedFootWear;
 
     /**
      * Sets up a footwear object that's to be used by other test functions.
      */
     @Before
     public void setUp() {
-        footwear = new FootWear(FootWearName.BOOTS," of speed", false,100);
+        footwear = new FootWear(FootWearName.BOOTS," of speed", true,100);
+        cursedFootWear = new FootWear(FootWearName.BOOTS," of speed", true,-100);
         footWearClassTest = new FootWear(FootWearName.BOOTS," of speed", false,120);
     }
 
     @Test
     public void testFootWearCreation() {
-        assertEquals("Name: BOOTS, Description:  of speed, AttackPower: 100, Wears Out: false ",footwear.toString());
+        assertEquals("Name: BOOTS, Description:  of speed, AttackPower: 100, Wears Out: true ",footwear.toString());
     }
 
     @Test
@@ -37,13 +41,18 @@ public class FootWearTest {
     @Test
     public void wearOut() {
         footwear.wearOut();
+        cursedFootWear.wearOut();
         AttackWearable attackFootWear = (AttackWearable) footwear;
+        AttackWearable cursedAttackFootWear = (AttackWearable) cursedFootWear;
         assertEquals(70,attackFootWear.getAttackPower());
+        assertEquals(-130,cursedAttackFootWear.getAttackPower());
     }
 
     @Test
     public void isSameClass() {
+        Wearable headGear = new HeadGear(HeadGearName.HATS,"of light",false,40);
         assertTrue(footWearClassTest.isSameClass(footwear));
+        assertFalse(footWearClassTest.isSameClass(headGear));
     }
 
     @Test

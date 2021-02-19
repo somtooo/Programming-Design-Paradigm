@@ -6,6 +6,8 @@ import wearable.DefenceWearable;
 import wearable.Wearable;
 import wearable.footWear.FootWear;
 import wearable.footWear.FootWearName;
+import wearable.handGear.HandGear;
+import wearable.handGear.HandGearName;
 import wearable.headGear.HeadGear;
 import wearable.headGear.HeadGearName;
 
@@ -16,6 +18,7 @@ import static org.junit.Assert.*;
  */
 public class HeadGearTest {
     Wearable headGear;
+    Wearable cursedHeadGear;
     Wearable headGearClassTest;
 
     /**
@@ -23,13 +26,14 @@ public class HeadGearTest {
      */
     @Before
     public void setUp() throws Exception {
-        headGear = new HeadGear(HeadGearName.HATS," of speed", false,100);
+        headGear = new HeadGear(HeadGearName.HATS," of speed", true,100);
+        cursedHeadGear = new HeadGear(HeadGearName.HATS," of speed", true,-100);
         headGearClassTest = new HeadGear(HeadGearName.HATS," of speed", false,120);
     }
 
     @Test
     public void testFootWearCreation() {
-        assertEquals("Name: HATS, Description:  of speed, DefensePower: 100, Wears Out: false ", headGear.toString());
+        assertEquals("Name: HATS, Description:  of speed, DefensePower: 100, Wears Out: true ", headGear.toString());
     }
 
     @Test
@@ -46,13 +50,18 @@ public class HeadGearTest {
     @Test
     public void wearOut() {
         headGear.wearOut();
+        cursedHeadGear.wearOut();
         DefenceWearable defenseHeadGear = (DefenceWearable) headGear;
+        DefenceWearable cursedDefenseHeadGear = (DefenceWearable) cursedHeadGear;
         assertEquals(80,defenseHeadGear.getDefensePower());
+        assertEquals(-120,cursedDefenseHeadGear.getDefensePower());
     }
 
     @Test
     public void isSameClass() {
+        AbstractWearable handGear = new HandGear(HandGearName.GLOVE, "of hate",false,100,100);
         assertTrue(headGearClassTest.isSameClass(headGear));
+        assertFalse(headGearClassTest.isSameClass(handGear));
     }
 
     @Test

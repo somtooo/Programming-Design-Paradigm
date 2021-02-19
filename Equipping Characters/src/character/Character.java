@@ -6,27 +6,130 @@ import wearable.Wearable;
 
 import java.util.*;
 
-public class Character {
+/**
+ * This class represents a character in a role playing game it has a name and also uses various gears to fight.
+ */
+public class Character implements CharacterInterFace {
   private final String nameOfCharacter;
   private final Map<CharacterSlots, List<Wearable>> gearDescription;
-  private final int attackPower;
   private final int defensePower;
   private int totalAttack;
   private int totalDefense;
 
 
-
-  public Character(String nameOfCharacter, int attackPower, int defensePower) {
+  /**
+   * Initializes the character object with the required parameters.
+   * @param nameOfCharacter character name.
+   * @param attackPower characters base attack power.
+   * @param defensePower characters base defense power.
+   */
+  public Character(String nameOfCharacter, int attackPower, int defensePower) throws IllegalArgumentException{
+    if (nameOfCharacter == null) {throw new IllegalArgumentException("Null not allowed");}
+    if (nameOfCharacter.trim().equals("")) {
+      throw new IllegalArgumentException("Name can't be empty");
+    }
+    if (attackPower <=0 | defensePower <=0) {
+      throw new IllegalArgumentException(" Chracter attack or defense power must be above 0");
+    }
     this.nameOfCharacter = nameOfCharacter;
     gearDescription = new HashMap<>();
     initializeGearDescription();
-    this.attackPower = attackPower;
     this.defensePower = defensePower;
     totalAttack = attackPower;
     totalDefense = defensePower;
   }
 
+  @Override
+  public int getHitPoints() {
+    return defensePower + totalDefense;
+  }
 
+  @Override
+  public int getAttackPower() {
+    return totalAttack;
+  }
+
+  @Override
+  public int getDefensePower() {
+    return totalDefense;
+  }
+
+  @Override
+  public String getName() {
+    return nameOfCharacter;
+  }
+
+  @Override
+  public void addToHeadSlot(Wearable wearable) {
+    List<Wearable> wearables = gearDescription.get(CharacterSlots.HeadSlot);
+    if (wearables.size() < 1) {
+      wearables.add(wearable);
+    } else if (wearables.size() == 1) {
+      int index = findIndexToRemove(wearable, wearables);
+      if (index > 0) {
+        printDiscardedItem(wearables, index);
+        wearables.remove(index);
+        wearables.add(wearable);
+      }
+    }
+  }
+
+  @Override
+  public void addToFeetSlot(Wearable wearable) {
+    List<Wearable> wearables = gearDescription.get(CharacterSlots.FeetSlot);
+    if (wearables.size() < 2) {
+      wearables.add(wearable);
+    } else if (wearables.size() == 2) {
+      int index = findIndexToRemove(wearable, wearables);
+      if (index > 0) {
+        printDiscardedItem(wearables, index);
+        wearables.remove(index);
+        wearables.add(wearable);
+      }
+    }
+  }
+
+  @Override
+  public void addToHandSlot(Wearable wearable) {
+    List<Wearable> wearables = gearDescription.get(CharacterSlots.HandSlot);
+    if (wearables.size() < 10) {
+      wearables.add(wearable);
+    } else if (wearables.size() == 10) {
+      int index = findIndexToRemove(wearable, wearables);
+      if (index > 0) {
+        printDiscardedItem(wearables, index);
+        wearables.remove(index);
+        wearables.add(wearable);
+      }
+    }
+  }
+
+
+  @Override
+  public void calculateTotalAttackAndDefense() {
+    List<Wearable> wearablesToSend = new ArrayList<>();
+    for (List<Wearable> wearables : gearDescription.values()) {
+      for (Wearable item : wearables) {
+        if (item instanceof AttackWearable) {
+          AttackWearable attackWearable = (AttackWearable) item;
+          totalAttack = totalAttack + attackWearable.getAttackPower();
+        }  if (item instanceof DefenceWearable) {
+          DefenceWearable defenseWearable = (DefenceWearable) item;
+          totalDefense = totalDefense + defenseWearable.getDefensePower();
+        }
+      }
+    }
+  }
+
+
+
+  @Override
+  public void addToNeckSlot(Wearable wearable) {
+    gearDescription.get(CharacterSlots.NeckSlot).add(wearable);
+  }
+
+
+  @Override
   public void wearOutWearableItems() {
     for (List<Wearable> wearables : gearDescription.values()) {
       for (Wearable items : wearables) {
@@ -44,59 +147,6 @@ public class Character {
     gearDescription.put(CharacterSlots.NeckSlot, new ArrayList<Wearable>());
   }
 
-  public int getHitPoints() {
-    return defensePower + totalDefense;
-  }
-
-  public void addToHeadSlot(Wearable wearable) {
-    List<Wearable> wearables = gearDescription.get(CharacterSlots.HeadSlot);
-    if (wearables.size() < 1) {
-      wearables.add(wearable);
-    } else if (wearables.size() == 1) {
-      int index = findIndexToRemove(wearable, wearables);
-      if (index > 0) {
-        wearables.remove(index);
-        wearables.add(wearable);
-      }
-    }
-  }
-
-  public void addToFeetSlot(Wearable wearable) {
-    List<Wearable> wearables = gearDescription.get(CharacterSlots.FeetSlot);
-    if (wearables.size() < 2) {
-      wearables.add(wearable);
-    } else if (wearables.size() == 2) {
-      int index = findIndexToRemove(wearable, wearables);
-      if (index > 0) {
-        wearables.remove(index);
-        wearables.add(wearable);
-      }
-    }
-  }
-
-  public void addToHandSlot(Wearable wearable) {
-    List<Wearable> wearables = gearDescription.get(CharacterSlots.HandSlot);
-    if (wearables.size() < 10) {
-      wearables.add(wearable);
-    } else if (wearables.size() == 10) {
-      int index = findIndexToRemove(wearable, wearables);
-      if (index > 0) {
-        printDiscardedItem(wearables, index);
-        wearables.remove(index);
-        wearables.add(wearable);
-      }
-    }
-  }
-
-  private void printDiscardedItem(List<Wearable> wearables, int index) {
-    String discardedItem = wearables.get(index).getItemName() + "Is going to get discarded";
-    System.out.println(discardedItem);
-  }
-
-  public void addToNeckSlot(Wearable wearable) {
-    gearDescription.get(CharacterSlots.NeckSlot).add(wearable);
-  }
-
   private int findIndexToRemove(Wearable wearable, List<Wearable> compareToWearable) {
     for (int index = 0; index < compareToWearable.size(); index++) {
       if (wearable.compareTo(compareToWearable.get(index)) > 0) {
@@ -106,20 +156,13 @@ public class Character {
     return 0;
   }
 
-  public void calculateTotalAttackAndDefense() {
-    List<Wearable> wearablesToSend = new ArrayList<>();
-    for (List<Wearable> wearables : gearDescription.values()) {
-      for (Wearable item : wearables) {
-        if (item instanceof AttackWearable) {
-          AttackWearable attackWearable = (AttackWearable) item;
-          totalAttack = totalAttack + attackWearable.getAttackPower();
-        }  if (item instanceof DefenceWearable) {
-          DefenceWearable defenseWearable = (DefenceWearable) item;
-          totalDefense = totalDefense + defenseWearable.getDefensePower();
-        }
-      }
-    }
+
+  private void printDiscardedItem(List<Wearable> wearables, int index) {
+    String discardedItem = wearables.get(index).getItemName() + "Is going to get discarded";
+    System.out.println(discardedItem);
   }
+
+
 
   private String whatAmIWearing() {
     List<Wearable> headWearables = gearDescription.get(CharacterSlots.HeadSlot);
@@ -176,17 +219,7 @@ public class Character {
     return false;
   }
 
-  public int getAttackPower() {
-    return totalAttack;
-  }
 
-  public int getDefensePower() {
-    return totalDefense;
-  }
-
-  public String getName() {
-    return nameOfCharacter;
-  }
 
   /**
    * Returns a string representation of the object. In general, the {@code toString} method returns

@@ -5,6 +5,9 @@ import wearable.AttackWearable;
 import wearable.DefenceWearable;
 import wearable.Wearable;
 import wearable.footWear.FootWear;
+import wearable.handGear.HandGear;
+import wearable.headGear.HeadGear;
+import wearable.headGear.HeadGearName;
 import wearable.jewelry.Jewelry;
 import wearable.jewelry.JewelryName;
 
@@ -16,6 +19,7 @@ import static org.junit.Assert.*;
 public class JewelryTest {
 
     Wearable jewelry;
+    Wearable cursedJewelry;
     Wearable jewelryToCompare;
     AttackWearable attackJewelry;
     DefenceWearable defenseJewelry;
@@ -27,7 +31,8 @@ public class JewelryTest {
      */
     @Before
     public void setUp() throws Exception {
-        jewelry =  new Jewelry(JewelryName.AMULET, "of love",false,100,100);
+        jewelry =  new Jewelry(JewelryName.AMULET, "of love",true,100,100);
+        cursedJewelry =  new Jewelry(JewelryName.AMULET, "of love",true,-100,-100);
         jewelryToCompare= new Jewelry(JewelryName.AMULET, "of love",false,110,120);
         attackJewelry= new Jewelry(JewelryName.AMULET, "of attack",false,100,100);
         defenseJewelry= new Jewelry(JewelryName.AMULET, "of defense",false,100,100);
@@ -37,7 +42,7 @@ public class JewelryTest {
 
     @Test
     public void testFootWearCreation() {
-        assertEquals("Name: AMULET, Description: of love, AttackPower: 100, DefensePower: 100, Wears Out: false ",jewelry.toString());
+        assertEquals("Name: AMULET, Description: of love, AttackPower: 100, DefensePower: 100, Wears Out: true ",jewelry.toString());
     }
 
     @Test
@@ -48,15 +53,23 @@ public class JewelryTest {
     @Test
     public void wearOut() {
         jewelry.wearOut();
+        cursedJewelry.wearOut();
+        AttackWearable attackCursedJewelry = (AttackWearable) cursedJewelry;
+        DefenceWearable defenseCursedJewelry = (DefenceWearable) cursedJewelry;
         AttackWearable attackJewelry = (AttackWearable) jewelry;
         DefenceWearable defenseJewelry = (DefenceWearable) jewelry;
+
         assertEquals(70,attackJewelry.getAttackPower());
         assertEquals(80,defenseJewelry.getDefensePower());
+        assertEquals(-130,attackCursedJewelry.getAttackPower());
+        assertEquals(-120,defenseCursedJewelry.getDefensePower());
     }
 
     @Test
     public void isSameClass() {
+        Wearable headGear = new HeadGear(HeadGearName.HATS,"of light",false,40);
         assertTrue(jewelryToCompare.isSameClass(jewelry));
+        assertFalse(jewelryToCompare.isSameClass(headGear));
     }
 
     @Test
@@ -85,6 +98,9 @@ public class JewelryTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testForNullName() {
-        new Jewelry(JewelryName.AMULET, null,false,100,100);
+        new Jewelry(null, "of flight",false,100,100);
     }
+
+
+
 }
