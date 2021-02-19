@@ -45,8 +45,14 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
   public void wearOut() {
     if (defensePower > 0) {
       defensePower = defensePower - (int) (defensePower * 0.2);
-    } else if (attackPower > 0) {
+    }else if (defensePower < 0){
+        defensePower = defensePower + (int) (defensePower * 0.2);
+    }
+
+    if (attackPower > 0) {
       attackPower = attackPower - (int) (attackPower * 0.3);
+    } else if (attackPower < 0){
+        attackPower = attackPower + (int) (attackPower * 0.3);
     }
   }
 
@@ -95,4 +101,13 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
   public int getDefensePower() {
     return defensePower;
   }
+
+    /**
+     * Returns a string representation of the object.
+     * @return a string representation of the object.
+     */
+    @Override
+    public String toString() {
+        return String.format("Name: %s, Description: %s, AttackPower: %s, DefensePower: %s, Wears Out: %s ", jewelryName,description,attackPower,defensePower,wearsOut);
+    }
 }
