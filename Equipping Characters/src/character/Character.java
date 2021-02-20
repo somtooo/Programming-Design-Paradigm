@@ -1,34 +1,40 @@
 package character;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import wearable.AttackWearable;
 import wearable.DefenceWearable;
 import wearable.Wearable;
 
-import java.util.*;
 
 /**
- * This class represents a character in a role playing game it has a name and also uses various gears to fight.
+ * This class represents a character in a role playing game it has a name and also uses various
+ * gears to fight.
  */
 public class Character implements CharacterInterFace {
   private final String nameOfCharacter;
   private final Map<CharacterSlots, List<Wearable>> gearDescription;
   private final int defensePower;
+  private final int attackPower;
   private int totalAttack;
   private int totalDefense;
-  private final int attackPower;
   private boolean equipped;
-
 
   /**
    * Initializes the character object with the required parameters.
+   *
    * @param nameOfCharacter character name.
    * @param attackPower characters base attack power.
    * @param defensePower characters base defense power.
    */
-  public Character(String nameOfCharacter, int attackPower, int defensePower) throws IllegalArgumentException{
+  public Character(String nameOfCharacter, int attackPower, int defensePower)
+      throws IllegalArgumentException {
     nullChecker(nameOfCharacter == null, "Null not allowed");
     nullChecker(nameOfCharacter.trim().equals(""), "Name can't be empty");
-    nullChecker(attackPower <=0 | defensePower <=0, " Chracter attack or defense power must be above 0");
+    nullChecker(
+        attackPower <= 0 | defensePower <= 0, " Character attack or defense power must be above 0");
     this.nameOfCharacter = nameOfCharacter;
     gearDescription = new HashMap<>();
     initializeGearDescription();
@@ -41,7 +47,7 @@ public class Character implements CharacterInterFace {
 
   @Override
   public int getHitPoints() {
-    return defensePower + totalDefense + 100;
+    return defensePower + (totalDefense + 100);
   }
 
   @Override
@@ -122,9 +128,6 @@ public class Character implements CharacterInterFace {
     equipped = true;
   }
 
-
-
-
   @Override
   public void calculateTotalAttackAndDefense() {
     int tempAttack = 0;
@@ -147,7 +150,6 @@ public class Character implements CharacterInterFace {
     totalDefense = tempDefense;
   }
 
-
   @Override
   public void wearOutWearableItems() {
     for (List<Wearable> wearables : gearDescription.values()) {
@@ -162,6 +164,7 @@ public class Character implements CharacterInterFace {
 
   /**
    * Checks for null or empty strings.
+   *
    * @param isTrue a boolean stating if its null or an empty string.
    * @param message String the message to tell the user.
    */
@@ -171,9 +174,7 @@ public class Character implements CharacterInterFace {
     }
   }
 
-  /**
-   * Initializes a hashMap that represents a characters body parts.
-   */
+  /** Initializes a hashMap that represents a characters body parts. */
   private void initializeGearDescription() {
     gearDescription.put(CharacterSlots.HeadSlot, new ArrayList<Wearable>());
     gearDescription.put(CharacterSlots.FeetSlot, new ArrayList<Wearable>());
@@ -183,6 +184,7 @@ public class Character implements CharacterInterFace {
 
   /**
    * Compares a new item with the items a character has to determine if its better.
+   *
    * @param wearable the new item to compare with.
    * @param compareToWearable a list of the characters item.
    * @return an integer which is the index in the list if the item is to be replaced.
@@ -196,9 +198,9 @@ public class Character implements CharacterInterFace {
     return -1;
   }
 
-
   /**
    * Prints an item that's about to get discarded to the console.
+   *
    * @param wearables a List of the items the character has.
    * @param index the index of the item that's going to get discarded.
    */
@@ -207,12 +209,12 @@ public class Character implements CharacterInterFace {
     System.out.println(discardedItem);
   }
 
-
   /**
    * Describes what a character is wearing by combining the names of items of the same type.
+   *
    * @return a string describing what the character is wearing.
    */
-  private String whatAmIWearing() {
+  private String whatAmiWearing() {
     if (!equipped) {
       return "empty because i haven't been dressed yet";
     }
@@ -227,66 +229,74 @@ public class Character implements CharacterInterFace {
         + combineWearableDescription(neckWearables);
   }
 
-
   /**
    * Combines the description of items in a list.
-   * @param Wearables the list that contains items
+   *
+   * @param wearables the list that contains items
    * @return a string that represents the combined description of all the items in the list.
    */
-  private String combineWearableDescription(List<Wearable> Wearables) {
+  private String combineWearableDescription(List<Wearable> wearables) {
     StringBuilder builder = new StringBuilder();
-    checkIfOnlyOneItem(Wearables, builder);
-    checkIfMoreThanOneItem(Wearables, builder);
+    checkIfOnlyOneItem(wearables, builder);
+    checkIfMoreThanOneItem(wearables, builder);
     builder.append(" ");
     return builder.toString();
   }
 
   /**
    * Checks if the list has only one item.
-   * @param Wearables the list of items.
+   *
+   * @param wearables the list of items.
    * @param builder a string builder used for the combination of strings
    */
-  private void checkIfOnlyOneItem(List<Wearable> Wearables, StringBuilder builder) {
-    if (Wearables.size() == 1) {
+  private void checkIfOnlyOneItem(List<Wearable> wearables, StringBuilder builder) {
+    if (wearables.size() == 1) {
       builder
-          .append(Wearables.get(0).getItemName())
+          .append(wearables.get(0).getItemName())
           .append(" ")
-          .append(Wearables.get(0).getItemDescription())
+          .append(wearables.get(0).getItemDescription())
           .append(". ");
     }
   }
 
   /**
    * Checks if the list has more than one item.
-   * @param Wearables the list of items.
+   *
+   * @param wearables the list of items.
    * @param builder a string builder used for the combination of strings
    */
-  private void checkIfMoreThanOneItem(List<Wearable> Wearables, StringBuilder builder) {
-    if (Wearables.size() > 1) {
-      builder.append(Wearables.get(0).getItemName());
-      for (int index = 0; index < Wearables.size(); index++) {
-        if (checkIfSecondToLastItem(Wearables, builder, index)) break;
-        builder.append(" ").append(Wearables.get(index).getItemDescription()).append(", ");
+  private void checkIfMoreThanOneItem(List<Wearable> wearables, StringBuilder builder) {
+    if (wearables.size() > 1) {
+      builder.append(wearables.get(0).getItemName());
+      for (int index = 0; index < wearables.size(); index++) {
+        if (checkIfSecondToLastItem(wearables, builder, index)) {
+          break;
+        }
+        builder.append(" ").append(wearables.get(index).getItemDescription()).append(", ");
       }
     }
   }
 
   /**
    * Checks if the index is at the second to last item to know when to insert And.
-   * @param Wearables the list of items.
+   *
+   * @param wearables the list of items.
    * @param builder a string builder used for the combination of strings
    * @param index the index to check.
    */
   private boolean checkIfSecondToLastItem(
-      List<Wearable> Wearables, StringBuilder builder, int index) {
-    if ((index == (Wearables.size() - 2)) | (Wearables.size() == 1)) {
-      builder.append(" ").append(Wearables.get(index).getItemDescription()).append(" and ").append(Wearables.get(index+1).getItemDescription()).append(". ");
+      List<Wearable> wearables, StringBuilder builder, int index) {
+    if ((index == (wearables.size() - 2)) | (wearables.size() == 1)) {
+      builder
+          .append(" ")
+          .append(wearables.get(index).getItemDescription())
+          .append(" and ")
+          .append(wearables.get(index + 1).getItemDescription())
+          .append(". ");
       return true;
     }
     return false;
   }
-
-
 
   /**
    * Returns a string representation of the object. In general, the {@code toString} method returns
@@ -300,6 +310,6 @@ public class Character implements CharacterInterFace {
         "I am %s my current gear load out is\n %sI have an Attack Power of %s \n"
             + "and a Defense Power of %s which brings my Hit Points to %s, trust me I am gonna\n"
             + " beat the Java out of you!!!!",
-        nameOfCharacter, whatAmIWearing(), getAttackPower(), getDefensePower(), getHitPoints());
+        nameOfCharacter, whatAmiWearing(), getAttackPower(), getDefensePower(), getHitPoints());
   }
 }

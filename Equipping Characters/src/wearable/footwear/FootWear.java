@@ -1,57 +1,42 @@
-package wearable.jewelry;
+package wearable.footwear;
 
 import wearable.AbstractWearable;
 import wearable.AttackWearable;
-import wearable.DefenceWearable;
 import wearable.Wearable;
 
-/** Represents a Jewelry item one of the types of clothing in the role playing game. */
-public class Jewelry extends AbstractWearable implements AttackWearable, DefenceWearable {
-  private final JewelryName jewelryName;
+/** Represents a foot wear item one of the types of clothing in the role playing game. */
+public class FootWear extends AbstractWearable implements AttackWearable {
+  private final FootWearName footWearName;
   private int attackPower;
-  private int defensePower;
 
   /**
-   * Initializes the Jewelry with the required parameters.
+   * Initializes the head gear with the required parameters.
    *
-   * @param jewelryName the name of hte jewelry.
-   * @param description the jewelry description.
-   * @param wearsOut if the jewelry wears out or not.
-   * @param attackPower the jewelry attack power.
-   * @param defensePower the jewelry defense power.
-   * @throws IllegalArgumentException if the jewelry name is null.
+   * @param attackPower the items defensive power.
+   * @param footWearName the name of the footwear.
+   * @param description the description of the footwear.
+   * @param wearsOut if the item wears out over time or not.
+   * @throws IllegalArgumentException if footWearName is null.
    */
-  public Jewelry(
-      JewelryName jewelryName,
-      String description,
-      boolean wearsOut,
-      int attackPower,
-      int defensePower)
+  public FootWear(FootWearName footWearName, String description, boolean wearsOut, int attackPower)
       throws IllegalArgumentException {
     super(description, wearsOut);
-    checkForNull(jewelryName == null, " Null not allowed");
-    this.jewelryName = jewelryName;
+    checkForNull(footWearName == null, " Null not allowed");
     this.attackPower = attackPower;
-    this.defensePower = defensePower;
+    this.footWearName = footWearName;
   }
 
   @Override
   public String getItemName() {
-    return jewelryName.toString();
+    return footWearName.toString();
   }
 
   @Override
   public void wearOut() {
     if (wearsOut) {
-      if (defensePower > 0) {
-        defensePower = defensePower - (int) (defensePower * 0.2);
-      } else if (defensePower < 0) {
-        defensePower = defensePower + (int) (defensePower * 0.2);
-      }
-
       if (attackPower > 0) {
         attackPower = attackPower - (int) (attackPower * 0.3);
-      } else if (attackPower < 0) {
+      } else {
         attackPower = attackPower + (int) (attackPower * 0.3);
       }
     }
@@ -62,19 +47,9 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
     checkForNull(object == null, " Null not allowed");
     if (object instanceof AbstractWearable) {
       AbstractWearable wearable = (AbstractWearable) object;
-      return wearable.isJewelry();
+      return wearable.isFootWear();
     }
     return false;
-  }
-
-  /**
-   * Checks if the jewelry class calls this function.
-   *
-   * @return true stating that this is the jewelry class.
-   */
-  @Override
-  public boolean isJewelry() {
-    return true;
   }
 
   /**
@@ -94,14 +69,19 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
     checkForNull(object == null, " Null not allowed");
     if (object instanceof AbstractWearable) {
       AbstractWearable wearable = (AbstractWearable) object;
-      return wearable.compareToJewelry(this);
+      return wearable.compareToFootWear(this);
     }
     throw new ClassCastException("Cant compare of type not Wearable");
   }
 
+  /**
+   * Checks if the footWear class calls this function.
+   *
+   * @return true stating that this is the footWear class.
+   */
   @Override
-  public int getAttackPower() {
-    return attackPower;
+  public boolean isFootWear() {
+    return true;
   }
 
   /**
@@ -112,8 +92,10 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
    * @throws IllegalArgumentException if object is null.
    */
   @Override
-  public int compareToJewelry(Wearable object) {
-    checkForNull(object == null, " Null not allowed");
+  public int compareToFootWear(Wearable object) {
+    if (object == null) {
+      throw new IllegalArgumentException("null not allowed");
+    }
     AttackWearable attackWearable = (AttackWearable) object;
     if (attackWearable.getAttackPower() > this.getAttackPower()) {
       return 1;
@@ -123,9 +105,22 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
     return -1;
   }
 
+  /**
+   * Overrides the compareToHandGear to enforce FootWear is always bigger.
+   *
+   * @param object the wearable object to be compared.
+   * @return an integer stating footWear is always bigger than handGear.
+   * @throws IllegalArgumentException if object is null.
+   */
   @Override
-  public int getDefensePower() {
-    return defensePower;
+  public int compareToHandGear(Wearable object) {
+    checkForNull(object == null, " Null not allowed");
+    return 1;
+  }
+
+  @Override
+  public int getAttackPower() {
+    return attackPower;
   }
 
   /**
@@ -137,7 +132,7 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
   @Override
   public String toString() {
     return String.format(
-        "Name: %s, Description: %s, AttackPower: %s, DefensePower: %s, Wears Out: %s ",
-        jewelryName, description, attackPower, defensePower, wearsOut);
+        "Name: %s, Description: %s, AttackPower: %s, Wears Out: %s ",
+        footWearName, description, attackPower, wearsOut);
   }
 }

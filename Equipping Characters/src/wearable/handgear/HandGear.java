@@ -1,58 +1,58 @@
-package wearable.jewelry;
+package wearable.handgear;
 
 import wearable.AbstractWearable;
 import wearable.AttackWearable;
 import wearable.DefenceWearable;
 import wearable.Wearable;
 
-/** Represents a Jewelry item one of the types of clothing in the role playing game. */
-public class Jewelry extends AbstractWearable implements AttackWearable, DefenceWearable {
-  private final JewelryName jewelryName;
+/** Represents a HandGear item one of the types of clothing in the role playing game. */
+public class HandGear extends AbstractWearable implements AttackWearable, DefenceWearable {
+  private final HandGearName handGearName;
   private int attackPower;
   private int defensePower;
 
   /**
-   * Initializes the Jewelry with the required parameters.
+   * Initializes the HandGear with the required parameters.
    *
-   * @param jewelryName the name of hte jewelry.
-   * @param description the jewelry description.
-   * @param wearsOut if the jewelry wears out or not.
-   * @param attackPower the jewelry attack power.
-   * @param defensePower the jewelry defense power.
-   * @throws IllegalArgumentException if the jewelry name is null.
+   * @param handGearName the name of the hand gear.
+   * @param description the description of the hand gear.
+   * @param wearsOut if the hand gear wears out or not.
+   * @param attackPower the attack power of the hand gear
+   * @param defensePower the defense power of the hand gear.
+   * @throws IllegalArgumentException if the hand gear name is null.
    */
-  public Jewelry(
-      JewelryName jewelryName,
+  public HandGear(
+      HandGearName handGearName,
       String description,
-      boolean wearsOut,
+      Boolean wearsOut,
       int attackPower,
       int defensePower)
       throws IllegalArgumentException {
     super(description, wearsOut);
-    checkForNull(jewelryName == null, " Null not allowed");
-    this.jewelryName = jewelryName;
+    checkForNull(handGearName == null, " Null not allowed");
+    this.handGearName = handGearName;
     this.attackPower = attackPower;
     this.defensePower = defensePower;
   }
 
   @Override
   public String getItemName() {
-    return jewelryName.toString();
+    return handGearName.toString();
   }
 
   @Override
   public void wearOut() {
     if (wearsOut) {
       if (defensePower > 0) {
-        defensePower = defensePower - (int) (defensePower * 0.2);
+        defensePower = defensePower - (int) (defensePower * 0.1);
       } else if (defensePower < 0) {
-        defensePower = defensePower + (int) (defensePower * 0.2);
+        defensePower = defensePower + (int) (defensePower * 0.1);
       }
 
       if (attackPower > 0) {
-        attackPower = attackPower - (int) (attackPower * 0.3);
+        attackPower = attackPower - (int) (attackPower * 0.4);
       } else if (attackPower < 0) {
-        attackPower = attackPower + (int) (attackPower * 0.3);
+        attackPower = attackPower + (int) (attackPower * 0.4);
       }
     }
   }
@@ -62,19 +62,9 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
     checkForNull(object == null, " Null not allowed");
     if (object instanceof AbstractWearable) {
       AbstractWearable wearable = (AbstractWearable) object;
-      return wearable.isJewelry();
+      return wearable.isHandGear();
     }
     return false;
-  }
-
-  /**
-   * Checks if the jewelry class calls this function.
-   *
-   * @return true stating that this is the jewelry class.
-   */
-  @Override
-  public boolean isJewelry() {
-    return true;
   }
 
   /**
@@ -94,7 +84,7 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
     checkForNull(object == null, " Null not allowed");
     if (object instanceof AbstractWearable) {
       AbstractWearable wearable = (AbstractWearable) object;
-      return wearable.compareToJewelry(this);
+      return wearable.compareToHandGear(this);
     }
     throw new ClassCastException("Cant compare of type not Wearable");
   }
@@ -105,6 +95,16 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
   }
 
   /**
+   * Checks if the handGear class calls this function.
+   *
+   * @return true stating that this is the handGear class.
+   */
+  @Override
+  public boolean isHandGear() {
+    return true;
+  }
+
+  /**
    * Compares same class object to determine which is greater, lesser or equal.
    *
    * @param object the wearable object to be compared.
@@ -112,8 +112,10 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
    * @throws IllegalArgumentException if object is null.
    */
   @Override
-  public int compareToJewelry(Wearable object) {
-    checkForNull(object == null, " Null not allowed");
+  public int compareToHandGear(Wearable object) {
+    if (object == null) {
+      throw new IllegalArgumentException("Null not allowed");
+    }
     AttackWearable attackWearable = (AttackWearable) object;
     if (attackWearable.getAttackPower() > this.getAttackPower()) {
       return 1;
@@ -138,6 +140,6 @@ public class Jewelry extends AbstractWearable implements AttackWearable, Defence
   public String toString() {
     return String.format(
         "Name: %s, Description: %s, AttackPower: %s, DefensePower: %s, Wears Out: %s ",
-        jewelryName, description, attackPower, defensePower, wearsOut);
+        handGearName, description, attackPower, defensePower, wearsOut);
   }
 }

@@ -1,4 +1,4 @@
-package wearable.headGear;
+package wearable.headgear;
 
 import wearable.AbstractWearable;
 import wearable.DefenceWearable;
@@ -28,10 +28,11 @@ public class HeadGear extends AbstractWearable implements DefenceWearable {
 
   /**
    * Checks if the headGear class calls this function.
+   *
    * @return true stating that this is the headGear class.
    */
   @Override
-  public Boolean isHeadGear() {
+  public boolean isHeadGear() {
     return true;
   }
 
@@ -85,6 +86,7 @@ public class HeadGear extends AbstractWearable implements DefenceWearable {
 
   /**
    * Compares same class object to determine which is greater, lesser or equal.
+   *
    * @param object the wearable object to be compared.
    * @return an integer stating equality, greatness or less.
    * @throws IllegalArgumentException if object is null.
