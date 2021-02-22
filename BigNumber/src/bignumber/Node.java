@@ -39,6 +39,14 @@ public class Node implements ListOfInteger {
 //        }
 
     }
+
+    @Override
+    public ListOfInteger addToHead(int data, ListOfInteger object) {
+        ListOfInteger newNode = new Node(data,null);
+        newNode.setNext(object);
+        return newNode;
+    }
+
     public void addHelper(ListOfInteger toAdd){
 
         if(this.getNext()== null){
@@ -191,7 +199,6 @@ public class Node implements ListOfInteger {
         }
         return this.next.getDataHelp(1 + accumulator,index);
     }
-
 
     @Override
     public ListOfInteger getNext() {

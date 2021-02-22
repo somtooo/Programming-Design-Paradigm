@@ -59,7 +59,6 @@ public interface BigNumber extends Comparable<BigNumber> {
    * operation does not change either number.
    * 
    * @param other the other number
-   * @return the sum
    */
-  BigNumber add(BigNumber other);
+  void add(BigNumber other);
 }

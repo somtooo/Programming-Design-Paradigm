@@ -31,6 +31,7 @@ public interface ListOfInteger {
 
     public ListOfInteger addList(ListOfInteger listToAdd);
 
+    public ListOfInteger addToHead(int data, ListOfInteger list);
 
     public ListOfInteger add(int number);
     public void addHelper(ListOfInteger toAdd);
