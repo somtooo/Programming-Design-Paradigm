@@ -33,6 +33,7 @@ public interface ListOfInteger {
 
 
     public ListOfInteger add(int number);
+    public void addHelper(ListOfInteger toAdd);
     public void setData (int data);
     int getDataHelp(int i,int index);
 }

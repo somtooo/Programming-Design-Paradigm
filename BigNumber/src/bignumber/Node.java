@@ -25,7 +25,7 @@ public class Node implements ListOfInteger {
     @Override
     public void addDataToEnd(int data) {
         ListOfInteger tempNode = new Node(data,null);
-        add(this,tempNode);
+        addHelper(tempNode);
 //        if (next == null) {
 //            next = tempNode;
 //        }
@@ -39,10 +39,12 @@ public class Node implements ListOfInteger {
 //        }
 
     }
-    public void addHelper(ListOfInteger obj,ListOfInteger toAdd){
+    public void addHelper(ListOfInteger toAdd){
 
-        if(obj.getNext()== null)obj.setNext(toAdd);
-        else obj.getNext().add()
+        if(this.getNext()== null){
+            this.setNext(toAdd);
+        }
+        else this.getNext().addHelper(toAdd);
 
     }
     @Override
