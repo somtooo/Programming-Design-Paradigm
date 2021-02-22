@@ -55,6 +55,7 @@ public class Node implements ListOfInteger {
         else this.getNext().addHelper(toAdd);
 
     }
+
     @Override
     public void removeLastNode() {
         if (next == null) {
@@ -83,7 +84,7 @@ public class Node implements ListOfInteger {
     @Override
     public int getData(int index) {
         ListOfInteger current = this;
-        int position = 1;
+        int position = 0;
         while (current != null) {
             if (position == index) {
                 return current.getIntData();
@@ -93,6 +94,25 @@ public class Node implements ListOfInteger {
         }
         assert (false);
         return 0;
+    }
+
+    @Override
+    public int getDigitAt(int i) {
+        int index = (count() - i) - 1;
+        if (index < 0) {
+            throw new IllegalArgumentException("wrong");
+        }
+        ListOfInteger current = this;
+        int position = 0;
+        while (current != null) {
+            if (position == index) {
+                return current.getIntData();
+            }
+            position++;
+            current = current.getNext();
+        }
+        throw new IllegalArgumentException("wrong");
+
     }
 
     @Override
@@ -148,6 +168,7 @@ public class Node implements ListOfInteger {
     @Override
     public ListOfInteger add(int number) {
         ListOfInteger reversedNode = reverse(this);
+        System.out.println(reversedNode.toString());
         int carry = number;
 
         ListOfInteger current = reversedNode;
@@ -163,7 +184,9 @@ public class Node implements ListOfInteger {
         if (carry > 0) {
             current.addDataToEnd(carry);
         }
+
         reversedNode = reverse(reversedNode);
+        System.out.println(reversedNode.toString());
         return reversedNode;
 
     }

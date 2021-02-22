@@ -12,13 +12,13 @@ public class BigNumberTest {
     @Before
     public void setUp() throws Exception {
         bigNumber = new BigNumberImpl();
-        bigNumberWithValue =new BigNumberImpl("19933889");
+        bigNumberWithValue =new BigNumberImpl("32411");
     }
 
 
     @Test(expected = IllegalArgumentException.class)
     public void testIllegalConstructor() {
-        new BigNumberImpl("12345.98");
+        new BigNumberImpl("1234 598");
     }
 
     @Test
@@ -30,7 +30,7 @@ public class BigNumberTest {
     @Test
     public void testConstructor() {
         assertEquals("0",bigNumber.toString());
-        assertEquals("32411", bigNumberWithValue.toString());
+        assertEquals("3241144", bigNumberWithValue.toString());
     }
 
     @Test
@@ -45,9 +45,7 @@ public class BigNumberTest {
 
     @Test
     public void shiftRight() {
-//        bigNumberWithValue.shiftRight(3);
-//        assertEquals("32",bigNumberWithValue.toString());
-        bigNumberWithValue.shiftRight(-9);
+        bigNumberWithValue.shiftRight(9);
         assertEquals("3",bigNumberWithValue.toString());
     }
 
@@ -61,9 +59,7 @@ public class BigNumberTest {
     public void getDigitAt() {
 
         BigNumber bigNumberEqual = new BigNumberImpl("8439218801");
-        assertEquals(1,bigNumberEqual.getDigitAt(8));
-        assertEquals(9,bigNumberWithValue.getDigitAt(1));
-        assertEquals(9,bigNumberWithValue.getDigitAt(2));
+        assertEquals(0,bigNumberEqual.getDigitAt(4));
     }
 
     @Test(expected = IllegalArgumentException.class)
