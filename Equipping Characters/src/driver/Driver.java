@@ -85,7 +85,7 @@ public class Driver {
   }
 
   /** Builds a chest with the required number of items. */
-  public void buildChest() {
+  private void buildChest() {
     List<Boolean> wearsOut = new ArrayList<Boolean>();
     wearsOut.add(true);
     wearsOut.add(false);
@@ -216,7 +216,7 @@ public class Driver {
    *
    * @param character the character to be dressed.
    */
-  public void equipCharacter(CharacterInterFace character) {
+  private void equipCharacter(CharacterInterFace character) {
     if (numberOfTimesEquipped > 0) {
       character.wearOutWearableItems();
     }
@@ -253,7 +253,7 @@ public class Driver {
    * @param firstCharacter the first character to be chosen to battle.
    * @param secondCharacter the second character to be chosen to battle.
    */
-  public void predict(CharacterInterFace firstCharacter, CharacterInterFace secondCharacter) {
+  private void predict(CharacterInterFace firstCharacter, CharacterInterFace secondCharacter) {
     int firstCharacterDamage = secondCharacter.getAttackPower() - firstCharacter.getDefensePower();
     int secondCharacterDamage = firstCharacter.getAttackPower() - secondCharacter.getDefensePower();
     if (firstCharacterDamage < 1) {

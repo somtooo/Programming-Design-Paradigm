@@ -71,11 +71,6 @@ public class HeadGearTest {
     assertEquals(-1, headGearLessCompare.compareTo(headGear));
   }
 
-  @Test
-  public void compareToFootWear() {}
-
-  @Test
-  public void compareToHandGear() {}
 
   @Test
   public void getDefensePower() {

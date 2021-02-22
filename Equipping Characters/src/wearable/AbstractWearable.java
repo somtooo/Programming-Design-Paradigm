@@ -1,8 +1,5 @@
 package wearable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /** Represents some functionality of different types of gears in the role player game. */
 public abstract class AbstractWearable implements Wearable {
   protected final String description;
@@ -21,6 +18,8 @@ public abstract class AbstractWearable implements Wearable {
     this.description = description;
     this.wearsOut = wearsOut;
   }
+
+
 
   @Override
   public boolean isWearOut() {
@@ -122,7 +121,6 @@ public abstract class AbstractWearable implements Wearable {
       throw new IllegalArgumentException(message);
     }
   }
-
 
   @Override
   public String getItemDescription() {

@@ -121,33 +121,31 @@ public class Character implements CharacterInterFace {
 
   @Override
   public void addToNeckSlot(Wearable wearable) {
-
     nullChecker(wearable == null, "null not allowed");
-
     gearDescription.get(CharacterSlots.NeckSlot).add(wearable);
     equipped = true;
   }
 
   @Override
   public void calculateTotalAttackAndDefense() {
-    int tempAttack = 0;
-    int tempDefense = 0;
+    int temporaryAttack = 0;
+    int temporaryDefense = 0;
     List<Wearable> wearablesToSend = new ArrayList<>();
     for (List<Wearable> wearables : gearDescription.values()) {
       for (Wearable item : wearables) {
         if (item instanceof AttackWearable) {
           AttackWearable attackWearable = (AttackWearable) item;
-          tempAttack = tempAttack + attackWearable.getAttackPower();
+          temporaryAttack = temporaryAttack + attackWearable.getAttackPower();
         }
 
         if (item instanceof DefenceWearable) {
           DefenceWearable defenseWearable = (DefenceWearable) item;
-          tempDefense = tempDefense + defenseWearable.getDefensePower();
+          temporaryDefense = temporaryDefense + defenseWearable.getDefensePower();
         }
       }
     }
-    totalAttack = tempAttack;
-    totalDefense = tempDefense;
+    totalAttack = temporaryAttack;
+    totalDefense = temporaryDefense;
   }
 
   @Override

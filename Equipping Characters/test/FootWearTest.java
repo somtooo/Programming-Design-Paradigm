@@ -70,8 +70,6 @@ public class FootWearTest {
     assertTrue(footwear.isFootWear());
   }
 
-  @Test
-  public void compareToHandGear() {}
 
   @Test
   public void getAttackPower() {
