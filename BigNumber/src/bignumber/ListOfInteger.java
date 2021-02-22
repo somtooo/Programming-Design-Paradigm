@@ -26,9 +26,13 @@ public interface ListOfInteger {
 
     public void removeLastNode();
 
+    public int getIntData();
     public int getData(int index) throws IndexOutOfBoundsException,IllegalArgumentException;
 
+    public ListOfInteger addList(ListOfInteger listToAdd);
 
-    public ListOfInteger add(ListOfInteger node, int number);
+
+    public ListOfInteger add(int number);
+    public void setData (int data);
     int getDataHelp(int i,int index);
 }

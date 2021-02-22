@@ -25,7 +25,6 @@ public class BigNumberImpl implements BigNumber {
     }
 
 
-
     @Override
     public int length() {
         return integralNumber.count();
@@ -60,7 +59,12 @@ public class BigNumberImpl implements BigNumber {
 
     @Override
     public void addDigit(int digit) throws IllegalArgumentException {
-
+        if (digit < 0) {
+            throw new IllegalArgumentException("negative not allowed");
+        } if (Integer.toString(digit).length() > 1) {
+            throw new IllegalArgumentException("only single digit allowed");
+        }
+        integralNumber.add(digit);
     }
 
     @Override
@@ -77,9 +81,74 @@ public class BigNumberImpl implements BigNumber {
         return new BigNumberImpl(copyString);
     }
 
+
     @Override
     public BigNumber add(BigNumber other) {
-        return null;
+        String firstString = this.toString();
+        String secondString = other.toString();
+        if (firstString.length() >= secondString.length())
+            return new BigNumberImpl(this.addstr(firstString, secondString));
+        return new BigNumberImpl(this.addstr(secondString,firstString));
+
+    }
+
+    private char tochar(byte b) {
+        switch (b) {
+            case 1: return '1';
+            case 2: return '2';
+            case 3: return '3';
+            case 4: return '4';
+            case 5: return '5';
+            case 6: return '6';
+            case 7: return '7';
+            case 8: return '8';
+            case 9: return '9';
+            case 0: return '0';
+            default: return '0';
+        }
+    }
+
+    private String addstr(String lrg, String sml) {
+
+        byte[] n1 = new byte[lrg.length()];
+        byte[] n2 = new byte[sml.length()];
+
+        for (int i=0; i<lrg.length(); i++) {
+            char c = lrg.charAt(i);
+            byte in = (byte) Character.getNumericValue(c);
+            n1[i] = in;
+        }
+        for (int i=0; i<sml.length(); i++) {
+            char c = sml.charAt(i);
+            byte in = (byte) Character.getNumericValue(c);
+            n2[i] = in;
+        }
+        int mx = Math.max(n1.length, n2.length);
+        byte[] n3 = new byte[mx+1];
+        int r1=n1.length-1, r2=n2.length-1, r3=n3.length-1;
+        byte carry=0;
+
+        while (r3 >= 0) {
+            byte sum = carry;
+
+            if (r1 >= 0) {
+                sum += n1[r1--];
+            } if (r2 >= 0) {
+                sum += n2[r2--];
+            }
+            carry = (byte) (sum / 10);
+            n3[r3--] = (byte) (sum % 10);
+        }
+
+        char[] cc = new char[n3.length];
+        for (int b=0; b<n3.length; b++) {
+            cc[b] = tochar(n3[b]);
+        }
+
+        String ret = new String(cc);
+        if (ret.charAt(0) == '0')
+            ret = ret.substring(1);
+        return ret;
     }
 
     @Override
@@ -101,14 +170,21 @@ public class BigNumberImpl implements BigNumber {
      * @param numberAsString the string value of the number to be stored.
      */
     private void initializeIntegralNumber(String numberAsString) {
-        for (int index = 0; index < numberAsString.length(); index++) {
-            char character = numberAsString.charAt(index);
-            if (index == 0) {
-                this.integralNumber = new Node(character-'0',null);
-            } else {
-                integralNumber.addDataToEnd(character - '0');
-            }
+        helper(0,numberAsString);
+    }
+
+    private void  helper(int index, String num) {
+        if (index == num.length()) {
+            return;
         }
+        if (index == 0) {
+            char character = num.charAt(index);
+            this.integralNumber = new Node(character - '0',null);
+        } else {
+            integralNumber.addDataToEnd(num.charAt(index) - '0');
+        }
+        helper(index + 1,num);
+
     }
 
     private int isBigger(String firstNumber, String secondNumber) {

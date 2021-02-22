@@ -55,6 +55,18 @@ public class ListOfIntegerTest {
   }
 
   @Test
+  public void addList() {
+    Node listOfIntegerAdd =
+            new Node(3, new Node(8, new Node(6, new Node(4, new Node(3, null)))));
+    assertEquals("",listOfInteger.addList(listOfIntegerAdd));
+  }
+
+  @Test
+  public void testAddNumber() {
+    listOfInteger.add(9);
+    assertEquals("", listOfInteger.toString());
+  }
+  @Test
   public void testToString() {
     ListOfInteger inte = new Node(0, new Node(0, new Node(0, new Node(0, new Node(0, null)))));
     assertEquals("002411",inte.toString());

@@ -25,17 +25,24 @@ public class Node implements ListOfInteger {
     @Override
     public void addDataToEnd(int data) {
         ListOfInteger tempNode = new Node(data,null);
-        if (next == null) {
-            next = tempNode;
-        }
-        else {
-            ListOfInteger nextNode = next;
+        add(this,tempNode);
+//        if (next == null) {
+//            next = tempNode;
+//        }
+//        else {
+//            ListOfInteger nextNode = next;
+//
+//            while (nextNode.getNext() != null) {
+//                nextNode = nextNode.getNext();
+//            }
+//            nextNode.setNext(tempNode);
+//        }
 
-            while (nextNode.getNext() != null) {
-                nextNode = nextNode.getNext();
-            }
-            nextNode.setNext(tempNode);
-        }
+    }
+    public void addHelper(ListOfInteger obj,ListOfInteger toAdd){
+
+        if(obj.getNext()== null)obj.setNext(toAdd);
+        else obj.getNext().add()
 
     }
     @Override
@@ -65,21 +72,95 @@ public class Node implements ListOfInteger {
 
     @Override
     public int getData(int index) {
-        if (index < 0) {
-            throw new IllegalArgumentException("negative numbers not allowed");
+        ListOfInteger current = this;
+        int position = 1;
+        while (current != null) {
+            if (position == index) {
+                return current.getIntData();
+            }
+            position++;
+            current = current.getNext();
         }
-        if (index >= count()) {
-            throw new IndexOutOfBoundsException(" index is out of bounds");
-        }
-        return getDataHelp(0,index);
+        assert (false);
+        return 0;
     }
 
     @Override
-    public ListOfInteger add(ListOfInteger node,int number) {
-        ListOfInteger reversedNode = reverse(node);
+    public int getIntData() {
+        return data;
+    }
+
+    public static void main(String[] args) {
+        Node listOfInteger =
+                new Node(9, new Node(9, new Node(9, new Node(9, new Node(3, null)))));
+        Node listOfIntegerAdd =
+                new Node(9, new Node(9, new Node(9, new Node(9, new Node(3, null)))));
+        System.out.println(listOfInteger.addList(listOfIntegerAdd).toString());
+    }
+    @Override
+    public ListOfInteger addList(ListOfInteger listToAdd) {
+        ListOfInteger reversedNode = reverse(this);
+        ListOfInteger reverseSecondNode = reverse(listToAdd);
+
+        ListOfInteger resultantListHead = null;
+        ListOfInteger prev = null;
+        ListOfInteger temp = null;
+        int carry = 0, sum;
+
+        while (reversedNode!=null || reverseSecondNode !=null) {
+            sum = carry + (reversedNode != null ? reversedNode.getIntData() : 0)
+                    + (reverseSecondNode != null ? reverseSecondNode.getIntData():0);
+            carry = (sum >=10) ? 1 : 0;
+
+            sum = sum%10;
+            temp = new Node(sum,null);
+
+            if (resultantListHead == null) {
+                resultantListHead = temp;
+            } else {
+                prev.setNext(temp);
+            }
+            prev = temp;
+            if (reversedNode != null) {
+                reversedNode = reversedNode.getNext();
+            }
+            if (reverseSecondNode != null) {
+                reverseSecondNode = reverseSecondNode.getNext();
+            }
+        }
+        if (carry > 0) {
+            temp.addDataToEnd(carry);
+        }
+        resultantListHead = reverse(resultantListHead);
+        return resultantListHead;
+    }
+
+    @Override
+    public ListOfInteger add(int number) {
+        ListOfInteger reversedNode = reverse(this);
         int carry = number;
 
-        return null;
+        ListOfInteger current = reversedNode;
+        while (carry > 0) {
+            int sum = current.getData(0) + carry;
+            current.setData(sum % 10);
+            carry = sum/10;
+            if (current.getNext() == null) {
+                break;
+            }
+            current = current.getNext();
+        }
+        if (carry > 0) {
+            current.addDataToEnd(carry);
+        }
+        reversedNode = reverse(reversedNode);
+        return reversedNode;
+
+    }
+
+    @Override
+    public void setData(int data) {
+        this.data = data;
     }
 
     private ListOfInteger reverse(ListOfInteger head) {
@@ -98,11 +179,7 @@ public class Node implements ListOfInteger {
         return head;
     }
 
-    public static void main(String[] args) {
-        Node listOfInteger =
-                new Node(3, new Node(2, new Node(4, new Node(1, new Node(1, null)))));
-        System.out.println(listOfInteger.reverse(listOfInteger).toString());
-    }
+
 
 
     @Override
