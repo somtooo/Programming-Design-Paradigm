@@ -1,42 +1,96 @@
 package bignumber;
 
+/** Represents functionality of a node that's part of a linked list. */
 public interface ListOfInteger {
-    /**
-     * Return the number of books in this list.
-     *
-     * @return the size of this list
-     */
-    int count();
+  /**
+   * Return the number of books in this list.
+   *
+   * @return the size of this list
+   */
+  int count();
 
-    /**
-     * Helper for the count method.
-     *
-     * @param acc the accumulator
-     * @return the count from here
-     */
-    int countHelp(int acc);
+  /**
+   * Helper for the count method.
+   *
+   * @param acc the accumulator
+   * @return the count from here
+   */
+  int countHelp(int acc);
 
-    void addDataToEnd(int data);
+  /**
+   * Adds data to the end of a list.
+   *
+   * @param data the data to be added
+   */
+  void addDataToEnd(int data);
 
-    public ListOfInteger getNext();
+  /**
+   * Gets the next list from a node.
+   *
+   * @return the next node that the node is pointing too.
+   */
+  ListOfInteger getNext();
 
-    public void setNext(ListOfInteger  nextNode);
+  /**
+   * Sets the value for the next node.
+   *
+   * @param nextNode the node to be set next
+   */
+  void setNext(ListOfInteger nextNode);
 
-    public String getStringofData();
+  /**
+   * Gets the string value of tht data.
+   *
+   * @return the data as a string.
+   */
+  String getStringofData();
 
-    public void removeLastNode();
+  /** Removes the last node from the list. */
+  void removeLastNode();
 
-    public int getIntData();
-    public int getData(int index) throws IndexOutOfBoundsException,IllegalArgumentException;
+  /**
+   * Gets the int value of data.
+   *
+   * @return the int value of data
+   */
+  int getIntData();
 
-    public ListOfInteger addList(ListOfInteger listToAdd);
+  /**
+   * Adds a node to the head of the list.
+   *
+   * @param data the data to instantiate the node with.
+   * @param list the head of the list.
+   * @return the new list head.
+   */
+  ListOfInteger addToHead(int data, ListOfInteger list);
 
-    public ListOfInteger addToHead(int data, ListOfInteger list);
-    public int getDigitAt(int index);
-    public ListOfInteger deleteNode(ListOfInteger start, int k);
+  /**
+   * Gates the data at the specified index.
+   *
+   * @param index the index to get the data at.
+   * @return the data.
+   */
+  int getDigitAt(int index);
 
-    public ListOfInteger add(int number);
-    public void addHelper(ListOfInteger toAdd);
-    public void setData (int data);
-    int getDataHelp(int i,int index);
+  /**
+   * Adds a number to the link list.
+   *
+   * @param number number to add.
+   * @return the head of the new list.
+   */
+  ListOfInteger add(int number);
+
+  /**
+   * Helper method to add a node to the end of a list.
+   *
+   * @param toAdd the node to add.
+   */
+  void addHelper(ListOfInteger toAdd);
+
+  /**
+   * Sets the data of the node.
+   *
+   * @param data the data to set the node with.
+   */
+  void setData(int data);
 }

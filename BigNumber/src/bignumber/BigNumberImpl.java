@@ -45,7 +45,7 @@ public class BigNumberImpl implements BigNumber {
       shiftLeft(Math.abs(num));
     } else {
       for (int index = 0; index < num; index++) {
-        this.integralNumber.deleteNode(integralNumber, length());
+        this.integralNumber.removeLastNode();
       }
     }
   }
@@ -82,11 +82,18 @@ public class BigNumberImpl implements BigNumber {
   public BigNumber add(BigNumber other) {
     String firstString = this.toString();
     String secondString = other.toString();
-    if (firstString.length() >= secondString.length())
+    if (firstString.length() >= secondString.length()) {
       return new BigNumberImpl(this.addstr(firstString, secondString));
+    }
     return new BigNumberImpl(this.addstr(secondString, firstString));
   }
 
+  /**
+   * Takes in a byte value to return the character representation.
+   *
+   * @param b the byte value.
+   * @return the character representation.
+   */
   private char tochar(byte b) {
     switch (b) {
       case 1:
@@ -114,12 +121,13 @@ public class BigNumberImpl implements BigNumber {
     }
   }
 
-    /**
-     * Adds two strings together to represent an Big number.
-     * @param lrg the larger of the two strings.
-     * @param sml the smaller of the two strings
-     * @return a string that represents the addition.
-     */
+  /**
+   * Adds two strings together to represent an Big number.
+   *
+   * @param lrg the larger of the two strings.
+   * @param sml the smaller of the two strings
+   * @return a string that represents the addition.
+   */
   private String addstr(String lrg, String sml) {
 
     byte[] n1 = new byte[lrg.length()];
@@ -137,7 +145,9 @@ public class BigNumberImpl implements BigNumber {
     }
     int mx = Math.max(n1.length, n2.length);
     byte[] n3 = new byte[mx + 1];
-    int r1 = n1.length - 1, r2 = n2.length - 1, r3 = n3.length - 1;
+    int r1 = n1.length - 1;
+    int r2 = n2.length - 1;
+    int r3 = n3.length - 1;
     byte carry = 0;
 
     while (r3 >= 0) {
@@ -159,7 +169,9 @@ public class BigNumberImpl implements BigNumber {
     }
 
     String ret = new String(cc);
-    if (ret.charAt(0) == '0') ret = ret.substring(1);
+    if (ret.charAt(0) == '0') {
+      ret = ret.substring(1);
+    }
     return ret;
   }
 
@@ -191,23 +203,13 @@ public class BigNumberImpl implements BigNumber {
     }
   }
 
-  private void helper(int index, String num) {
-    if (num.length() == 1) {
-      this.integralNumber = new Node(num.charAt(0) - '0', null);
-      return;
-    }
-    if (index == num.length()) {
-      return;
-    }
-    if (index == 0) {
-      char character = num.charAt(index);
-      this.integralNumber = new Node(character - '0', null);
-    } else {
-      integralNumber = integralNumber.addToHead(num.charAt(index) - '0', integralNumber);
-    }
-    helper(index + 1, num);
-  }
-
+  /**
+   * Compares two strings to find which is bigger.
+   *
+   * @param firstNumber the string representation to the first number.
+   * @param secondNumber the string representation to the second number.
+   * @return an int specifying which string is bigger.
+   */
   private int isBigger(String firstNumber, String secondNumber) {
     if (firstNumber.length() > secondNumber.length()) {
       return 1;
