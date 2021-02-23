@@ -40,6 +40,27 @@ public class Node implements ListOfInteger {
 
     }
 
+    public ListOfInteger deleteNode(ListOfInteger start, int k)
+    {
+        // If invalid k
+        if (k < 1)
+            return start;
+
+        // If linked list is empty
+        if (start == null)
+            return null;
+
+        // Base case (start needs to be deleted)
+        if (k == 1)
+        {
+            ListOfInteger res = start.getNext();
+            return res;
+        }
+
+        start.setNext(deleteNode(start.getNext(), k-1));
+        return start;
+    }
+
     @Override
     public ListOfInteger addToHead(int data, ListOfInteger object) {
         ListOfInteger newNode = new Node(data,null);

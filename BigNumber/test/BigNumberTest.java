@@ -12,7 +12,7 @@ public class BigNumberTest {
     @Before
     public void setUp() throws Exception {
         bigNumber = new BigNumberImpl();
-        bigNumberWithValue =new BigNumberImpl("32411");
+        bigNumberWithValue =new BigNumberImpl("3241183828992092929983099404902934029402940294029402940290294029090294024920490249490249029429242049240904290249204920940904902");
     }
 
 
@@ -36,16 +36,18 @@ public class BigNumberTest {
     @Test
     public void shiftLeft() {
         bigNumberWithValue.shiftLeft(-9);
-//        assertEquals("32411000",bigNumberWithValue.toString());
+        bigNumberWithValue.shiftLeft(5);
+        assertEquals(41,bigNumberWithValue.toString());
 
-        assertEquals(41,bigNumberWithValue.length());
-        bigNumberWithValue.shiftLeft(-4);
-        assertEquals("3241",bigNumberWithValue.toString());
     }
 
     @Test
     public void shiftRight() {
+        bigNumberWithValue.shiftRight(10);
+        bigNumberWithValue.shiftRight(-2);
+        bigNumberWithValue.shiftRight(4);
         bigNumberWithValue.shiftRight(9);
+        bigNumberWithValue.shiftRight(-3);
         assertEquals("3",bigNumberWithValue.toString());
     }
 

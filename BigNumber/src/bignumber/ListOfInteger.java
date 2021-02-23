@@ -33,6 +33,7 @@ public interface ListOfInteger {
 
     public ListOfInteger addToHead(int data, ListOfInteger list);
     public int getDigitAt(int index);
+    public ListOfInteger deleteNode(ListOfInteger start, int k);
 
     public ListOfInteger add(int number);
     public void addHelper(ListOfInteger toAdd);
