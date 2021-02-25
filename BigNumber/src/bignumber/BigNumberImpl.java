@@ -130,49 +130,49 @@ public class BigNumberImpl implements BigNumber {
    */
   private String addstr(String lrg, String sml) {
 
-    byte[] n1 = new byte[lrg.length()];
-    byte[] n2 = new byte[sml.length()];
+    byte[] number1 = new byte[lrg.length()];
+    byte[] number2 = new byte[sml.length()];
 
     for (int i = 0; i < lrg.length(); i++) {
-      char c = lrg.charAt(i);
-      byte in = (byte) Character.getNumericValue(c);
-      n1[i] = in;
+      char character = lrg.charAt(i);
+      byte integer = (byte) Character.getNumericValue(character);
+      number1[i] = integer;
     }
     for (int i = 0; i < sml.length(); i++) {
-      char c = sml.charAt(i);
-      byte in = (byte) Character.getNumericValue(c);
-      n2[i] = in;
+      char character = sml.charAt(i);
+      byte integer = (byte) Character.getNumericValue(character);
+      number2[i] = integer;
     }
-    int mx = Math.max(n1.length, n2.length);
-    byte[] n3 = new byte[mx + 1];
-    int r1 = n1.length - 1;
-    int r2 = n2.length - 1;
-    int r3 = n3.length - 1;
+    int max = Math.max(number1.length, number2.length);
+    byte[] number3 = new byte[max + 1];
+    int remainderOne = number1.length - 1;
+    int remainderTwo = number2.length - 1;
+    int remainderThree = number3.length - 1;
     byte carry = 0;
 
-    while (r3 >= 0) {
+    while (remainderThree >= 0) {
       byte sum = carry;
 
-      if (r1 >= 0) {
-        sum += n1[r1--];
+      if (remainderOne >= 0) {
+        sum += number1[remainderOne--];
       }
-      if (r2 >= 0) {
-        sum += n2[r2--];
+      if (remainderTwo >= 0) {
+        sum += number2[remainderTwo--];
       }
       carry = (byte) (sum / 10);
-      n3[r3--] = (byte) (sum % 10);
+      number3[remainderThree--] = (byte) (sum % 10);
     }
 
-    char[] cc = new char[n3.length];
-    for (int b = 0; b < n3.length; b++) {
-      cc[b] = tochar(n3[b]);
+    char[] finalCharacter = new char[number3.length];
+    for (int b = 0; b < number3.length; b++) {
+      finalCharacter[b] = tochar(number3[b]);
     }
 
-    String ret = new String(cc);
-    if (ret.charAt(0) == '0') {
-      ret = ret.substring(1);
+    String result = new String(finalCharacter);
+    if (result.charAt(0) == '0') {
+      result = result.substring(1);
     }
-    return ret;
+    return result;
   }
 
   @Override
