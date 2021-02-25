@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Equipping Characters:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Equipping_Characters_jar</output-path>
+    <root id="archive" name="Equipping Characters.jar">
+      <element id="module-output" name="Equipping Characters" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,56 @@
+Enter 1 to start fight
+1
+I am John my current gear load out is
+ empty because i haven't been dressed yetI have an Attack Power of 50 
+and a Defense Power of 50 which brings my Hit Points to 150, trust me I am gonna
+ beat the Java out of you!!!!
+
+I am Abdul my current gear load out is
+ empty because i haven't been dressed yetI have an Attack Power of 50 
+and a Defense Power of 50 which brings my Hit Points to 150, trust me I am gonna
+ beat the Java out of you!!!!
+
+SNEAKERS Is going to get discarded
+HELMETS Is going to get discarded
+Skates Is going to get discarded
+I am John my current gear load out is
+ HOOD of Sight.  Shoes of Electricity and of Sight.  San of Sight,  of Invisibility and of Electricity.  BowTie of Flight,  of Flight,  of Drunkenness,  of Invisibility,  of Drunkenness,  of Drunkenness,  of Swimming,  of Speed and of Swimming.  I have an Attack Power of 547 
+and a Defense Power of 415 which brings my Hit Points to 515, trust me I am gonna
+ beat the Java out of you!!!!
+
+I am Abdul my current gear load out is
+ HOOD of Sight.  Segway of Sight and of Sight.  San of Sight,  of Drunkenness,  of Electricity,  of Speed,  of Electrical Shock,  of Sight and of Swimming.  Brooch of Heft,  of Electrical Shock,  of Sight,  of Swimming,  of Invisibility,  of Heft and of Sight.  I have an Attack Power of 714 
+and a Defense Power of 752 which brings my Hit Points to 852, trust me I am gonna
+ beat the Java out of you!!!!
+
+Abdul has won the fight it took 852 number of rounds
+Enter 0 to cancel or 1 to rematch
+
+
+----Second Round
+I am John my current gear load out is
+ empty because i haven't been dressed yetI have an Attack Power of 50 
+and a Defense Power of 50 which brings my Hit Points to 150, trust me I am gonna
+ beat the Java out of you!!!!
+
+I am Abdul my current gear load out is
+ empty because i haven't been dressed yetI have an Attack Power of 50 
+and a Defense Power of 50 which brings my Hit Points to 150, trust me I am gonna
+ beat the Java out of you!!!!
+
+Slippers Is going to get discarded
+SNEAKERS Is going to get discarded
+BANACLAVA Is going to get discarded
+I am John my current gear load out is
+ HOOD of Swimming.  Slippers of Speed and of Speed.  San of Speed,  of Sight,  of Speed and of Invisibility.  SCARAB of Heft,  of Heft,  of Swimming,  of Electricity,  of Electricity,  of Electricity and of Heft.  I have an Attack Power of 381 
+and a Defense Power of 655 which brings my Hit Points to 755, trust me I am gonna
+ beat the Java out of you!!!!
+
+I am Abdul my current gear load out is
+ HELMETS of Sight.  Slippers of Drunkenness.  Gauntlet of Speed,  of Electricity,  of Speed,  of Speed,  of Heft,  of Sight,  of Heft,  of Heft,  of Heft and of Heft.  Collar of Electricity,  of Heft,  of Drunkenness,  of Electricity,  of Flight,  of Flight and of Heft.  I have an Attack Power of 523 
+and a Defense Power of 1082 which brings my Hit Points to 1182, trust me I am gonna
+ beat the Java out of you!!!!
+
+John has won the fight it took 755 rounds
+Enter 0 to cancel or 1 to rematch
+

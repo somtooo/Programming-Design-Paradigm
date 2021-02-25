@@ -1,0 +1,79 @@
+package animals;
+
+import house.AbstractHabitat;
+import house.Habitat;
+import house.ReptileHouse;
+import house.ReptileHouseInterface;
+
+import java.time.temporal.ValueRange;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * Runs an Implementation of the ReptileHouse Class.
+ */
+public class Main {
+  /**
+   * Runs functions defined in ReptileHouse and prints it for the client.
+   *
+   * @param args optional arguments that can be passed from console.
+   */
+  public static void main(String[] args) throws InterruptedException {
+
+    SpeciesInterface species = new Species("frog", TypeOfSpecies.AMPHIBIAN, "broken leg");
+        PhysicalCharacteristicsInterface physicalCharacteristics =
+            new PhysicalCharacteristics(SizeofSpecies.SMALL, ValueRange.of(30, 33), "water");
+        PersonalFeaturesInterface personalFeatures =
+            new PersonalFeatures(false, Danger.ENDANGERED, true);
+
+        SpeciesInterface secondSpecies = new Species("crocodile", TypeOfSpecies.REPTILE, "big eye");
+        PhysicalCharacteristicsInterface secondPhysical =
+            new PhysicalCharacteristics(SizeofSpecies.LARGE, ValueRange.of(32, 36), "rock");
+        PersonalFeaturesInterface secondPersonalFeatures =
+            new PersonalFeatures(false, Danger.SAFE, false);
+
+        List<String> features = new ArrayList<String>();
+        features.add("water");
+        features.add("pond");
+        List<String> featuresWithRock = new ArrayList<String>();
+        featuresWithRock.add("rock");
+        featuresWithRock.add("desert");
+        AbstractHabitat firstHabitat = new Habitat(features, 10, "Habitat A");
+        AbstractHabitat secondHabitat = new Habitat(featuresWithRock, 10, "Habitat B");
+
+        List<AbstractHabitat> habitats = new ArrayList<AbstractHabitat>();
+        habitats.add(firstHabitat);
+        habitats.add(secondHabitat);
+        ReptileHouseInterface reptileHouse = new ReptileHouse(habitats, 3);
+
+        Animals animal = new HerpetologyAnimals(species, physicalCharacteristics, personalFeatures);
+        Animals secondAnimal =
+            new HerpetologyAnimals(secondSpecies, secondPhysical, secondPersonalFeatures);
+        reptileHouse.addAnimalToHabitat(animal);
+        reptileHouse.addAnimalToHabitat(secondAnimal);
+        System.out.println(
+            "I have two animals ready to be added ill add them soon and show you how information is printed");
+        TimeUnit.SECONDS.sleep(4);
+        System.out.println();
+        System.out.println(reptileHouse.reportNaturalFeatures());
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println();
+        System.out.println(reptileHouse.findSpeciesByHabitat("crocodile"));
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println();
+        System.out.println(reptileHouse.findSpeciesByHabitat("frog"));
+        TimeUnit.SECONDS.sleep(3);
+        System.out.println();
+        System.out.println(reptileHouse.printSign());
+        TimeUnit.SECONDS.sleep(3);
+        System.out.println();
+        System.out.println(reptileHouse.printMap());
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println();
+        System.out.println(reptileHouse.printIndex());
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println();
+        System.out.println(reptileHouse.toString());
+  }
+}
