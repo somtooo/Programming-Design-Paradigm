@@ -1,7 +1,7 @@
 package listadt;
 
-import java.util.Collections;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /** Implementation of utilities for the ListADT list. */
 public class ListADTUtilities {
@@ -16,6 +16,10 @@ public class ListADTUtilities {
    */
   public static <T> ListADT<T> toList(T[] data) {
     ListADT<T> list = new ListADTImpl<>();
+
+    for (T value : data) {
+        list.addBack(value);
+    }
     // TODO: Implement me!
     return list;
   }
@@ -114,24 +118,19 @@ public class ListADTUtilities {
       return false;
     }
 
+    AtomicInteger count = new AtomicInteger();
     return one.map(
             (s) -> {
               if (s == null) {
                 throw new IllegalArgumentException(" No null allowed");
               }
-              return String.valueOf(s);
+              if (two.get(count.get()) == null) {
+                throw new IllegalArgumentException("No null allowed");
+              }
+              boolean condition = s.equals(two.get(count.get()));
+              count.getAndIncrement();
+              return condition;
             })
-        .fold("", (String firstElement, String secondElement) -> firstElement + secondElement)
-        .equals(
-            two.map(
-                    (s) -> {
-                      if (s == null) {
-                        throw new IllegalArgumentException(" No null allowed");
-                      }
-                      return String.valueOf(s);
-                    })
-                .fold(
-                    "",
-                    (String firstElement, String secondElement) -> firstElement + secondElement));
-  }
+        .fold(true, (Boolean a, Boolean b) -> a & b);
+        }
 }
