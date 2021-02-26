@@ -52,6 +52,7 @@ public class ListADTImpl<T> implements ListADT<T> {
     head = head.remove(b);
   }
 
+
   @Override
   public T get(int index) throws IllegalArgumentException {
     if ((index >= 0) && (index < getSize())) {
@@ -61,20 +62,33 @@ public class ListADTImpl<T> implements ListADT<T> {
     }
   }
 
+
   @Override
   public <R> ListADT<R> map(Function<T, R> converter) {
     return new ListADTImpl<>(head.map(converter));
   }
+
 
   @Override
   public ListADT<T> filter(Predicate<T> predicate) {
     return new ListADTImpl<>(head.filter(predicate));
   }
 
+
   @Override
   public T fold(T identity, BinaryOperator<T> accumulator) {
     return head.fold(identity, accumulator);
   }
+
+
+  GenericListAdtNode<T> getHead() {
+    return head;
+  }
+
+  void setHead(GenericListAdtNode<T> head) {
+    this.head = head;
+  }
+
 
   @Override
   public String toString() {

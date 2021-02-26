@@ -79,5 +79,14 @@ public interface ListADT<T> {
    */
   ListADT<T> filter(Predicate<T> predicate);
 
+  /**
+   * A general purpose reduce order function on this list that returns a value
+   * of type T
+   * @param identity the base value of the reduce operation.
+   * @param accumulator the reduce operation to be carried out.
+   * @return the value of the reduce operation.
+   */
   T fold(T identity, BinaryOperator<T> accumulator);
+
+
 }

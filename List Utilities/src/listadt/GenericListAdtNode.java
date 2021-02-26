@@ -84,4 +84,8 @@ public interface GenericListAdtNode<T> {
   GenericListAdtNode<T> filter(Predicate<T> predicate);
 
   T fold(T identity, BinaryOperator<T> accumulator);
+
+  GenericListAdtNode<T> addFromArrayToEmptyList(T[] arr, int index);
+
+  GenericListAdtNode<T> addFromArrayToNonEmptyList(T[] arr, int index);
 }

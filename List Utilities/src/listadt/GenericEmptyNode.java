@@ -59,6 +59,19 @@ public class GenericEmptyNode<T> implements GenericListAdtNode<T> {
   }
 
   @Override
+  public GenericListAdtNode<T> addFromArrayToEmptyList(T[] arr, int index) {
+    if (this.count() > 0) {
+      throw new IllegalStateException("List isn't empty");
+    }
+    return addFront(arr[arr.length - 1]).addFromArrayToEmptyList(arr, arr.length - 1);
+  }
+
+  @Override
+  public GenericListAdtNode<T> addFromArrayToNonEmptyList(T[] arr, int index) {
+    return addFromArrayToEmptyList(arr, index);
+  }
+
+  @Override
   public String toString() {
     return "";
   }

@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 /**
@@ -40,6 +41,11 @@ public class ImageUtilities {
       }
     }
     return result;
+  }
+
+  public static void main(String[] args) throws IOException {
+    System.out.println(
+            Arrays.deepToString(readImage("C:\\Users\\chukw\\IdeaProjects\\Image Model\\src\\images\\Capture.PNG")));
   }
 
   /**

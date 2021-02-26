@@ -1,5 +1,6 @@
 package listadt;
 
+import java.util.Collections;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /** Implementation of utilities for the ListADT list. */
@@ -15,22 +16,13 @@ public class ListADTUtilities {
    */
   public static <T> ListADT<T> toList(T[] data) {
     ListADT<T> list = new ListADTImpl<>();
-
-    list.map((T value) -> {
-        int index = -1;
-        index = index +1;
-        return data[1];
-    });
-//    for (T value : data) {
-//      list.addBack(value);
-//    }
     // TODO: Implement me!
     return list;
   }
 
   public static void main(String[] args) {
       String[] data = new String[]{"1","2","3"};
-      System.out.println(ListADTUtilities.toList(data));
+      System.out.println(ListADTUtilities.toList(data).toString());
   }
 
   /**

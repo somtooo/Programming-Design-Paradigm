@@ -101,4 +101,39 @@ public class GenericElementNode<T> implements GenericListAdtNode<T> {
       return objstring;
     }
   }
+
+  @Override
+  public GenericListAdtNode<T> addFromArrayToEmptyList(T[] arr, int index) {
+    index = index - 1;
+    if (index == 0) {
+      return this.addFront(arr[index]);
+    }
+    return this.addFront(arr[index]).addFromArrayToEmptyList(arr, index);
+
+  }
+
+  @Override
+  public GenericListAdtNode<T> addFromArrayToNonEmptyList(T[] arr, int index) {
+    if (index == arr.length) {
+      return this;
+    }
+    return this.addBack(arr[index]).addFromArrayToNonEmptyList(arr, index + 1);
+  }
+
+
+  public static void main(String[] args) {
+
+    Integer[]arr = new Integer[]{1, 2,3 };
+    GenericListAdtNode<Integer> gen = new GenericEmptyNode<Integer>();
+    gen = gen.addFromArrayToEmptyList(arr,0);
+    GenericListAdtNode<Integer> gen1 = new GenericEmptyNode<Integer>();
+    gen1 = gen1.addBack(4);
+    gen1 = gen1.addBack(5);
+    gen1 = gen1.addBack(6);
+
+
+    gen1 = gen1.addFromArrayToNonEmptyList(arr,0);
+    System.out.println(gen1.toString());
+
+  }
 }
