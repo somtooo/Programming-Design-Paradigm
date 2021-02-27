@@ -5,19 +5,18 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * This is a non-empty node in a generic list. It contains the object data and
- * the rest of the list.
- * 
+ * This is a non-empty node in a generic list. It contains the object data and the rest of the list.
+ *
  * @param <T> the type of the element in the list
  */
 public class GenericElementNode<T> implements GenericListAdtNode<T> {
-  private T object;
+  private final T object;
   private GenericListAdtNode<T> rest;
 
   /**
    * Constructor.
-   * 
-   * @param p    the element at this node.
+   *
+   * @param p the element at this node.
    * @param rest the rest of the list
    */
   public GenericElementNode(T p, GenericListAdtNode<T> rest) {
@@ -116,7 +115,6 @@ public class GenericElementNode<T> implements GenericListAdtNode<T> {
 
   @Override
   public GenericListAdtNode<T> addFromArrayToNonEmptyList(T[] arr, int index) {
-    index = 0;
     if (index == arr.length) {
       return this;
     }
@@ -125,6 +123,4 @@ public class GenericElementNode<T> implements GenericListAdtNode<T> {
     }
     return this.addBack(arr[index]).addFromArrayToNonEmptyList(arr, index + 1);
   }
-
-
 }

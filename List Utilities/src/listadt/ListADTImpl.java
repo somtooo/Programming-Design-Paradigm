@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 /**
  * This is the implementation of a generic list. Specifically it implements the
  * listadt.ListADT interface
- * 
+ *
  * @param <T> the type of element in this list
  */
 public class ListADTImpl<T> implements ListADT<T> {
@@ -20,7 +20,7 @@ public class ListADTImpl<T> implements ListADT<T> {
 
   /**
    * A private constructor that is used internally (see map).
-   * 
+   *
    * @param head the head of this list
    */
   private ListADTImpl(GenericListAdtNode<T> head) {

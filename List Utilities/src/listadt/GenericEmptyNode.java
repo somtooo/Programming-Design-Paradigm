@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 /**
  * This represents an empty node of the generic list implementation.
- * 
+ *
  * @param <T> the type of element in this node
  */
 public class GenericEmptyNode<T> implements GenericListAdtNode<T> {

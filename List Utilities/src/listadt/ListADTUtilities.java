@@ -1,5 +1,6 @@
 package listadt;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -21,7 +22,6 @@ public class ListADTUtilities {
 
     return list;
   }
-
 
   /**
    * Adds all of the specified elements to the specified list. Elements to be added may be specified
@@ -49,7 +49,11 @@ public class ListADTUtilities {
    * @return the number of elements in the list
    */
   public static <T> int frequency(ListADT<T> list, T element) {
-    ListADT<T> filteredList = list.filter((T value) -> value.equals(element));
+    if (list == null) {
+      throw new IllegalArgumentException("Null not allowed");
+    }
+
+    ListADT<T> filteredList = list.filter((T value) -> Objects.equals(value, element));
     return filteredList.getSize();
   }
 
@@ -67,6 +71,7 @@ public class ListADTUtilities {
     if (one == null | two == null) {
       throw new IllegalArgumentException("Null not allowed");
     }
+
     final ListADT<Boolean> bool;
     AtomicBoolean answer = new AtomicBoolean(true);
     one.map(
@@ -110,17 +115,17 @@ public class ListADTUtilities {
 
     AtomicInteger count = new AtomicInteger();
     return one.map(
-            (s) -> {
-              if (s == null) {
-                throw new IllegalArgumentException(" No null allowed");
-              }
-              if (two.get(count.get()) == null) {
-                throw new IllegalArgumentException("No null allowed");
-              }
-              boolean condition = s.equals(two.get(count.get()));
-              count.getAndIncrement();
-              return condition;
-            })
-        .fold(true, (Boolean a, Boolean b) -> a & b);
+        (s) -> {
+            if (s == null) {
+              throw new IllegalArgumentException(" No null allowed");
+            }
+            if (two.get(count.get()) == null) {
+              throw new IllegalArgumentException("No null allowed");
+            }
+            boolean condition = s.equals(two.get(count.get()));
+            count.getAndIncrement();
+            return condition;
+        })
+      .fold(true, (Boolean a, Boolean b) -> a & b);
   }
 }
