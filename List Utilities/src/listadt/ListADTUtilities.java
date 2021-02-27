@@ -22,10 +22,6 @@ public class ListADTUtilities {
     return list;
   }
 
-  public static void main(String[] args) {
-    String[] data = new String[] {"1", "2", "3"};
-    System.out.println(ListADTUtilities.toList(data).toString());
-  }
 
   /**
    * Adds all of the specified elements to the specified list. Elements to be added may be specified

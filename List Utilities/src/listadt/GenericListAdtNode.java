@@ -83,9 +83,28 @@ public interface GenericListAdtNode<T> {
    */
   GenericListAdtNode<T> filter(Predicate<T> predicate);
 
+  /**
+   * A general purpose reduce order function on this list that returns a value
+   * of type T
+   * @param identity the base value of the reduce operation.
+   * @param accumulator the reduce operation to be carried out.
+   * @return the value of the reduce operation.
+   */
   T fold(T identity, BinaryOperator<T> accumulator);
 
+  /**
+   * Updates an empty List with all the contents of an array.
+   * @param arr the array with the objects to be added.
+   * @param index the length of the array.
+   * @return the head of the list which contains the new objects.
+   */
   GenericListAdtNode<T> addFromArrayToEmptyList(T[] arr, int index);
 
+  /**
+   * Updates a non empty List with all the contents of an array.
+   * @param arr the array with the objects to be added.
+   * @param index the length of the array.
+   * @return the head of the list which contains the new objects.
+   */
   GenericListAdtNode<T> addFromArrayToNonEmptyList(T[] arr, int index);
 }
