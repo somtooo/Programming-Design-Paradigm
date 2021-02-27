@@ -108,32 +108,23 @@ public class GenericElementNode<T> implements GenericListAdtNode<T> {
     if (index == 0) {
       return this.addFront(arr[index]);
     }
+    if (arr[index] == null) {
+      throw new IllegalArgumentException("No null allowed");
+    }
     return this.addFront(arr[index]).addFromArrayToEmptyList(arr, index);
-
   }
 
   @Override
   public GenericListAdtNode<T> addFromArrayToNonEmptyList(T[] arr, int index) {
+    index = 0;
     if (index == arr.length) {
       return this;
+    }
+    if (arr[index] == null) {
+      throw new IllegalArgumentException("No null allowed");
     }
     return this.addBack(arr[index]).addFromArrayToNonEmptyList(arr, index + 1);
   }
 
 
-  public static void main(String[] args) {
-
-    Integer[]arr = new Integer[]{1, 2,3 };
-    GenericListAdtNode<Integer> gen = new GenericEmptyNode<Integer>();
-    gen = gen.addFromArrayToEmptyList(arr,0);
-    GenericListAdtNode<Integer> gen1 = new GenericEmptyNode<Integer>();
-    gen1 = gen1.addBack(4);
-    gen1 = gen1.addBack(5);
-    gen1 = gen1.addBack(6);
-
-
-    gen1 = gen1.addFromArrayToNonEmptyList(arr,0);
-    System.out.println(gen1.toString());
-
-  }
 }

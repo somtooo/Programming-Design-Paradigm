@@ -16,17 +16,15 @@ public class ListADTUtilities {
    */
   public static <T> ListADT<T> toList(T[] data) {
     ListADT<T> list = new ListADTImpl<>();
+    GenericListAdtNode<T> head = ((ListADTImpl<T>) list).getHead();
+    ((ListADTImpl<T>) list).setHead(head.addFromArrayToEmptyList(data, 0));
 
-    for (T value : data) {
-        list.addBack(value);
-    }
-    // TODO: Implement me!
     return list;
   }
 
   public static void main(String[] args) {
-      String[] data = new String[]{"1","2","3"};
-      System.out.println(ListADTUtilities.toList(data).toString());
+    String[] data = new String[] {"1", "2", "3"};
+    System.out.println(ListADTUtilities.toList(data).toString());
   }
 
   /**
@@ -40,12 +38,8 @@ public class ListADTUtilities {
    */
   @SafeVarargs
   public static <T> void addAll(ListADT<T> list, T... elements) {
-    for (T value : elements) {
-      if (value == null) {
-        throw new IllegalArgumentException("No nulls");
-      }
-      list.addBack(value);
-    }
+    GenericListAdtNode<T> head = ((ListADTImpl<T>) list).getHead();
+    ((ListADTImpl<T>) list).setHead(head.addFromArrayToNonEmptyList(elements, 0));
   }
 
   /**
@@ -132,5 +126,5 @@ public class ListADTUtilities {
               return condition;
             })
         .fold(true, (Boolean a, Boolean b) -> a & b);
-        }
+  }
 }
