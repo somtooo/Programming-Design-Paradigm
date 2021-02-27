@@ -17,7 +17,7 @@ public class ListADTUtilitiesTest {
   ListADT<Integer> integerList;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     list = new ListADTImpl<String>();
     integerList = new ListADTImpl<Integer>();
   }
@@ -27,7 +27,7 @@ public class ListADTUtilitiesTest {
     Integer[] arr = new Integer[] {1, 2, 3, 4};
     Integer[] emptyArr = new Integer[] {};
 
-    ListADT listADT = ListADTUtilities.toList(arr);
+    ListADT<Integer> listADT = ListADTUtilities.toList(arr);
     assertEquals("(1 2 3 4)", listADT.toString());
 
     listADT = ListADTUtilities.toList(emptyArr);
@@ -37,7 +37,7 @@ public class ListADTUtilitiesTest {
   @Test(expected = IllegalArgumentException.class)
   public void illegalToList() {
     Integer[] arr = new Integer[] {1, 2, null, 4};
-    ListADT listADT = ListADTUtilities.toList(arr);
+    ListADTUtilities.toList(arr);
   }
 
   @Test(expected = IllegalArgumentException.class)
