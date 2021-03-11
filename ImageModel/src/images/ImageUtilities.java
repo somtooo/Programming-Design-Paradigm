@@ -12,6 +12,9 @@ import javax.imageio.ImageIO;
  * a file.
  */
 public class ImageUtilities {
+  /**
+   * Represents the three image color channels.
+   */
   public enum Channel {
     RED, GREEN, BLUE
   }

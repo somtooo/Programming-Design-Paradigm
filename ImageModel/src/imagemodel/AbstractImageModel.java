@@ -7,6 +7,7 @@ public abstract class AbstractImageModel implements ImageModel {
    * Goes through the image to make sure the RGB values are between 0 and 255.
    *
    * @param image the image to check through
+   * @throws IllegalArgumentException if image is null.
    */
   protected void clamp(int[][][] image) {
     for (int row = 0; row < image.length; row++) {
@@ -32,6 +33,17 @@ public abstract class AbstractImageModel implements ImageModel {
   protected void checkIfZeroOrLess(int intensity) {
     if (intensity <= 0) {
       throw new IllegalArgumentException("Intensity cant be zero");
+    }
+  }
+
+  /**
+   * Checks if the image array is null.
+   * @param image the image too check.
+   * @throws IllegalArgumentException if the image is null.
+   */
+  protected void checkIfNull(int[][][] image) {
+    if (image == null) {
+      throw new IllegalArgumentException("Image cant be null");
     }
   }
 }

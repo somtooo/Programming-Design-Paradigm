@@ -9,6 +9,7 @@ public abstract class AbstractColorTransformation extends AbstractImageModel {
    *
    * @param image the image whose RGB values are to be replaced.
    * @param kernel the 2d array used in the calculation.
+   * @throws IllegalArgumentException if the image or kernel is null.
    */
   protected void colorTransformation(int[][][] image, float[][] kernel) {
     for (int row = 0; row < image.length; row++) {

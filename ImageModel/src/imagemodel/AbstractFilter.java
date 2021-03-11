@@ -36,6 +36,7 @@ public abstract class AbstractFilter extends AbstractImageModel {
    * @param red the red color value.
    * @param green the green color value.
    * @param blue the blue color value.
+   * @throws IllegalArgumentException if the image or kernel is null.
    */
   private void performConvolutionCalculation(
       int[][][] image,
@@ -46,6 +47,9 @@ public abstract class AbstractFilter extends AbstractImageModel {
       int red,
       int green,
       int blue) {
+    if (image == null | kernel == null) {
+      throw new IllegalArgumentException("Null not allowed");
+    }
     for (int blurRow = 0; blurRow < kernel.length; blurRow++) {
       for (int blurCol = 0; blurCol < kernel[blurRow].length; blurCol++) {
 

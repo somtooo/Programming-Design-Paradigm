@@ -15,16 +15,17 @@ public class Sharpen extends AbstractFilter {
    */
   @Override
   public int[][][] apply(int[][][] image, int intensity) {
+    checkIfNull(image);
     checkIfZeroOrLess(intensity);
 
     float[][] sharpen =
         new float[][] {
-              {-1f / 8, -1f / 8, -1f / 8, -1f / 8, -1f / 8},
-              {-1f / 8, 1f / 4, 1f / 4, 1f / 4, -1f / 8},
-              {-1f / 8, 1f / 4, 1f, 1f / 4, -1f / 8},
-              {-1f / 8, 1f / 4, 1f / 4, 1f / 4, -1f / 8},
-              {-1f / 8, -1f / 8, -1f / 8, -1f / 8, -1f / 8}
-              };
+          {-1f / 8, -1f / 8, -1f / 8, -1f / 8, -1f / 8},
+          {-1f / 8, 1f / 4, 1f / 4, 1f / 4, -1f / 8},
+          {-1f / 8, 1f / 4, 1f, 1f / 4, -1f / 8},
+          {-1f / 8, 1f / 4, 1f / 4, 1f / 4, -1f / 8},
+          {-1f / 8, -1f / 8, -1f / 8, -1f / 8, -1f / 8}
+        };
 
     for (int num = 0; num < intensity; num++) {
       convolve(image, sharpen);

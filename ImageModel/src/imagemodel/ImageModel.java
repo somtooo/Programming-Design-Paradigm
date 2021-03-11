@@ -10,6 +10,7 @@ public interface ImageModel {
    *     example a high intensity sepia will produce a lighter image while a high intensity color
    *     reduction will use more colors and vice versa.
    * @throws IllegalArgumentException if intensity is negative or 0.
+   * @throws IllegalArgumentException if image is null.
    */
   int[][][] apply(int[][][] image, int intensity);
 }

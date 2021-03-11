@@ -16,11 +16,12 @@ public class GreyScale extends AbstractColorTransformation {
    */
   @Override
   public int[][][] apply(int[][][] image, int intensity) {
+    checkIfNull(image);
     checkIfZeroOrLess(intensity);
     float[][] greyScale =
         new float[][] {
-            {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}
-          };
+          {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}
+        };
 
     for (int num = 0; num < intensity; num++) {
       colorTransformation(image, greyScale);
