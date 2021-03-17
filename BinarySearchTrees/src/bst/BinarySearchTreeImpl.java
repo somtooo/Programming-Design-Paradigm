@@ -17,6 +17,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
 
   @Override
   public void add(T data) {
+    nullChecker(data);
     root = root.add(data);
   }
 
@@ -32,6 +33,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
 
   @Override
   public boolean present(T data) {
+    nullChecker(data);
     return root.present(data);
   }
 
@@ -63,5 +65,15 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
   @Override
   public String toString() {
     return "[" + root.toString() + "]";
+  }
+
+  /**
+   * Checks if data passed is null.
+   * @param data the data to check if null.
+   */
+  private void nullChecker(T data) {
+    if (data == null) {
+      throw new IllegalArgumentException("Null not allowed");
+    }
   }
 }
