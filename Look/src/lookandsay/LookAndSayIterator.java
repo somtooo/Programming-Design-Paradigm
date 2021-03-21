@@ -21,7 +21,7 @@ public class LookAndSayIterator implements RIterator<BigInteger> {
     if (!(seed.toString().matches("[1-9]+"))) {
       throw new IllegalArgumentException("No zeros");
     }
-    if (seed.compareTo(BigInteger.valueOf(0)) <= 0 | seed.compareTo(endValue) > 0) {
+    if (seed.compareTo(BigInteger.valueOf(0)) <= 0 | seed.compareTo(endValue) >= 0) {
       throw new IllegalArgumentException("Wrong constructor parameters");
     }
     this.seed = seed;
@@ -41,7 +41,7 @@ public class LookAndSayIterator implements RIterator<BigInteger> {
       throw new IllegalArgumentException("No zeros");
     }
     this.endValue = buildBigInteger(BigInteger.valueOf(9), 100);
-    if (seed.compareTo(BigInteger.valueOf(0)) <= 0 | seed.compareTo(endValue) > 0) {
+    if (seed.compareTo(BigInteger.valueOf(0)) <= 0 | seed.compareTo(endValue) >= 0) {
       throw new IllegalArgumentException("Wrong constructor parameters");
     }
     this.seed = seed;
@@ -72,8 +72,6 @@ public class LookAndSayIterator implements RIterator<BigInteger> {
     seed = index;
     index = new BigInteger(stringResult.toString());
 
-    System.out.println("This is seed" + seed);
-    System.out.println("This is index" + index);
     return index;
   }
 
@@ -85,7 +83,8 @@ public class LookAndSayIterator implements RIterator<BigInteger> {
 
   @Override
   public boolean hasNext() {
-    return !(seed.compareTo(endValue) >= 0);
+    boolean comparison = seed.compareTo(endValue) >= 0;
+    return !comparison;
   }
 
   @Override
