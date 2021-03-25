@@ -4,6 +4,14 @@ package imagemodel;
 public abstract class AbstractColorTransformation extends AbstractImageModel {
 
   /**
+   * Sets the field with the required parameters.
+   * @param image the image a color transform will be applied on.
+   */
+  public AbstractColorTransformation(int[][][] image) {
+    super(image);
+  }
+
+  /**
    * Replaces the RGB values of an image by applying linear color transformation using the image and
    * a kernel.
    *

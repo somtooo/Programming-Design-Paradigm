@@ -4,21 +4,21 @@ package imagemodel;
  * Implements the ImageModel interface and represents a class which applies the floyd dithering
  * algorithm to reduce the color in an image.
  */
-public class FloydDithering extends AbstractReduceColorDensity {
+public class FloydDithering extends AbstractReduceColorDensity implements Reduce {
 
   /**
-   * Applies the floyd dithering algorithm to reduce the color in an image.
-   *
-   * @param image the image that the operation will be applied on.
-   * @param intensity the intensity of the transformation, higher means a more color will be used
-   *     per channel and vice versa.
-   * @throws IllegalArgumentException if intensity is negative or 0.
+   * Sets the fields with the required parameters.
+   * @param image the image to be color reduced.
    */
+  FloydDithering(int[][][] image) {
+    super(image);
+  }
+
   @Override
-  public int[][][] apply(int[][][] image, int intensity) {
+  public int[][][] reduce(int[][][] image, int numOfColors) {
     checkIfNull(image);
-    checkIfZeroOrLess(intensity);
-    return algorithm(image, intensity);
+    checkIfZeroOrLess(numOfColors);
+    return algorithm(image, numOfColors);
   }
 
   /**
@@ -98,4 +98,7 @@ public class FloydDithering extends AbstractReduceColorDensity {
       }
     }
   }
+
+
+
 }

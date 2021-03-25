@@ -1,8 +1,16 @@
 package imagemodel;
 
 /** Represents calculations used to make sure images are saved correctly. */
-public abstract class AbstractImageModel implements ImageModel {
+public abstract class AbstractImageModel  {
+  protected int[][][] image;
 
+  /**
+   * Sets fields with the required parameters.
+   * @param image the image operations will be applied on.
+   */
+  AbstractImageModel(int[][][] image) {
+    this.image = image;
+  }
   /**
    * Goes through the image to make sure the RGB values are between 0 and 255.
    *

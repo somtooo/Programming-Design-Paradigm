@@ -4,28 +4,25 @@ package imagemodel;
  * Implements the ImageModel interface and represents a class which applies the Greyscale color
  * transform operation to an image.
  */
-public class GreyScale extends AbstractColorTransformation {
+public class GreyScale extends AbstractColorTransformation implements Transform {
+
 
   /**
-   * Applies the Greyscale color transform operation on an image.
-   *
-   * @param image the image that the operation will be applied on.
-   * @param intensity the intensity of the transformation, higher means a more darker greyscale
-   *     image.
-   * @throws IllegalArgumentException if intensity is negative or 0.
+   * Sets the fields with the required parameters.
+   * @param image the image to be transformed to greyscale.
    */
-  @Override
-  public int[][][] apply(int[][][] image, int intensity) {
-    checkIfNull(image);
-    checkIfZeroOrLess(intensity);
-    float[][] greyScale =
-        new float[][] {
-          {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}
-        };
+  GreyScale(int[][][] image) {
+    super(image);
+  }
 
-    for (int num = 0; num < intensity; num++) {
-      colorTransformation(image, greyScale);
-    }
+  @Override
+  public int[][][] applyTransform(int[][][] image) {
+    checkIfNull(image);
+    float[][] greyScale =
+            new float[][] {
+                    {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}
+            };
+    colorTransformation(image, greyScale);
     return image;
   }
 }

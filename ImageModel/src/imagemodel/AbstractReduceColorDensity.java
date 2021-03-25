@@ -2,6 +2,15 @@ package imagemodel;
 
 /** Represents calculations used to reduce colors in an image. */
 public abstract class AbstractReduceColorDensity extends AbstractImageModel {
+
+  /**
+   * Sets the field with the required parameters.
+   * @param image the image a color reduction will be applied on.
+   */
+  public AbstractReduceColorDensity(int[][][] image) {
+    super(image);
+  }
+
   /**
    * The algorithmic calculation used for the color reduction.
    *
