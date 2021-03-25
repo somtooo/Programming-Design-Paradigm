@@ -2,9 +2,11 @@ package imagemodel;
 
 import java.util.Random;
 
-public class Mosaic implements Chunking {
+public class Mosaic extends AbstractImageModel implements Chunking {
 
-    Mosaic
+    public Mosaic(int[][][] image) {
+        super(image);
+    }
 
 
 
@@ -12,9 +14,12 @@ public class Mosaic implements Chunking {
     public int[][][] apply(int value) {
         int[][] seedIndex = new int[0][];
         Random rand = new Random();
-        int rowUpperbound = ;
-        //generate random values from 0-24
-        int int_random = rand.nextInt(upperbound);
+        int rowUpperbound = image.length;
+        int colUpperbound = image[0].length;
+
+        int randomRow = rand.nextInt(rowUpperbound);
+        int randomCol = rand.nextInt(colUpperbound);
+        seedIndex = generateSeed(value)
         return new int[0][][];
     }
 
