@@ -16,8 +16,6 @@ public class Sharpen extends AbstractFilter implements Filter {
 
   @Override
   public int[][][] applyFilter(int intensity) {
-    checkIfNull(image);
-    checkIfZeroOrLess(intensity);
 
     float[][] sharpen =
             new float[][] {
@@ -28,9 +26,14 @@ public class Sharpen extends AbstractFilter implements Filter {
                     {-1f / 8, -1f / 8, -1f / 8, -1f / 8, -1f / 8}
             };
 
-    for (int num = 0; num < intensity; num++) {
+    if (intensity == 0) {
       convolve(image, sharpen);
+    } else {
+      for (int num = 0; num < intensity; num++) {
+        convolve(image, sharpen);
+      }
     }
+
 
     return image;
   }

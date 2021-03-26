@@ -1,4 +1,2 @@
-load goat.png
-dither 2
-blur
-sharpen
+load Captur.PNG
+save goat.txt

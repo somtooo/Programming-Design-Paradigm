@@ -1,11 +1,15 @@
 package imagemodel;
 
+import images.FileUtilities;
 import images.ImageUtilities;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Implements the Image Model Interface and represents image processing operations that can be done on an image.
+ */
 public class ImageModel  implements ImageModelInterface {
 
     private final int[][][] image;
@@ -21,16 +25,19 @@ public class ImageModel  implements ImageModelInterface {
         this.pattern = "";
     }
 
+    /**
+     * Default constructor.
+     */
     public ImageModel() {
         this.image = new int[0][][];
         this.pattern = "";
     }
 
     @Override
-    public int[][][] blur(int intensity) throws IllegalStateException {
+    public void blur(int intensity) throws IllegalStateException {
         checkState();
         Filter blur = new Blur(image);
-        return blur.applyFilter(intensity);
+        blur.applyFilter(intensity);
     }
 
     private void checkState() {
@@ -41,60 +48,58 @@ public class ImageModel  implements ImageModelInterface {
 
 
     @Override
-    public int[][][] sharpen(int intensity) throws IllegalStateException {
+    public void sharpen(int intensity) throws IllegalStateException {
         checkState();
         Filter sharpen = new Sharpen(Objects.requireNonNull(image));
-        return sharpen.applyFilter(intensity);
+        sharpen.applyFilter(intensity);
     }
 
     @Override
-    public int[][][] greyScale() throws IllegalStateException {
+    public void greyScale() throws IllegalStateException {
         checkState();
         Transform greyScale = new GreyScale(Objects.requireNonNull(image));
-        return greyScale.applyTransform();
+        greyScale.applyTransform();
     }
 
     @Override
-    public int[][][] sepia() throws IllegalStateException {
+    public void sepia() throws IllegalStateException {
         checkState();
         Transform sepia = new Sepia(Objects.requireNonNull(image));
-        return sepia.applyTransform();
+        sepia.applyTransform();
     }
 
     @Override
-    public int[][][] reduceColor(int numberOfColors) throws IllegalStateException {
+    public void reduceColor(int numberOfColors) throws IllegalStateException {
         checkState();
         Reduce colorReduce = new FloydDithering(Objects.requireNonNull(image));
-        return colorReduce.reduce(numberOfColors);
+        colorReduce.reduce(numberOfColors);
     }
 
     @Override
-    public int[][][] toMosaic(int seeds) throws IllegalStateException {
+    public void toMosaic(int seeds) throws IllegalStateException {
         checkState();
         Chunking mosaic = new Mosaic(Objects.requireNonNull(image));
-        return mosaic.apply(seeds);
+        mosaic.apply(seeds);
     }
 
     @Override
-    public int[][][] pixelate(int squares) throws IllegalStateException {
+    public void pixelate(int squares) throws IllegalStateException {
         checkState();
         Chunking pixelate = new Pixelation(Objects.requireNonNull(image));
-        return pixelate.apply(squares);
+        pixelate.apply(squares);
     }
 
     @Override
-    public String crossStitch() throws IllegalStateException {
+    public void crossStitch() throws IllegalStateException {
         checkState();
         Pattern crossStitch = new CrossStitch(Objects.requireNonNull(image));
         this.pattern = crossStitch.generate();
-        return pattern;
     }
 
     @Override
     public int[][][] loadImage(String filename) throws IOException {
         File file = new File("");
         String path = file.getAbsolutePath() + "\\" + filename;
-
         return ImageUtilities.readImage(path);
     }
 

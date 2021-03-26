@@ -29,7 +29,7 @@ public class FloydDithering extends AbstractReduceColorDensity implements Reduce
    * @return the image with its color reduced.
    */
   @Override
-  int[][][] algorithm(int[][][] image, int numberOfColors) {
+  protected int[][][] algorithm(int[][][] image, int numberOfColors) {
     checkIfNull(image);
     for (int row = 0; row < (image.length - 1); row++) {
       for (int col = 1; col < image[0].length - 1; col++) {

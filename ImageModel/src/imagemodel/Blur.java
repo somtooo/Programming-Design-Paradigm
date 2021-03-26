@@ -16,16 +16,19 @@ public class Blur extends AbstractFilter implements Filter {
 
   @Override
   public int[][][] applyFilter(int intensity) {
-    checkIfNull(image);
-    checkIfZeroOrLess(intensity);
     float[][] blur =
             new float[][] {
                     {1f / 16, 1f / 8, 1f / 16}, {1f / 16, 1f / 8, 1f / 16}, {1f / 16, 1f / 8, 1f / 16}
             };
 
-    for (int num = 0; num < intensity; num++) {
+    if (intensity == 0) {
       convolve(image, blur);
+    } else {
+      for (int num = 0; num < intensity; num++) {
+        convolve(image, blur);
+      }
     }
+
 
     return image;
   }

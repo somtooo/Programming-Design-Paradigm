@@ -4,6 +4,15 @@ import imagemodel.ImageModelInterface;
 
 import java.io.IOException;
 
+/**
+ * Represents commands that can be carried out by the controller.
+ */
 public interface ImageCommand {
-    void run(ImageModelInterface model) throws IOException;
+    /**
+     * Starting point for the controller.
+     * @param model the model to use.
+     * @throws IOException if files cant be found.
+     * @throws IllegalStateException if images arent loaded before processing.
+     */
+    void run(ImageModelInterface model) throws IOException, IllegalStateException;
 }

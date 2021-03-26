@@ -1,4 +1,4 @@
-package imagemodel;
+package images;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -30,6 +30,12 @@ public class FileUtilities {
     return array;
   }
 
+  /**
+   * Writes a string value to a file.
+   * @param filename the filename of the file.
+   * @param content the string content to be written.
+   * @throws IOException if something goes wrong with writing to file.
+   */
   public static void writeToFile(String filename, String content) throws IOException  {
 
       FileWriter myWriter = new FileWriter(filename);
