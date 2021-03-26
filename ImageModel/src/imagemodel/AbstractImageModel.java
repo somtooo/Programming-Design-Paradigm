@@ -9,6 +9,7 @@ public abstract class AbstractImageModel  {
    * @param image the image operations will be applied on.
    */
   AbstractImageModel(int[][][] image) {
+    checkIfNull(image);
     this.image = image;
   }
   /**

@@ -9,5 +9,5 @@ public interface Reduce {
      * @throws IllegalArgumentException if image is null.
      * @throws IllegalArgumentException if intensity is negative or 0.
      */
-    int[][][] reduce(int[][][] image, int numOfColors);
+    int[][][] reduce(int numOfColors);
 }

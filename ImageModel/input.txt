@@ -1,0 +1,4 @@
+load goat.png
+dither 2
+blur
+sharpen

@@ -19,15 +19,10 @@ public class FileUtilities {
   public static String[][] loadCsvFile(String path) throws IOException {
     String line;
     List<String[]> values = new ArrayList<>();
-    try {
       BufferedReader br = new BufferedReader(new FileReader(path));
       while ((line = br.readLine()) != null) {
         values.add(line.split(","));
       }
-    } catch (IOException error) {
-      error.printStackTrace();
-    }
-
     values = values.subList(1, values.size());
     String[][] array = new String[values.size()][0];
 
@@ -35,14 +30,12 @@ public class FileUtilities {
     return array;
   }
 
-  public static void writeToFile(String filename, String content) {
-    try {
+  public static void writeToFile(String filename, String content) throws IOException  {
+
       FileWriter myWriter = new FileWriter(filename);
       myWriter.write(content);
       myWriter.close();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+
   }
 
 

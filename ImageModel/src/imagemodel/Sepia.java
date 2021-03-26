@@ -15,7 +15,7 @@ public class Sepia extends AbstractColorTransformation implements Transform {
   }
 
   @Override
-  public int[][][] applyTransform(int[][][] image) {
+  public int[][][] applyTransform() {
     checkIfNull(image);
     float[][] sepia =
             new float[][] {

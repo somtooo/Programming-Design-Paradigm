@@ -15,7 +15,7 @@ public class Sharpen extends AbstractFilter implements Filter {
   }
 
   @Override
-  public int[][][] applyFilter(int[][][] image, int intensity) {
+  public int[][][] applyFilter(int intensity) {
     checkIfNull(image);
     checkIfZeroOrLess(intensity);
 

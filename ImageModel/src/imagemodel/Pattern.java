@@ -7,7 +7,6 @@ public interface Pattern {
 
     /**
      * Generates an embroidery pattern from an image.
-     * @param image the image the pattern is generated from.
      */
-    void generate();
+    String generate();
 }
