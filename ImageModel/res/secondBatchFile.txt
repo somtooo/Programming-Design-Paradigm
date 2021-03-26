@@ -1,0 +1,24 @@
+load dog.jpg
+reduce 2
+save dog-dither.jpg
+load dog.jpg
+blur 1
+save dog-blur.jpg
+load dog.jpg
+sharpen 1
+save dog-sharpen.jpg
+load dog.jpg
+greyScale
+save dog-greyScale.jpg
+load dog.jpg
+sepia
+save dog-sepia.jpg
+load dog.jpg
+pattern
+save dog-pattern.txt
+load dog.jpg
+pixelate 100
+save dog-pixelate.jpg
+load dog.jpg
+toMosaic 1650
+save dog-mosaic.jpg

@@ -1,0 +1,293 @@
+142 x 213
+pv pv pv pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg lg qt qt qt pu pu pu pu pu pu pu pu pu pd pd pd pd pd pd pu pu pu pc pc pu pd pd pd pd oq oq oq 
+pv pv pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg lg qt qt qt qt pu pu pu pu pu pu pu pu pd pd pd pd pd pd pd pd pu pu pc pc pu pd pd pd pd oq oq oq 
+pv pv pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt pu pu pu pu pu pu pu pu pu pd pd pd pd pd pd pd pu pu pu pu pc pd pd pd pd pd oq oq oq 
+pv pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg lg qt qt qt qt qt pu pu pu pu pd pd pd pd pd pd pd pd pd pd pd pd pu pu pc pc pd pd pd pd pd oq oq oq 
+pv pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg lg qt qt qt pu pu pu pu pu pu pd pd pd pd pd pd pd pd pd pd pd pd pu pu pu pd pd pd pd pd pd oq oq oq 
+pv pv pv pv pv pv pv lg pv pv pv pv lg lg lg lg qt qt qt qt pu pu pu pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd 
+pv pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt pu pu pu pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd oq 
+pv pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt pu pu pu pu pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd 
+pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt qt pu pu pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd 
+pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt qt pu pu pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd 
+pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt qt pu pu pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd 
+pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt qt pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd 
+pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt qt pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd 
+pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt qt pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd qd 
+pv pv pv pv pv pv pv pv pv pv pv lg lg lg lg qt qt qt qt qt pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd qd 
+pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt qt pu pu pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd pd qd qs 
+pv pv pv pv pv pv pv pv pv pv pv pv pv lg lg qt qt qt qt qt pu pu pd pd pd pd pd pd pd pd pd pd oq oq oq pd pd pd pd pd pd pd pd pd pd pd pd qd qs qs 
+pv pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt qt pu pu pu pd pd pd pd pd oq oq oq oq oq oq oq oq oq oq oq pd pd pd pd pd pd pd qd qs qs qs 
+pv pv pv pv pv pv pv pv pv pv pv lg lg lg qt qt qt qt qt qt pu pu pu pd pd pd pd pd pd pc rs qo qo pe qo pv qt qt pd oq oq oq pd pd pd qd qs qs qs qs 
+pv pv pv pv pv pv pv pv pv pv lg lg lg lg qt qt qt qt qt qt pu pu pu pd pd pd pc rs qo lh qp pf pf pf pf pf rt rt pe pv qt pd pd oq oq qs qs qs qs qn 
+pv pv pv pv pv pv pv pv pv pv lg lg lg lg qt qt qt qt qt qt pu pu pd pd pd rs qo pe qp pf pf qv pf pf pf pf pf pf pf rt qp pe lg pu pd oq qs qs qn qn 
+pv pv pv pv pv pv pv pv pv lg lg lg lg qt qt qt qt qt qt qt qt pu pd pd rs qo lh qu pf pf pf pf pf pf pf pf pf pf rt pf rt rt lh pe lg pd oq qs qs qn 
+pv pv pv pv pv pv pv pv pv lg lg lg lg qt qt qt qt qt qt qt pu pd pd rs qo lh qp pf pf pf qv qv pf pf pf pf pf pf rt rt rt rt rt rt pe qo qt pd oq qs 
+pv pv pv pv pv pv pv pv lg lg lg lg lg qt qt qt qt qt qt qt pu pd pd qe pe qp pf pf pf pf qv qv pf pf pf df df df df rt de de de de de de pe oy qt oq 
+pv pv pv pv pv pv pv lg lg lg lg qt qt qt qt qt qt qt qt qt pu pd rs qo lh rt pf pf pf pf pf pf pf df df df df df df df de de de de de de de lh pe qt 
+pv pv pv pv pv pv lg lg lg lg qt qt qt qt qt qt qt qt qt pu pd pd rs pe qp rt pf pf pf pf pf pf df df df df df df de df de de de de de de de de de pe 
+pv pv pv pv pv lg lg lg lg lg qt qt qt qt qt qt rs rs rs pu pd pu qe lh rt pf pf pf pf pf pf df df df df de de de de de de de de de de de de de de pe 
+pv pv pv pv pv lg lg lg lg qt qt qt qt qt qt qt rs rs pu pu pd qt qo lh rt pf pf pf pf pf rt df df df df df de de de de de de de de de de de de de de 
+pv pv pv pv lg lg lg lg qt qt qt qt qt qt qt qt rs pu pu pu pd qt qo lh rt rt rt rt rt rt rt rt df df de de de de de de de de de de de de de de de de 
+pv pv pv pv pv lg lg lg qt qt qt qt qt qt qt qt qt qt pu pu pd qt qo lh rt rt rt rt rt rt rt rt df de de de de de de de de de de de de de de de de de 
+pv pv pv lg lg lg lg qt qt qt qt qt qt rs rs rs rs pc pu pu pd qt qo lh qp rt rt rt rt rt rt de de de de de de de de de de de de de de de de de de de 
+pv pv pv lg lg lg lg qt qt qt qt qt rs rs rs rs rs rs pc pd pd qt qo lh rt rt rt rt rt rt rt de de de de de de pe pe de de de de de cy de de de de de 
+pv pv pv lg lg lg lg qt qt qt qt qt qt qt qt rs rs rs pc pd pd qt qo qp rt rt rt rt rt rt rt rt de pe pe pe pe pe pe dd de de de de cy de de de de de 
+pv lg lg lg lg lg lg qt qt qt qt rs rs rs rs rs rs rs pc pc pd qt qo lh rt rt rt rt rt rt rt rt pe pe pe pe pe pe pe pe de de dd cy cy cy or de de or 
+lg lg lg lg lg lg qt qt qt rs rs qe rs rs rs rs rs rs pc pc pd qt qo lh rt rt rt rt rt rt rt rt de pe pe pe pe pe dd dd dd dd dd dd dd cy cy or de or 
+lg lg lg lg lg qt qt qt qt qt rs rs rs rs rs rs rs rs pc pd pd rs qo qp rt rt rt rt rt rt rt rt rt pe pe pe pe pe dd dd dd dd dd dd dd dd dd cy cy de 
+lg lg lg lg lg qt qt qt qt qt qe qe qe qe rs rs rs rs pc pc pd pu pv pe rt rt rt rt rt rt rt rt rt de pe pe pe pe dd dd dd dd dd dd dd dd dd dd cy de 
+lg lg lg qe qt qt qt rs rs qe qe qe qe qe rs rs rs pc pc pd pd pd lg pe pe rt rt rt rt rt rt rt rt de pe pe pe pe dd dd dd dd dd dd dd dd dd dd dd de 
+qe qe qe qe qe qt qe qe qe qe qe qe qe qe qe rs rs pc pc pd pd pd rs qo pe qp rt rt rt rt rt rt rt rt pe pe pe pe dd dd dd dj dj dj dj dd dd dd dd de 
+qe qe qe qe qe qe qe qe qe qe qe qe qe qe rs rs rs pc pc qj pd pd pc qe pe lh qp rt rt rt rt rt rt rt de pe pe pe dd dj dj dj dj dj dj dj dj dd dd dd 
+qe qe qe qe qe qe qe qe qe qe qe qe qe qe rs rs pc pc pc pd pd pd pd rs qo lh qp rt rt rt pf rt rt rt rt de pe pe dd dd dj dj dj dj dc dc dj dj dd dd 
+qe qe qe qe qe qe qe qe qe qe qe qe qe rs rs rs pc pc qj pd pd pd pd rs pv lh qp rt rt pf pf pf rt rt rt rt de pe pe dd dj dj dj dc pd pd dc dc dj dj 
+qe qe qe qe qe qe qe qe qe qe qe rs rs rs rs rs pc pc qj pd pd pd pd pd lg qo lh rt rt pf pf pf pf rt rt rt de pe pe dd dj dj dj pd pd pd pd pd dc dc 
+qe qe qe qe qe qe qe rs rs rs rs rs rs rs rs pc pc pc qj pd pd pd pd pd qt qo lh rt pf pf pf pf pf rt rt rt de de pe dd dj dj dc pd pd pd pd pd pd dc 
+qe qe qe qe qe qe rs rs rs rs rs rs rs rs rs pc pc pc qj pd pd pd pd pd rs pv lh rt rt pf pf qv qv pf rt rt rt de de pe dd dj dj pd pd pd pd pd pd dc 
+qe qe qe qe qe qe qe rs rs rs rs rs rs rs pc pc pc pc qj pd pd pd pd pd pc lg lh qp rt pf qv qv qv qv pf pf rt rt de pe dd dj dj dc pd pd pd pd pd dc 
+qe qe qe qe qe qe rs rs rs rs rs rs rs rs rs pc pc pc pd pd pd pd pd pd pd lg qo lh rt rt pf pf qv qv qv pf rt rt de pe pe dd dj dj dc pd pd pd dc dc 
+rs rs qe qe qe rs rs rs rs rs rs rs rs rs pc pc pc pc qj pd pd pd pd pd pd qt pv lh rt rt rt pf pf qv pf pf pf rt de de pe dd dj dj dj dc dc dc dc dc 
+pd rs rs rs rs rs rs rs rs rs rs rs rs rs pc pc pc pc pc pc qj pc pc pc rs qt pv lh qp rt rt rt pf pf qv pf pf rt rt de pe dd dd dj dj dc pd pd pd dc 
+pd pd pd rs rs rs rs rs rs rs rs rs rs pc pc pc pc pc pc pc pc rs rs rs rs qt lg pv lh lh lh rt rt pf pf pf pf rt rt de pe pe dd dj dj dj dc pd dc dj 
+qs oq pd pd pc pc rs rs rs rs rs rs rs pc pc pc pc pc rs rs rs qe qe qe qo pv lg lg pv pe lh lh rt rt rt rt rt rt rt rt de de pe dd dj dj dc dc dj dj 
+qn qs qs pd pd pd pc pc pc rs rs rs rs pc pc rs rs rs rs qe qe qo qo pe lh oz pm oy oy pv pe lh lh pe rt rt rt rt rt rt df de pe dd dj dj dj dj dj dj 
+qn qn qn qs qs pd pd pd pc pc pc pc pc pc rs rs rs qe qe qo qo pe lh oz or on on or oy pv pv pe pe pe rt rt pf pf df df df df de pe dd dj dj dj dj dj 
+pt lo lo qn qs qs pd pd pd pc pc pc pc rs rs rs qe qo qo pe lh oz cz oo oo oo au oo on pm pv pv pe pe rt rt rt rt rt rt de de de pe dd dj dj dj dj dj 
+kv kv lo lo qn qs qs qd pd pd pc pc rs rs qe qe qo qo lh oz cz pn oo oo av av av au af or pm pv pe pe pe pe de de pe de de de de pe pe dd dj dj dj dj 
+kv kv kv lo lo qn qs qs pd pd pc pc rs qe qe qo pe oz oz cz oo oo av av av av au au au af or pm pv pe pe pe pe pe pe pe pe pe pe pe pe dd dd dj dj dj 
+kz kv lo lo lo lo qs qs qs pd pd rs qe qo qo pe oz cz oo oo av av av av av av au au al at on or oy pv pe pe pe pe pe pe pe pe pe pe pe dd dd dd dj dj 
+kz kz kz lo lo lo lo qs qs pd pc rs qe qo pe oz cz oo oo av av av av av av au au au al al at on cy oy pv pe pe pe pe dd dd dd pe pe pe pe dd dd dj dj 
+la kz kz kw lo lo lo qs qs pd pd qt pv pe oz cz oo oo av av av av av av au au au au al al al af or pm oy oy pv pe pe dd dd dd dd pe pe pe dd dd dj dj 
+la la kz kw lo lo lo lf oq oq pu lg pv oz cz oo av av av av av av av au au au au al al al au au af or pm oy pv pe pe dd dd dd dd dd dd dd dd dd dd dd 
+la la kz kw lo lo lo lf oq oq pu oy or cz oo av av av av av av av av au au au au al al al au au au af on pm oy pv pe pe dd dd dd dd dd dd dd dd dd dd 
+la kz kw lo lo lo lf lf oq ow oy oy on oo av av av av av av av av av au au au au au au au au au au at on or oy oy pv pv dd dd dd dd dd dd dj dd dd dd 
+kz kw lo lo lo lf lf oq oq ow oy cy on oo av av av av av av av av av au au au au au au au au au au au on or pm oy oy oy dd dd dd dd dj dj dj dj dj dj 
+lo lo lo lo lo lf lf oq oq ow oy or oo au av av av av av av av av av au au au au au au au au au au au af or or oy oy oy oy dd dd dd dj dj dj dj dj dj 
+lo lo lo lo lf lf lf oq oq ow ox or oo au av av av av av av av av au au au au au au au au au au au au at on pm oz oz pe pe dd dd dd dd dd dj dj dj dj 
+lo lo lo lo lo lf lf oq oq ow ox om on at au av av av av av av av au au au au au au au au au au au au au on om pm oz de de de cz de cy dd dd dj dj dj 
+lo lo lo lo lf lf oq oq oq ow ow sh on oo au au av av av av av av au au au au au au au au au au au au au as om oy dd pe de de cz cz or cy dd dd dj dj 
+qn qn lo lf lf lf oq oq oq lp ow ox om on at au av av av av av av av au au au au au au au au au au av au au on om oy dd dd dd dd dd dd dd dd dc dc dj 
+qn qn qs lf lf oq oq oq oq oq ow ox sh on at au av av av av av av av au au au au au au au au au au au au au af om cy dd dd dd dc dc dd dd dc dc dc dj 
+qn qn qs qs lf oq oq oq oq oq ow ow sh om oo au av av av av av av au au au au au au au au au au au au au au at on om dd dd dj dc dc dc dc dc dc dj dd 
+qn qn qs lf oq oq oq oq oq oq oq ow ox om on au au au av au au at at au au at at at as as af bs bs bs bs af bs om cx oy dd dd dj dc cx cx dc oy dd pe 
+qs qn qs oq oq oq oq oq oq oq oq ow ox sh om oo at as af aj al ak al ar bk bi cb bi dc cw cw cw cw cw cb cx cx cx oq ow oy dd dj dd dd oy oy pv oz rt 
+qs qs oq oq oq lp oq oq oq oq oq ow cx cx sh om sh ol af al al al al al al aj cv db db db cv cv sg cw cw cw cw cw oq oq qt dd dd oy oy oy oy pe oz oz 
+qn qn qn qs qs oq pd oq qs oq oq oq oq dc dc dc dc ol av au av al al al al al ae da pb dl cy au at at ol bh sg sg oq oq ow oy oy qt qt oy pv lh oz rt 
+di di di qy qy di di di di di qn qn qn di di di cv bm cw qn oq on al au au as at ca ro pb da db dc cb au al ar ae sg oq oq ow oy qt ow qt oy pe lh rt 
+qy rp re re re re di pb di pb pb pb pb pb pb pb pb pb qx rp qx qy dl da db da db da ro pb pb ro ro ro pb oq cd au au sh cw oq ox oy oy oy oy oy pv qo 
+re rp re re re re rp rp qx qx pb pb pb pb pb pb pb pb rp qx pb ro ro ro pb ro ro ro ro pb pb ro ro ro qz rl pr do cd al as cw ow ox oy oy qt oy lg lg 
+re re re re re re re re re rp qx qx pb pb pb pb qx re re qx qx ro re re re ro ro qx qx pb pb ro ro ro rf pr pq rl df av al as cw oq ow cx cx cx qt lg 
+qy qy qy qy qy qy re re re rp qx qx pb pb pb di qy jz rh rh ri ri qk qk ri rf qx ro pb pb pb pb ro ro rp qk pr pr rk oq av al as cw oq dc dc dc dc cx 
+pd qn qy qy qy qy qy qy re rp rp rp qx pb pb di rh rj rj rh ri hc rh ha re re ro ro ro ro ro ro ro ro pb pb rf rb qz rp cw av at bs cw oq dc dc dc dc 
+pd pd pd qn qn qy qy qy qy qy re rp qx pb pb re re qy ha ha re re rp rp rp rp rp rp rp ro qx qx ro ro ro pb ro qx qx pb pb di di cv di db db di oq dc 
+qo qe rs pc pd pd qn qn qy qy re re re re qy re rp re re re rp re rp re re rp re re re qx qx ro ro ro pb pb qx pb pb pb qx qx qx ro pb pb ro pb pb di 
+qp rt rt pe qo rs pc pd qn qy qy re re qy re qy re qy qy qy re re re re re re jz re ro ro qx ro qx qx pb pb pb qx qx rp rp re rp qx ro ro pb pb ro ro 
+qf pf pf pf rt rt pe pd qn qy qy re qy qy qy re qx qx rf rf qx ro qx ro ro ro qx qx qx rp rp qx ro ro ro pb qx re re re re re re re rp qx ro ro ro ro 
+ra ra qf rt rt rt qo pd qn qy qy qy qy qy qy qy re qx qy qy pb ro ro qx qx pb qx rp rp re re re re rp qx ro ro qx rp re re re ha ha re re rp rp rp ro 
+qz ri ra ra pe pe pc pd jz qy qy qy qy qy qy qy re re qx qx qx qx rp re qx qx qx qx rp re re ha ha re re rp qx qx qx rp rp re ha ha re re rp re re rp 
+qz qz qz qz qz qz pd pd qy qy qy qy qy qy qy qy qy re rp qx ro qx re ha re rp qx qx rp rp re jz jz ha re re re rp rp rp rp rp ha ha re re rp re rp rp 
+rh rh qz qz qz pc pd qn qy qy qy qy qy qy qy qy qy qy re re rp rp re ha re re re rp rp rp rp ha ha ha ha re re re re re rp rp re re re re rp rp qx rp 
+rh rh rh rh rh pd pd qn qy qy qy qy qy qy re qy qy qy qy re re re re ha ha re re re re re rp re ha jz jz jz jz jz jz ha re re rp re re re re rp rp rp 
+qz qz qz qz pc pd pd pd qy qy qy qy qy qy qy qy qy qy qy qy qy re re re ha ha ha ha re re re re re ha jz kd rf rf rf jz qy re re re re re rp rp re re 
+ri qz qz qz pc pc pd pd qn di di di di qy qy qy qy qy qy qy jz jz re re re ha jz kd jz ha ha re re re re ha jz kd jz rf rf rf jz qy qy qy qy re qy qy 
+ri ri ri qe rs dj pd pd oq oq qn qn di di di di qy qy qy jz kd rf qy qy ha ha ha jz kd jz ha ha re ha re re jz rf rf rf rf rf rf jz qn qn qn qy qy qy 
+qk ra pe pe qo dj dj dc dc dc oq cw oq oq oq qn di qy qy kd rf rf kd jz qy ha re jz rf rf kd kd qy ha re ha jz rf rf rf jz rf rf rf pd pd pd pd pd qn 
+qf pe pe pe pe dd dd cx cx cx bi cw cw cw cw oq qn di qn rf rf rh rh rf qy qy qy jz rf rh rh rh rf jz qy qy jz jz rf rf rf jz jz rf rf pd pd pd pd pd 
+rj rt pe pe pe dd dd sh ol ol ol bi bi cw cw cw oq qn qn pd kd rf qz qz rh rf rf rf rf rf rh qz pc pc pd jz qy qy jz rf rf rf rf rf pd pd dd or or bm 
+qg pf rt de de or cy om sh ol ol ae ae bi cw cw cw oq oq pd rf rf qz qf ra qz rh rf jz jz rf qz pe pe pc pd kd jz jz rf pd pc pc dj dd dg aw aw aw av 
+rk qg pf rt de de cy om om aj aj aj aj ai ae ol bi cb dc pd pd pc qz ri qf ra ri qz qj qj pc pc rs qo pe qo qe pc pc pd dj df dg av aw aw aw aw aw dg 
+jx rk rk qv pf df or om aj nj nj nj nj nd ni ol ol ol cb oy dd rs qz qz qo pe pe pe pv lg dd dd rs qo pe pe pe de pe pe df aw aw aw aw aw aw aw aw cy 
+jx jx pw pw pw df cz bs aj nj nj nj nj nd nd aj aj aj sh om cz rt rt rt pe pe oz pe dd oy dd oz dd dd dd dd dd df pe cz ru aw aw aw aw aw aw aw aw dc 
+jx pw pw pw qv pn on af af nj nj nj nj nj nj nj aj aj om at aw ru pq df de oz oz cy oy oy oy or dd cx cx cx dd de dg aw aw aw aw aw aw aw aw aw cd pd 
+pw po po pn pn oo no af af ne ne ne ne ne ne ne nj nj af al av aw os or oy oy sh sh ol ol cx cx cx cx cx cx cb sh cd av av av av aw aw aw aw aw bm pd 
+np np oo oo oo no af af my ne ne ne ne ne ne ne ne ne ne al al av on sh sh ol sh sh ol ol ol cb ol cb bi bi cb ol as au au au au av aw aw aw aw dd pd 
+np no no no no af af my ne ne ne ne ne ne ne ne ne ne ne al al af om sh ol ol ol ol ol bi ae ae ae cb ae ae ol aj as al al at au au au aw aw aw pd pd 
+no no no no af af ne ne ne ne ne ne ne ne ne ne ne ne ne ne af nj af om ol ol ai ol ai ae ae ae ai ai aj aj aj af ar as al al at at au av av bm pd pd 
+no af my my ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne nj nj nj nj sh ni ni nj nj nd ai ai ai nd aj aj ne aq ar af af as as at at au au cx pd pd 
+ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne nj nd nd nj nj nj ni nd nj ne nj nd nd nd nd nj ne ne ne ne af af af af af as at as dc pd pd 
+ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne nj nj nj nj nj nj nj nj nj nd nj nj nj nj nj ne ne nj nj aj aj aj aj aj aj om sh cx cx 
+ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne ne mx mx mx mx mx mx mx nd nd nd nd nd nd nd nd nd nd nd nd aj aj aj aj om bs cy cy 
+ne ne ne ne ne ne ne ne mx mx mx ne ne ne ne ne ne ne ne ne ne ne ne ne mx mx mx mx mx mx mx nd nd nd nd nd nd nd nd nd nd nd nd ai ai ai bk bi cw cw 
+ne ne ne ne ne ne ne mx mx mx mx mx mx ne ne ne ne ne ne ne ne mx mx mx nd mx mx mx mx mx nd nd nd nd nd nd nd nd nd nd nd nd nd ai ai ai ae cw bv dl 
+ne ne ne ne ne mx mx mx mx mx mx mx mx ne ne ne ne ne ne mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx nd nd nd nd nd nd ai ai ae bh cv cv 
+mx ne ne ne ne mx mx mx mx mx mx mx mx ne ne ne ne ne ne ne mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx nd nd nd nd nd ai ae ad bh cv 
+mx ne ne ne mx mx mx mx mx mx mx mx mx mx ne ne ne ne ne ne mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx nd nd nd nd ai nc ns ns 
+ne ne ne ne ne ne ne mx mx mx mx mx mx mx mx ne ne ne ne ne mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx nd nd nd mw mw nh ns ob 
+ne ne ne ne ne ne ne ne mx mx mx mx mx mx mx mx ne ne ne mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx nd nd mw oa oa mr mr 
+ne ne ne ne ne ne ne ne ne mx mx mx mx mx mx mx mx ne ne mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx nd ni ms ms mm mm 
+ne ne ne ne ne ne ne ne ne mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mu ms mn mn mi 
+ne ne ne ne ne ne ne ne ne mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mv mt mn mn mi mi 
+ne ne ne ne ne ne ne ne ne ne mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mv mt mn mn mi mi 
+al al al al al al ne ne ne ne ne mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mv mt mn mn mi mi 
+al al al al al al af ne ne ne ne mx mx mx mv mv mv mv mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mv mt mn mn mi mi 
+al al al al al al af ne ne ne ne mx mx mv mv mv mv mv mv mv mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mv mt mn mn mi mi 
+al al al al al al af my my my ne mx mv mv mv mv mv mv mv mv mv mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mv mt mn mi mi mi 
+al al au au au au af no my my mx mx mv mv mv mv mv mv mv mv mv mv mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mv mt mn mn mi mi 
+al al au au au au no no my my mx mx mv mv mv mv mv mv mv mv mv mv mv mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mx mv mv mt mn mn mi mi 
+al al au au np np no no my my mx mv mv mv mv mv mv mv mv mv mv mv mv mx mx mx mx mx mx mx mx mx mx mx mx mx nd nd nd nd nd mx mx mv mt mt mn mn mi mi 
+al at at np np np no no my my mx mx mv mv mv mv mv mv mt mv mv mv mv mv mx mx mx mx mx mx mx mx mx nd nd nd nd nd nd nd nd nd nd mv mt mt mn mn mi mi 
+al at no no no no no no my my my mx mv mv mv mv mv mv mt mv mv mv mv mv mx mx mx mx mx mx mx mx nd nd nd nd nd nd nd nd nd nd nd mu mu mt mn mn mi mi 
+no af no no no no no no no my my mx mv mv mv mv mv mv mv mv mv mv mv mv mx mx mx mx mx mx nd nd nd nd nd nd nd nd nd nd nd nd nd ni mu mu mn mn mi mi 
+no no no no no no no no no my my mx mx mv mv mv mv mv mv mv mv mv mv mv mx mx mx nd nd nd nd nd nd nd nd nd nd nd nd nd nd ni ni ni mu ms mn mn mn mi 
+no no no no no no no no nn nm my nj mx mv mv mv mv mv mv mv mv mv mv mv mx nd nd nd nd nd nd nd nd nd nd nd nd nd ni ni ni ni ni ni oa ms mn mn mn mi 
+no no no no on on om om om om nj nj nj mx mv mv mv mv mv mv mv mv mv mv nd nd nd nd nd nd nd nd nd nd nd nd ni ni ni ni ni ni ni mw oa ms ms mn mn mi 
+my nn no no on om om om om om om nj nj nj mx mv mv mv mv mv mv mv mv nd nd nd nd nd nd nd nd nd nd ni ni ni ni ni ni ni ni ni ni mw oa ms ms mn mn mi 
+nm nn nn om om om om om om om om aj aj nj nj nd nl mv mv mu mu ni nd nd nd nd nd nd nd ni ni ni ni ni ni ni ni ni ni ni ni ni mw oa oa oa ms mn mn mi 
+nm nu nu om om om om om om om om om om om aj nj nd nd nd ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni mw mw mw oa oa oa ms mm mn mn 
+nm nu nu om om om om om om om sh om sh sh sh sh aj aj nt ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni ni mw mw nc oa oa oa mr mm mm mm 
+nt nt sh sh sh sh sh sh sh sh sh sh sh sh sh sh ol ol ol ol ai ai ai ni ni ai ai ai ai ai ai ai ni ni ni ni ni ni mw nc nc nc nh nh nh nz mr mr mm mm 
+nt pl pl ox sh sh sh sh cx cx cx ol ol ol ol ol ol ol ol ol ai ol ae ae ai ae ae ae ae ae ae ae ae ae ae ae ae ae ok ok ok ok nh nh nz nz mr mr mm mm 
+od od ox ox ox cx cx cx cx cx cx cx cx cx ol ol ol ol ol ol ol ae ae ae ae ae ae ae ae ae ae ae ok ok ok ok ok ok ok ok ok ok nh nh nz nz nz mr se mm 
+od ow ow ow cx cx ow ow ow ow ow ow ow ow ow ow ow ow bi bi bi bi bi bi bi bi bi bi ok ok ok ok ok ok ok ok ok ok ok ok ok ok sg ns ns nz nz se se ml 
+lp lp lp ow ow ow ow ow ow oq oq oq ow ow ow ow ow ow ow ow cw cw cw cw ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok sg sg sg sg ls ls ls se se se 
+lk lk lp lp oq oq oq oq oq oq oq oq oq oq oq oq oq ov ov ov ov cw cw cw cw cw ok ok ok ok ok ok ok ok ok ok ok sg sg sg sg sg sg sg ls ky ky mc mc se 
+
+Legend
+po DMC-801
+om DMC-3830
+lg DMC-611
+mi DMC-444
+rk DMC-3799
+nc DMC-3340
+cv DMC-152
+ar DMC-321
+se DMC-19
+kv DMC-372
+aj DMC-350
+qz DMC-646
+ov DMC-3064
+mr DMC-742
+nt DMC-3776
+lp DMC-3828
+rt DMC-8
+on DMC-355
+nl DMC-922
+lh DMC-610
+qj DMC-3022
+rl DMC-310
+nd DMC-608
+cw DMC-223
+as DMC-304
+bm DMC-777
+kw DMC-371
+ak DMC-349
+nu DMC-301
+ow DMC-407
+di DMC-3042
+ms DMC-741
+ru DMC-9
+pq DMC-938
+qs DMC-841
+nm DMC-921
+oo DMC-3777
+da DMC-778
+ha DMC-926
+qk DMC-535
+ne DMC-606
+la DMC-832
+cx DMC-3722
+mc DMC-3821
+at DMC-498
+re DMC-318
+sg DMC-21
+bv DMC-3733
+al DMC-817
+ox DMC-3773
+mt DMC-740
+dj DMC-3041
+qt DMC-840
+ad DMC-3712
+pr DMC-3371
+ml DMC-726
+nn DMC-920
+db DMC-3727
+sh DMC-22
+cy DMC-3721
+qd DMC-642
+au DMC-816
+rf DMC-414
+pb DMC-452
+ky DMC-834
+oy DMC-3772
+ls DMC-728
+mu DMC-970
+qu DMC-839
+ae DMC-3328
+no DMC-919
+oq DMC-3859
+dc DMC-316
+lk DMC-3045
+mm DMC-725
+ro DMC-3
+ca DMC-3688
+hc DMC-924
+cz DMC-221
+av DMC-815
+pc DMC-451
+qe DMC-640
+oa DMC-3853
+kz DMC-833
+jx DMC-934
+oz DMC-632
+mv DMC-971
+dl DMC-3836
+qv DMC-838
+af DMC-347
+bh DMC-962
+or DMC-3858
+pt DMC-3864
+mn DMC-972
+np DMC-918
+cb DMC-3687
+dd DMC-3726
+qn DMC-3032
+rp DMC-4
+pl DMC-435
+nh DMC-722
+qf DMC-3787
+rh DMC-169
+aw DMC-814
+ob DMC-3827
+pd DMC-3861
+mw DMC-947
+bi DMC-961
+pu DMC-3863
+os DMC-3857
+de DMC-315
+pm DMC-434
+qo DMC-3790
+ni DMC-721
+ok DMC-3778
+ri DMC-317
+pe DMC-3860
+qg DMC-3021
+ra DMC-645
+jz DMC-3053
+mx DMC-946
+nz DMC-3854
+qx DMC-648
+pv DMC-3862
+cd DMC-3685
+df DMC-3802
+qp DMC-3781
+ol DMC-356
+pn DMC-433
+nj DMC-720
+kd DMC-522
+lf DMC-612
+rj DMC-413
+od DMC-976
+pf DMC-779
+bs DMC-326
+rb DMC-844
+aq DMC-666
+do DMC-154
+my DMC-900
+bk DMC-3832
+pw DMC-3031
+qy DMC-647
+ai DMC-351
+ns DMC-402
+lo DMC-422
+dg DMC-902
+rs DMC-7

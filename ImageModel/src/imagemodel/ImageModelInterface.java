@@ -9,26 +9,26 @@ public interface ImageModelInterface {
    * @param intensity the intensity of the blur e.g higher means more blurred.
    * @throws IllegalStateException if the image is empty.
    */
-  void blur(int intensity) throws IllegalStateException;
+  void blur(int intensity, int[][][] image ) throws IllegalStateException;
 
   /**
    * Applies the sharpen operation on an image.
    * @param intensity the intensity of the sharpening e.g higher means more sharpened.
    * @throws IllegalStateException if the image is empty.
    */
-  void sharpen(int intensity) throws IllegalStateException;
+  void sharpen(int intensity, int[][][] image) throws IllegalStateException;
 
   /**
    * Applies the greyScale operation on an image.
    * @throws IllegalStateException if the image is empty.
    */
-  void greyScale() throws IllegalStateException;
+  void greyScale(int[][][] image) throws IllegalStateException;
 
   /**
    * Applies the sepia operation on an image.
    * @throws IllegalStateException if the image is empty.
    */
-  void sepia() throws IllegalStateException;
+  void sepia(int[][][] image) throws IllegalStateException;
 
 
   /**
@@ -36,27 +36,27 @@ public interface ImageModelInterface {
    * @param numberOfColors the number of colors in the output image.
    * @throws IllegalStateException if the image is empty.
    */
-  void reduceColor(int numberOfColors) throws IllegalStateException;
+  void reduceColor(int numberOfColors, int[][][] image) throws IllegalStateException;
 
   /**
    * Applies the mosaic operation on an image.
    * @param seeds the number of random seeds to be used.
    * @throws IllegalStateException if the image is empty.
    */
-  void toMosaic(int seeds) throws IllegalStateException;
+  void toMosaic(int seeds, int[][][] image) throws IllegalStateException;
 
   /**
    * Applies the pixelate operation on an image.
    * @param squares the number of squares across the width to be used.
    * @throws IllegalStateException if the image is empty.
    */
-  void pixelate(int squares) throws IllegalStateException;
+  void pixelate(int squares, int[][][] image) throws IllegalStateException;
 
   /**
    * Applies the crossStitch operation on an image.
    * @throws IllegalStateException if the image is empty.
    */
-  void crossStitch() throws IllegalStateException;
+  void crossStitch(int[][][] image) throws IllegalStateException;
 
   /**
    * Loads an image and returns a 2d array representing the image.
@@ -72,14 +72,14 @@ public interface ImageModelInterface {
    * @throws IllegalStateException if the image is empty.
    * @throws IOException if something goes wrong with saving.
    */
-  void saveImage(String filename) throws IllegalStateException,IOException;
+  void saveImage(String filename, int[][][] image) throws IllegalStateException,IOException;
 
   /**
    * Writes string values to a text file.
    * @param filename the filename of the file.
    * @throws IOException if something goes wrong with writing to file.
    */
-  void saveTextToFile(String filename) throws IOException;
+  void savePattern(String filename) throws IOException;
 
 
 

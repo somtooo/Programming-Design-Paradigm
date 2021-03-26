@@ -1,2 +1,0 @@
-load Captur.PNG
-save goat.txt

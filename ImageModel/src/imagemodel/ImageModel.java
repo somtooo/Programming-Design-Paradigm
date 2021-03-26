@@ -11,87 +11,79 @@ import java.util.Objects;
  * Implements the Image Model Interface and represents image processing operations that can be done on an image.
  */
 public class ImageModel  implements ImageModelInterface {
-
-    private final int[][][] image;
     private String pattern;
     /**
-     * Sets fields with the required parameters.
-     *
-     * @param image the image operations will be applied on.
-     */
-    public ImageModel(int[][][] image) {
-        Objects.requireNonNull(image, "Image must not be null");
-        this.image = image;
-        this.pattern = "";
-    }
-
-    /**
-     * Default constructor.
+     * Default Constructor.
      */
     public ImageModel() {
-        this.image = new int[0][][];
         this.pattern = "";
     }
 
+
     @Override
-    public void blur(int intensity) throws IllegalStateException {
-        checkState();
+    public void blur(int intensity, int[][][] image) throws IllegalStateException {
+        checkState(image);
         Filter blur = new Blur(image);
         blur.applyFilter(intensity);
     }
 
-    private void checkState() {
+    /**
+     * Checks if an image array is empty.
+     * @param image the image to check.
+     */
+    private void checkState(int[][][] image) {
         if (image.length == 0) {
+            System.out.println("Empty image");
             throw new IllegalStateException("Image is empty");
         }
     }
 
 
     @Override
-    public void sharpen(int intensity) throws IllegalStateException {
-        checkState();
+    public void sharpen(int intensity, int[][][] image) throws IllegalStateException {
+        checkState(image);
         Filter sharpen = new Sharpen(Objects.requireNonNull(image));
         sharpen.applyFilter(intensity);
     }
 
     @Override
-    public void greyScale() throws IllegalStateException {
-        checkState();
+    public void greyScale(int[][][] image) throws IllegalStateException {
+        checkState(image);
         Transform greyScale = new GreyScale(Objects.requireNonNull(image));
         greyScale.applyTransform();
     }
 
     @Override
-    public void sepia() throws IllegalStateException {
-        checkState();
+    public void sepia(int[][][] image) throws IllegalStateException {
+        checkState(image);
         Transform sepia = new Sepia(Objects.requireNonNull(image));
         sepia.applyTransform();
     }
 
     @Override
-    public void reduceColor(int numberOfColors) throws IllegalStateException {
-        checkState();
+    public void reduceColor(int numberOfColors, int[][][] image) throws IllegalStateException {
+        checkState(image);
         Reduce colorReduce = new FloydDithering(Objects.requireNonNull(image));
         colorReduce.reduce(numberOfColors);
     }
 
     @Override
-    public void toMosaic(int seeds) throws IllegalStateException {
-        checkState();
+    public void toMosaic(int seeds, int[][][] image) throws IllegalStateException {
+        checkState(image);
         Chunking mosaic = new Mosaic(Objects.requireNonNull(image));
         mosaic.apply(seeds);
     }
 
     @Override
-    public void pixelate(int squares) throws IllegalStateException {
-        checkState();
+    public void pixelate(int squares, int[][][] image) throws IllegalStateException {
+        checkState(image);
         Chunking pixelate = new Pixelation(Objects.requireNonNull(image));
         pixelate.apply(squares);
     }
 
     @Override
-    public void crossStitch() throws IllegalStateException {
-        checkState();
+    public void crossStitch(int[][][] image) throws IllegalStateException {
+        checkState(image);
         Pattern crossStitch = new CrossStitch(Objects.requireNonNull(image));
         this.pattern = crossStitch.generate();
     }
@@ -104,14 +96,14 @@ public class ImageModel  implements ImageModelInterface {
     }
 
     @Override
-    public void saveImage(String filename) throws IllegalStateException, IOException  {
-        checkState();
+    public void saveImage(String filename, int[][][] image) throws IllegalStateException, IOException  {
+        checkState(image);
         ImageUtilities.writeImage( image, Objects.requireNonNull(image)[0].length, image.length, filename);
 
     }
 
     @Override
-    public void saveTextToFile(String filename) throws IOException {
+    public void savePattern(String filename) throws IOException {
         FileUtilities.writeToFile(filename,pattern);
     }
 }

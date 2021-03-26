@@ -1,13 +1,22 @@
 package controller;
 
-import controller.commands.*;
-import imagemodel.ImageModel;
+import controller.commands.BlurImage;
+import controller.commands.ColorReduceImage;
+import controller.commands.GreyScaleImage;
+import controller.commands.MosaicImage;
+import controller.commands.PixelImage;
+import controller.commands.Save;
+import controller.commands.SepiaImage;
+import controller.commands.SharpenImage;
+import controller.commands.ToPattern;
 import imagemodel.ImageModelInterface;
-
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.Function;
 
@@ -27,42 +36,47 @@ public class Controller implements IController {
    * @param out the response or output from the controller.
    */
   public Controller(Readable in, Appendable out) {
+    Objects.requireNonNull(in, "in cannot be null");
+    Objects.requireNonNull(out, "out cannot be null");
     this.in = in;
     this.out = out;
     supportedCommands = new HashMap<>();
     loadCommands();
   }
 
-  public static void main(String[] args) throws IOException {
-    Readable reader = new FileReader(args[0]);
-    IController control = new Controller(reader, System.out);
-    ImageModelInterface modelInterface = new ImageModel();
-    control.start(modelInterface);
-    //
-
-  }
-
   @Override
   public void start(ImageModelInterface model) throws IOException {
+    if (model == null) {
+      throw new IllegalArgumentException("model cant be null");
+    }
     Scanner command = new Scanner(this.in);
+    int[][][] image = new int[0][][];
 
     while (command.hasNext()) {
-      ImageCommand imageCommands;
       String input = command.next();
-      model = checkLoadCommand(model, command, input);
+      if (input.equals("load")) {
+        try {
+          image = model.loadImage(command.next());
+          this.out.append(String.format("%s command was carried out successfully\n", input));
+        } catch (IOException e) {
+          out.append(String.format("%s command was not carried out successfully\n", input));
+        }
+      }
 
       Function<Scanner, ImageCommand> imageCommandFunction =
           supportedCommands.getOrDefault(input, null);
-      processCommand(model, command, input, imageCommandFunction);
+      processCommand(model, command, input, imageCommandFunction, image);
     }
   }
 
   /**
    * Process the command and appends the output as status or error.
+   *
    * @param model the model to be used.
    * @param command the command to process.
    * @param input the current input;
    * @param imageCommandFunction the function of the command.
+   * @param image the image to process the command on.
    * @throws IOException if files couldn't be found.
    * @throws IllegalStateException if the image in the model is empty.
    */
@@ -70,8 +84,11 @@ public class Controller implements IController {
       ImageModelInterface model,
       Scanner command,
       String input,
-      Function<Scanner, ImageCommand> imageCommandFunction)
+      Function<Scanner, ImageCommand> imageCommandFunction,
+      int[][][] image)
       throws IOException {
+    StringWriter sw = new StringWriter();
+    PrintWriter pw = new PrintWriter(sw);
     ImageCommand imageCommands;
     if (imageCommandFunction == null) {
       if (!input.equals("load")) {
@@ -79,38 +96,37 @@ public class Controller implements IController {
       }
 
     } else {
-      try {
-        imageCommands = imageCommandFunction.apply(command);
-        imageCommands.run(model);
-        this.out.append(String.format("%s command was carried out successfully\n", input));
-      } catch (IOException e) {
-        this.out.append("Sorry couldn't find the file specified\n");
-      } catch (IllegalStateException e) {
-        this.out.append("Please load an image first before applying image operations");
-      }
+      findCommandAndRun(model, command, input, imageCommandFunction, image);
     }
   }
 
-  /**
-   * Checks to see if the load command is passed in. If so it replaces the model with a new model
-   * that contains the image.
-   *
-   * @param model the model to replace or return as is.
-   * @param command the command to check.
-   * @param input the extra inputs to the command.
-   * @return a model.
-   * @throws IOException if the file was not found.
-   */
-  private ImageModelInterface checkLoadCommand(
-      ImageModelInterface model, Scanner command, String input) throws IOException {
-    if (input.equals("load")) {
-      try {
-        model = new ImageModel(model.loadImage(command.next()));
-      } catch (IOException e) {
-        out.append("Sorry couldn't find the file\n");
-      }
+  private void findCommandAndRun(
+      ImageModelInterface model,
+      Scanner command,
+      String input,
+      Function<Scanner, ImageCommand> imageCommandFunction,
+      int[][][] image)
+      throws IOException {
+    ImageCommand imageCommands;
+    try {
+      imageCommands = imageCommandFunction.apply(command);
+      imageCommands.run(model, image);
+      this.out.append(String.format("%s command was carried out successfully\n", input));
+    } catch (IOException e) {
+      this.out.append(String.format("%s command was not carried out successfully\n", input));
+    } catch (IllegalStateException e) {
+      this.out.append(
+          String.format(
+              "%s command was not carried out successfully make sure image is loaded before"
+                  + " calling image operation\n",
+              input));
+    } catch (InputMismatchException | IllegalArgumentException e) {
+      this.out.append(
+          String.format(
+              "%s command was not carried out successfully check ReadMe for how to use "
+                  + "commands\n",
+              input));
     }
-    return model;
   }
 
   /** Loads the supported commands to a hashMap for easy access. */
