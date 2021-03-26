@@ -17,7 +17,6 @@ public class GreyScale extends AbstractColorTransformation implements Transform 
 
   @Override
   public int[][][] applyTransform() {
-    checkIfNull(image);
     float[][] greyScale =
             new float[][] {
                     {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}

@@ -11,7 +11,7 @@ import imagemodel.ImageModelInterface;
  * This command runs the pixelate image operation.
  */
 public class PixelImage implements ImageCommand {
-    private int numberOfSquares;
+    private final int numberOfSquares;
 
     /**
      * Default constructor.

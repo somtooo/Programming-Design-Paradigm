@@ -9,7 +9,7 @@ import imagemodel.ImageModelInterface;
  * This command runs the reduce color image operation.
  */
 public class ColorReduceImage implements ImageCommand {
-    private int numberOfColors;
+    private final int numberOfColors;
 
     /**
      * Default constructor.

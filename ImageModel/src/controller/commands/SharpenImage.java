@@ -7,7 +7,7 @@ import imagemodel.ImageModelInterface;
  * This command runs the sharpen image operation.
  */
 public class SharpenImage implements ImageCommand {
-    private int intensity;
+    private final int intensity;
 
     /**
      * Default constructor.

@@ -1,4 +1,4 @@
-package images;
+package imagemodel.utilities;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,10 +19,10 @@ public class FileUtilities {
   public static String[][] loadCsvFile(String path) throws IOException {
     String line;
     List<String[]> values = new ArrayList<>();
-      BufferedReader br = new BufferedReader(new FileReader(path));
-      while ((line = br.readLine()) != null) {
-        values.add(line.split(","));
-      }
+    BufferedReader br = new BufferedReader(new FileReader(path));
+    while ((line = br.readLine()) != null) {
+      values.add(line.split(","));
+    }
     values = values.subList(1, values.size());
     String[][] array = new String[values.size()][0];
 
@@ -32,17 +32,15 @@ public class FileUtilities {
 
   /**
    * Writes a string value to a file.
+   *
    * @param filename the filename of the file.
    * @param content the string content to be written.
    * @throws IOException if something goes wrong with writing to file.
    */
-  public static void writeToFile(String filename, String content) throws IOException  {
+  public static void writeToFile(String filename, String content) throws IOException {
 
-      FileWriter myWriter = new FileWriter(filename);
-      myWriter.write(content);
-      myWriter.close();
-
+    FileWriter myWriter = new FileWriter(filename);
+    myWriter.write(content);
+    myWriter.close();
   }
-
-
 }

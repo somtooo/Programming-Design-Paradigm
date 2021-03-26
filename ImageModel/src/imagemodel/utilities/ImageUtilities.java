@@ -1,4 +1,4 @@
-package images;
+package imagemodel.utilities;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

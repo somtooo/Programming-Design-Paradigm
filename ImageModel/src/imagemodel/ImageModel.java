@@ -1,7 +1,7 @@
 package imagemodel;
 
-import images.FileUtilities;
-import images.ImageUtilities;
+import imagemodel.utilities.FileUtilities;
+import imagemodel.utilities.ImageUtilities;
 
 import java.io.File;
 import java.io.IOException;
