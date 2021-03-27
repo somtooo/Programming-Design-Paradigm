@@ -3,8 +3,8 @@ package imagemodel;
 import java.util.Random;
 
 /**
- * Implements the Chunking interface and represents a class which applies the Mosaic operation
- * to an image.
+ * Implements the Chunking interface and represents a class which applies the Mosaic operation to an
+ * image.
  */
 public class Mosaic extends AbstractImageModel implements Chunking {
   /**
@@ -16,8 +16,14 @@ public class Mosaic extends AbstractImageModel implements Chunking {
     super(image);
   }
 
-  @Override
+  /**
+   * Applies the mosaic chunking operation on an image.
+   *
+   * @param value the amount of seeds to use in the operation.
+   * @throws IllegalArgumentException if value is negative or 0.
+   */
   public int[][][] apply(int value) {
+    checkIfZeroOrLess(value);
     int[][] seedIndex = new int[0][];
     seedIndex = generateSeed(value);
 
@@ -44,6 +50,7 @@ public class Mosaic extends AbstractImageModel implements Chunking {
 
   /**
    * Picks pixels at random and returns them in a 2d array.
+   *
    * @param value number of pixels in the array.
    * @return a 2d array containing the pixels.
    */
@@ -59,6 +66,7 @@ public class Mosaic extends AbstractImageModel implements Chunking {
 
   /**
    * Calculates the distance between two points.
+   *
    * @param x1 the first point row value.
    * @param y1 the first point col value.
    * @param x2 the second point row value.

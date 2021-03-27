@@ -18,11 +18,17 @@ public class Pixelation extends AbstractImageModel implements Chunking {
     super(image);
   }
 
-  @Override
+  /**
+   * Applies pixelation a chunking operation on an image.
+   *
+   * @param value the amount of squares across the width of the image.
+   * @throws IllegalArgumentException if value is negative or 0.
+   */
   public int[][][] apply(int value) {
-    float squareWidth = (float)image[0].length / value;
+    checkIfZeroOrLess(value);
+    float squareWidth = (float) image[0].length / value;
     int numOfSuperPixelsRows = Math.round((float) image.length / squareWidth);
-    float squareHeight =(float)image.length / numOfSuperPixelsRows;
+    float squareHeight = (float) image.length / numOfSuperPixelsRows;
 
     for (int superRow = 0; superRow < numOfSuperPixelsRows; superRow++) {
       for (int superCol = 0; superCol < value; superCol++) {
@@ -32,9 +38,9 @@ public class Pixelation extends AbstractImageModel implements Chunking {
     return image;
   }
 
-
   /**
    * Replaces the all pixels with colors of their middle super pixel value.
+   *
    * @param image the image to work on.
    * @param superRow the row of the super pixel.
    * @param superCol the col of the super pixel.
@@ -54,6 +60,7 @@ public class Pixelation extends AbstractImageModel implements Chunking {
 
   /**
    * Gets all the pixels in a super pixel.
+   *
    * @param image the image to work on.
    * @param superRow the row of the super pixel.
    * @param superCol the col of the super pixel.
@@ -61,13 +68,19 @@ public class Pixelation extends AbstractImageModel implements Chunking {
    * @param squareWidth the width of the super pixel.
    * @param pixels the list to store the pixels in.
    */
-  private void getAllPixels(int[][][] image, int superRow, int superCol, float squareHeight, float squareWidth, List<int[]> pixels) {
+  private void getAllPixels(
+      int[][][] image,
+      int superRow,
+      int superCol,
+      float squareHeight,
+      float squareWidth,
+      List<int[]> pixels) {
     for (int pixelRow = Math.round(superRow * squareHeight);
-         pixelRow < (superRow + 1) * squareHeight;
-         pixelRow++) {
+        pixelRow < (superRow + 1) * squareHeight;
+        pixelRow++) {
       for (int pixelCol = Math.round(superCol * squareWidth);
-           pixelCol < (superCol + 1) * squareWidth;
-           pixelCol++) {
+          pixelCol < (superCol + 1) * squareWidth;
+          pixelCol++) {
         pixels.add(image[pixelRow][pixelCol]);
       }
     }
@@ -75,6 +88,7 @@ public class Pixelation extends AbstractImageModel implements Chunking {
 
   /**
    * Gets the channel values of the middle pixel in a super pixel.
+   *
    * @param pixels the pixels in a super pixel.
    * @param channels the array to store the channel
    */
@@ -96,6 +110,7 @@ public class Pixelation extends AbstractImageModel implements Chunking {
 
   /**
    * Replaces the all pixels with colors of their middle super pixel value.
+   *
    * @param pixels pixel whose color is to be replaced.
    * @param channels the middle pixels color.
    */
@@ -106,8 +121,4 @@ public class Pixelation extends AbstractImageModel implements Chunking {
       pixel[2] = channels[2];
     }
   }
-
-
-
-
 }

@@ -1,5 +1,5 @@
 load dog.jpg
-reduce 2
+reduce 8
 save dog-dither.jpg
 load dog.jpg
 blur 1
@@ -15,10 +15,10 @@ sepia
 save dog-sepia.jpg
 load dog.jpg
 pattern
-save dog-pattern.txt
+save dog-newPattern.txt
 load dog.jpg
 pixelate 100
-save dog-pixelate.jpg
+save dog-newPixelate.jpg
 load dog.jpg
 toMosaic 1650
-save dog-mosaic.jpg
+save dog-newMosaic.jpg

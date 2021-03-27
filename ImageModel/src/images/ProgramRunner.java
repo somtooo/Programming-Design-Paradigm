@@ -2,13 +2,11 @@ package images;
 
 import controller.Controller;
 import controller.IController;
-import imagemodel.*;
-
-import java.io.File;
+import imagemodel.ImageModel;
+import imagemodel.ImageModelInterface;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Objects;
+
 
 /** Represents functionality that shows the results of manipulated images. */
 public class ProgramRunner {
@@ -23,7 +21,7 @@ public class ProgramRunner {
     Readable reader = new FileReader(args[0]);
     IController control = new Controller(reader, System.out);
     ImageModelInterface modelInterface = new ImageModel();
-    try{
+    try {
       control.start(modelInterface);
     } catch (IOException e) {
       e.printStackTrace();
@@ -31,5 +29,5 @@ public class ProgramRunner {
   }
 
 
-  }
+}
 

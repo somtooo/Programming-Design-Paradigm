@@ -6,13 +6,15 @@ import java.io.IOException;
 public interface ImageModelInterface {
   /**
    * Applies the blur operation on an image.
+   *
    * @param intensity the intensity of the blur e.g higher means more blurred.
    * @throws IllegalStateException if the image is empty.
    */
-  void blur(int intensity, int[][][] image ) throws IllegalStateException;
+  void blur(int intensity, int[][][] image) throws IllegalStateException;
 
   /**
    * Applies the sharpen operation on an image.
+   *
    * @param intensity the intensity of the sharpening e.g higher means more sharpened.
    * @throws IllegalStateException if the image is empty.
    */
@@ -20,19 +22,21 @@ public interface ImageModelInterface {
 
   /**
    * Applies the greyScale operation on an image.
+   *
    * @throws IllegalStateException if the image is empty.
    */
   void greyScale(int[][][] image) throws IllegalStateException;
 
   /**
    * Applies the sepia operation on an image.
+   *
    * @throws IllegalStateException if the image is empty.
    */
   void sepia(int[][][] image) throws IllegalStateException;
 
-
   /**
    * Applies the reduce color operation on an image.
+   *
    * @param numberOfColors the number of colors in the output image.
    * @throws IllegalStateException if the image is empty.
    */
@@ -40,6 +44,7 @@ public interface ImageModelInterface {
 
   /**
    * Applies the mosaic operation on an image.
+   *
    * @param seeds the number of random seeds to be used.
    * @throws IllegalStateException if the image is empty.
    */
@@ -47,6 +52,7 @@ public interface ImageModelInterface {
 
   /**
    * Applies the pixelate operation on an image.
+   *
    * @param squares the number of squares across the width to be used.
    * @throws IllegalStateException if the image is empty.
    */
@@ -54,12 +60,14 @@ public interface ImageModelInterface {
 
   /**
    * Applies the crossStitch operation on an image.
+   *
    * @throws IllegalStateException if the image is empty.
    */
   void crossStitch(int[][][] image) throws IllegalStateException;
 
   /**
    * Loads an image and returns a 2d array representing the image.
+   *
    * @param filename the name of the file.
    * @return 2d array that represents the image.
    * @throws IOException if something goes wrong with finding the file.
@@ -68,21 +76,18 @@ public interface ImageModelInterface {
 
   /**
    * Saves an image to a file.
+   *
    * @param filename the filename of the saved image.
    * @throws IllegalStateException if the image is empty.
    * @throws IOException if something goes wrong with saving.
    */
-  void saveImage(String filename, int[][][] image) throws IllegalStateException,IOException;
+  void saveImage(String filename, int[][][] image) throws IllegalStateException, IOException;
 
   /**
    * Writes string values to a text file.
+   *
    * @param filename the filename of the file.
    * @throws IOException if something goes wrong with writing to file.
    */
   void savePattern(String filename) throws IOException;
-
-
-
-
-
 }

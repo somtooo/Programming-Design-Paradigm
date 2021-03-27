@@ -6,6 +6,7 @@ public abstract class AbstractImageModel  {
 
   /**
    * Sets fields with the required parameters.
+   *
    * @param image the image operations will be applied on.
    */
   AbstractImageModel(int[][][] image) {
@@ -18,6 +19,7 @@ public abstract class AbstractImageModel  {
    * @param image the image to check through
    * @throws IllegalArgumentException if image is null.
    */
+
   protected void clamp(int[][][] image) {
     for (int row = 0; row < image.length; row++) {
       for (int col = 0; col < image[row].length; col++) {
@@ -47,6 +49,7 @@ public abstract class AbstractImageModel  {
 
   /**
    * Checks if the image array is null.
+   *
    * @param image the image too check.
    * @throws IllegalArgumentException if the image is null.
    */

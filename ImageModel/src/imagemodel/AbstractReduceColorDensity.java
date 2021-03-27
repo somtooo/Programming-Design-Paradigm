@@ -5,6 +5,7 @@ public abstract class AbstractReduceColorDensity extends AbstractImageModel {
 
   /**
    * Sets the field with the required parameters.
+   *
    * @param image the image a color reduction will be applied on.
    */
   public AbstractReduceColorDensity(int[][][] image) {

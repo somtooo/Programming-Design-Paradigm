@@ -17,6 +17,9 @@ public class FileUtilities {
    * @return a 2d array that has the contents of the file.
    */
   public static String[][] loadCsvFile(String path) throws IOException {
+    if (path == null) {
+      throw new IllegalArgumentException("no nulls allowed");
+    }
     String line;
     List<String[]> values = new ArrayList<>();
     BufferedReader br = new BufferedReader(new FileReader(path));
@@ -38,6 +41,9 @@ public class FileUtilities {
    * @throws IOException if something goes wrong with writing to file.
    */
   public static void writeToFile(String filename, String content) throws IOException {
+    if (filename == null | content == null) {
+      throw new IllegalArgumentException("no nulls allowed");
+    }
 
     FileWriter myWriter = new FileWriter(filename);
     myWriter.write(content);

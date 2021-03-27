@@ -8,6 +8,7 @@ public class FloydDithering extends AbstractReduceColorDensity implements Reduce
 
   /**
    * Sets the fields with the required parameters.
+   *
    * @param image the image to be color reduced.
    */
   FloydDithering(int[][][] image) {
@@ -17,6 +18,7 @@ public class FloydDithering extends AbstractReduceColorDensity implements Reduce
   @Override
   public int[][][] reduce(int numOfColors) {
     checkIfZeroOrLess(numOfColors);
+
     return algorithm(image, numOfColors);
   }
 

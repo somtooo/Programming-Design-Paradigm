@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.Function;
@@ -45,7 +45,7 @@ public class Controller implements IController {
   }
 
   @Override
-  public void start(ImageModelInterface model) throws IOException {
+  public void start(ImageModelInterface model) throws IOException, IllegalArgumentException {
     if (model == null) {
       throw new IllegalArgumentException("model cant be null");
     }
@@ -58,7 +58,7 @@ public class Controller implements IController {
         try {
           image = model.loadImage(command.next());
           this.out.append(String.format("%s command was carried out successfully\n", input));
-        } catch (IOException e) {
+        } catch (IOException | NoSuchElementException e) {
           out.append(String.format("%s command was not carried out successfully\n", input));
         }
       }
@@ -77,8 +77,7 @@ public class Controller implements IController {
    * @param input the current input;
    * @param imageCommandFunction the function of the command.
    * @param image the image to process the command on.
-   * @throws IOException if files couldn't be found.
-   * @throws IllegalStateException if the image in the model is empty.
+   * @throws IOException if something is wrong appending to output.
    */
   private void processCommand(
       ImageModelInterface model,
@@ -100,6 +99,16 @@ public class Controller implements IController {
     }
   }
 
+  /**
+   * Finds the command by looking at the HashMap and runs it.
+   *
+   * @param model the model to be used.
+   * @param command the command from the user.
+   * @param input  the extra inputs from the user.
+   * @param imageCommandFunction the command function to get.
+   * @param image the image to work on.
+   * @throws IOException if something is wrong appending to output.
+   */
   private void findCommandAndRun(
       ImageModelInterface model,
       Scanner command,
@@ -108,6 +117,7 @@ public class Controller implements IController {
       int[][][] image)
       throws IOException {
     ImageCommand imageCommands;
+
     try {
       imageCommands = imageCommandFunction.apply(command);
       imageCommands.run(model, image);
@@ -120,7 +130,7 @@ public class Controller implements IController {
               "%s command was not carried out successfully make sure image is loaded before"
                   + " calling image operation\n",
               input));
-    } catch (InputMismatchException | IllegalArgumentException e) {
+    } catch (IllegalArgumentException | NoSuchElementException e) {
       this.out.append(
           String.format(
               "%s command was not carried out successfully check ReadMe for how to use "

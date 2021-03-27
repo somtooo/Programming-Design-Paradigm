@@ -1,7 +1,6 @@
 package controller;
 
 import imagemodel.ImageModelInterface;
-
 import java.io.IOException;
 
 /**
@@ -10,10 +9,11 @@ import java.io.IOException;
  */
 public interface IController {
   /**
-   * Method that grants the controller control
+   * Method that grants the controller control.
    *
    * @param model the model to use.
    * @throws IOException if appending to out goes wrong.
+   * @throws IllegalArgumentException if model is null.
    */
-  void start(ImageModelInterface model) throws IOException;
+  void start(ImageModelInterface model) throws IOException, IllegalArgumentException;
 }

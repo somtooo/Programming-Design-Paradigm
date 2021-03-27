@@ -1,7 +1,6 @@
 package imagemodel;
 
 import imagemodel.utilities.FileUtilities;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
     List<String> legend = getLegend();
     replaceColumn(dmc, 1, legend);
     Chunking pixelate = new Pixelation(image);
-    int squares = image.length / 2;
+    int squares = 100;
     pixelate.apply(squares);
     float squareWidth = (float) image[0].length / squares;
     int numOfSuperPixelsRows = Math.round((float) image.length / squareWidth);
@@ -46,7 +45,8 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
     Map<String, String> legendMap = new HashMap<>();
     StringBuilder builder = new StringBuilder();
     builder.append(numOfSuperPixelsRows).append(" x ").append(squares).append("\n");
-    mapToFlossColor(dmc, squareWidth, numOfSuperPixelsRows, squareHeight, legendMap, builder);
+    mapToFlossColor(dmc, squareWidth, numOfSuperPixelsRows, squareHeight, squares, legendMap,
+            builder);
     builder.append("\n").append("Legend").append("\n");
     createLegendMap(legendMap, builder);
 
@@ -55,6 +55,7 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
 
   /**
    * Maps the legend symbols to their respective DMC values.
+   *
    * @param legendMap the hashMap that contains the values.
    * @param builder to build outPut to be returned.
    */
@@ -66,6 +67,7 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
 
   /**
    * Maps a legend to a floss color and stores output in a string builder.
+   *
    * @param dmc the DMC values table.
    * @param squareWidth the width of the square Super pixel.
    * @param numOfSuperPixelsRows the number of super pixel rows.
@@ -78,13 +80,14 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
       float squareWidth,
       int numOfSuperPixelsRows,
       float squareHeight,
+      int squares,
       Map<String, String> legendMap,
       StringBuilder builder) {
 
     int[] superChannels = new int[3];
     int[] dmcChannels = new int[3];
     for (int superRow = 0; superRow < numOfSuperPixelsRows; superRow++) {
-      for (int superCol = 0; superCol < 50; superCol++) {
+      for (int superCol = 0; superCol < squares; superCol++) {
         double distance = Double.MAX_VALUE;
 
         getSuperPixelColor(squareWidth, squareHeight, superChannels, superRow, superCol);
@@ -100,6 +103,7 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
 
   /**
    * Gets the index of the DMC value that's the closest to the super pixel.
+   *
    * @param dmc the dmc value array.
    * @param superChannels the channel of the super pixel.
    * @param dmcChannels the channel of DMC values.
@@ -112,8 +116,8 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
       dmcChannels[0] = Integer.parseInt(dmc[row][2]);
       dmcChannels[1] = Integer.parseInt(dmc[row][3]);
       dmcChannels[2] = Integer.parseInt(dmc[row][4]);
-      if (ColourDistance(superChannels, dmcChannels) < distance) {
-        distance = ColourDistance(superChannels, dmcChannels);
+      if (colourDistance(superChannels, dmcChannels) < distance) {
+        distance = colourDistance(superChannels, dmcChannels);
         dmcIndex = row;
       }
     }
@@ -121,7 +125,8 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
   }
 
   /**
-   * Gets a superPixel Channel
+   * Gets the channel of a Super Pixel.
+   *
    * @param squareWidth the width of the square.
    * @param squareHeight the height of the square.
    * @param superChannels the channel of the super pixel.
@@ -140,23 +145,24 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
 
   /**
    * Calculates the distance between two colors.
+   *
    * @param superChannel the first color.
    * @param dmcChannel the second color.
    * @return the distance as a double.
    */
-  private double ColourDistance(int[] superChannel, int[] dmcChannel) {
+  private double colourDistance(int[] superChannel, int[] dmcChannel) {
     long rmean = ((long) superChannel[0] + (long) dmcChannel[0]) / 2;
-    long rChange = (long) superChannel[0] - (long) dmcChannel[0];
-    long gChange = (long) superChannel[1] - (long) dmcChannel[1];
-    long bChange = (long) superChannel[2] - (long) dmcChannel[2];
+    long redChange = (long) superChannel[0] - (long) dmcChannel[0];
+    long greenChange = (long) superChannel[1] - (long) dmcChannel[1];
+    long blueChange = (long) superChannel[2] - (long) dmcChannel[2];
     return Math.sqrt(
-        (((2 + (rmean / 256.0)) * rChange * rChange))
-            + 4 * gChange * gChange
-            + (((2 + ((255 - rmean) / 256.0)) * bChange * bChange)));
+        (((2 + (rmean / 256.0)) * redChange * redChange))
+            + 4 * greenChange * greenChange
+            + (((2 + ((255 - rmean) / 256.0)) * blueChange * blueChange)));
   }
 
   /**
-   * Replaces a column in a 2d array
+   * Replaces a column in the  DMC values array.
    *
    * @param dmc the array whose column is to be replaced.
    * @param columnNumber the column number to be replaced.

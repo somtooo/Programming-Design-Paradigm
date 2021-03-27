@@ -15,10 +15,10 @@ sepia
 save goat-sepia.png
 load goat.png
 pattern
-save goat-pattern.txt
+save goat-newPattern.txt
 load goat.png
 pixelate 100
-save goat-pixelate.png
+save goat-newPixelate.png
 load goat.png
 toMosaic 1650
-save goat-mosaic.png
+save goat-newMosaic.png
