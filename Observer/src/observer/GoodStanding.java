@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Implements the GradeObserver interface. Represents methods that checks to see if a student is
  * still in good standing.
  */
-public class GoodStanding extends AbstractObservable implements GradeObserver {
+public class GoodStanding extends AbstractObservable  {
   protected ArrayList<GradeRecord> records;
 
   public GoodStanding() {

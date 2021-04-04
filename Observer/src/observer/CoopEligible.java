@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Implements the GradeObserver interface. Represents methods that checks to see if a student is
  * Coop Eligible.
  */
-public class CoopEligible extends AbstractObservable implements GradeObserver {
+public class CoopEligible extends AbstractObservable  {
   private final ArrayList<GradeRecord> records;
 
   public CoopEligible() {

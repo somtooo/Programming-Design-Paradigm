@@ -3,7 +3,7 @@ package observer;
 import java.util.List;
 
 /** Represents methods that carry out various checks on a list of grade records. */
-public class AbstractObservable {
+public abstract class AbstractObservable implements GradeObserver {
 
   /**
    * Updates the list based on various conditions.

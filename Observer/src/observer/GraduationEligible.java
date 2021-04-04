@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Implements the GradeObserver interface. Represents methods that checks to see if a student is
  * Graduation Eligible.
  */
-public class GraduationEligible extends AbstractObservable implements GradeObserver {
+public class GraduationEligible extends AbstractObservable  {
   private final ArrayList<GradeRecord> records;
 
   public GraduationEligible() {
