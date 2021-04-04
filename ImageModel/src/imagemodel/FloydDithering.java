@@ -16,10 +16,10 @@ public class FloydDithering extends AbstractReduceColorDensity implements Reduce
   }
 
   @Override
-  public int[][][] reduce(int numOfColors) {
+  public void reduce(int numOfColors) {
     checkIfZeroOrLess(numOfColors);
 
-    return algorithm(image, numOfColors);
+    algorithm(image, numOfColors);
   }
 
   /**
@@ -27,10 +27,9 @@ public class FloydDithering extends AbstractReduceColorDensity implements Reduce
    *
    * @param image the image whose colors are to be reduced.
    * @param numberOfColors the number of colors used to represent the output image.
-   * @return the image with its color reduced.
    */
   @Override
-  protected int[][][] algorithm(int[][][] image, int numberOfColors) {
+  protected void algorithm(int[][][] image, int numberOfColors) {
     checkIfNull(image);
     for (int row = 0; row < (image.length - 1); row++) {
       for (int col = 1; col < image[0].length - 1; col++) {
@@ -52,7 +51,7 @@ public class FloydDithering extends AbstractReduceColorDensity implements Reduce
       }
     }
     clamp(image);
-    return image;
+
   }
 
   /**

@@ -17,7 +17,6 @@ public abstract class AbstractReduceColorDensity extends AbstractImageModel {
    *
    * @param image the image whose colors are to be reduced.
    * @param numberOfColors the number of colors used to represent the output image.
-   * @return the image with the colors reduced.
    */
-  abstract int[][][] algorithm(int[][][] image, int numberOfColors);
+  abstract void algorithm(int[][][] image, int numberOfColors);
 }

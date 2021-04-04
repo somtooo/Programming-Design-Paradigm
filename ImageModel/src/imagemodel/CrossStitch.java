@@ -24,15 +24,12 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
   }
 
   @Override
-  public String generate() {
+  public String generate()throws IOException {
     File csv = new File("");
     String path = csv.getAbsolutePath() + "\\DMC Cotton Floss converted to RGB Values.csv";
     String[][] dmc = new String[0][];
-    try {
-      dmc = FileUtilities.loadCsvFile(path);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    dmc = FileUtilities.loadCsvFile(path);
+
     List<String> legend = getLegend();
     replaceColumn(dmc, 1, legend);
     Chunking pixelate = new Pixelation(image);

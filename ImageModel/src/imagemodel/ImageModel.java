@@ -37,7 +37,6 @@ public class ImageModel implements ImageModelInterface {
       throw new IllegalArgumentException("Image cannot be null");
     }
     if (image.length == 0) {
-      System.out.println("Empty image");
       throw new IllegalStateException("Image is empty");
     }
   }
@@ -85,7 +84,7 @@ public class ImageModel implements ImageModelInterface {
   }
 
   @Override
-  public void crossStitch(int[][][] image) throws IllegalStateException {
+  public void crossStitch(int[][][] image) throws IllegalStateException, IOException {
     checkState(image);
     Pattern crossStitch = new CrossStitch(Objects.requireNonNull(image));
     this.pattern = crossStitch.generate();

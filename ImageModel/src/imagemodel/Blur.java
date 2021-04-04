@@ -15,7 +15,7 @@ public class Blur extends AbstractFilter implements Filter {
   }
 
   @Override
-  public int[][][] applyFilter(int intensity) {
+  public void applyFilter(int intensity) {
     checkIfZeroOrLess(intensity);
     float[][] blur =
             new float[][] {
@@ -27,6 +27,5 @@ public class Blur extends AbstractFilter implements Filter {
     }
 
 
-    return image;
   }
 }
