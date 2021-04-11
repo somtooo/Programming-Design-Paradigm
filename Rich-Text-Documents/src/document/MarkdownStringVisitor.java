@@ -6,6 +6,7 @@ import document.elements.Heading;
 import document.elements.HyperText;
 import document.elements.ItalicText;
 import document.elements.Paragraph;
+
 import java.util.List;
 
 /** This visitor accumulates a Markdown string representation of its text elements it visits. */
@@ -62,6 +63,8 @@ public class MarkdownStringVisitor implements TextElementVisitor<String> {
 
   @Override
   public String toString() {
-    return representation;
+    String answer = representation;
+    representation = "";
+    return answer;
   }
 }

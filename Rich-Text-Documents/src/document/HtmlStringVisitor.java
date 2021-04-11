@@ -63,6 +63,8 @@ public class HtmlStringVisitor implements TextElementVisitor<String> {
 
   @Override
   public String toString() {
-    return representation;
+    String answer = representation;
+    representation = "";
+    return answer;
   }
 }

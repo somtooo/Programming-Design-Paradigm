@@ -48,6 +48,12 @@ public class WordCountVisitor implements TextElementVisitor<Integer> {
    */
   private Integer calculateNumberOfWords(String text) {
     String[] words = text.split("\\s+");
-    return words.length;
+    if (words[0].equals("")) {
+      return 0;
+    } else {
+      return words.length;
+
+    }
   }
+
 }

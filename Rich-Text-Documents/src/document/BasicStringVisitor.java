@@ -48,7 +48,9 @@ public class BasicStringVisitor implements TextElementVisitor<String> {
 
   @Override
   public String toString() {
-    return representation;
+    String answer = representation;
+    representation = "";
+    return answer;
   }
 
   /**
