@@ -16,7 +16,7 @@ public class Sharpen extends AbstractFilter implements Filter {
   }
 
   @Override
-  public void applyFilter(int intensity) {
+  public int[][][] applyFilter(int intensity) {
     checkIfZeroOrLess(intensity);
 
     float[][] sharpen =
@@ -32,5 +32,6 @@ public class Sharpen extends AbstractFilter implements Filter {
       convolve(image, sharpen);
     }
 
+    return image;
   }
 }

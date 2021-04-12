@@ -1,11 +1,12 @@
 package imagepractice;
 
 import components.ScrollDemo;
-import imagedemo.ImagePanel;
-import imagedemo.Scrollable;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -16,9 +17,13 @@ public class MenuBar extends JMenuBar {
 
     private JMenuItem load;
     private Scrollable imagePanel;
+    private  JSlider slider;
+    private ChangeListener eventi;
 
-    public MenuBar(Scrollable imagePanel) {
+    public MenuBar(Scrollable imagePanel,JSlider slider) {
         super();
+        eventi = new event("default");
+        slider.addChangeListener(eventi);
         JMenu file = new JMenu("File");
         this.add(file);
         JMenuItem exit = new JMenuItem("Exit");
@@ -28,6 +33,7 @@ public class MenuBar extends JMenuBar {
         file.add(load);
         file.add(save);
         file.add(exit);
+        this.slider = slider;
 
         JMenu blur = new JMenu("Blur");
         this.add(blur);
@@ -39,6 +45,7 @@ public class MenuBar extends JMenuBar {
         this.add(sharpen);
         JMenuItem runSharpen = new JMenuItem("Apply Default Sharpen");
         sharpen.add(runSharpen);
+        runSharpen.addActionListener(new sharpenAction());
 
         JMenu sepia = new JMenu("Sepia");
         this.add(sepia);
@@ -94,12 +101,7 @@ public class MenuBar extends JMenuBar {
                 JOptionPane.showMessageDialog(this, "error occurred loading image");
             }
         }
-//        java.net.URL imgUrl = ScrollDemo.class.getResource("images/SnowyTree.png");
-//        if (imgUrl != null) {
-//            imagePanel.setPicture(new ImageIcon(imgUrl));
-//        } else {
-//            System.err.println("Couldn't find file: " + "images/SnowyTree.png");
-//        }
+
 
     }
 
@@ -112,14 +114,59 @@ public class MenuBar extends JMenuBar {
 
     }
 
+    private void simulateCommand(int value, String action) {
+        if (!action.equals("default")) {
+            java.net.URL imgUrl = ScrollDemo.class.getResource("images/SnowyTree.png");
+            if (imgUrl != null) {
+                imagePanel.setPicture(new ImageIcon(imgUrl));
+                System.out.println(String.format("Simulated %s from %s",value, action));
+            } else {
+                System.err.println("Couldn't find file: " + "images/SnowyTree.png");
+            }
+        }
+
+    }
     public class blurAction implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            getImage();
+            simulateCommand(1,"blur action first");
+            slider.removeChangeListener(eventi);
+            eventi = new event("blur action");
+            slider.addChangeListener(eventi);
+        }
 
+        }
+
+    public class sharpenAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            simulateCommand(1,"sharpen action first");
+            slider.removeChangeListener(eventi);
+            eventi = new event("sharpen action");
+            slider.addChangeListener(eventi);
         }
 
     }
 
+        public class event implements ChangeListener {
+
+        private String action;
+        public event(String action) {
+            this.action = action;
+        }
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                slider.setMinimum(1);
+                slider.setMaximum(20);
+                simulateCommand(slider.getValue(),action);
+
+
+            }
+        }
 
 }
+
+
+

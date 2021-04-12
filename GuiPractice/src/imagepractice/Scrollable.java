@@ -1,4 +1,4 @@
-package imagedemo;
+package imagepractice;
 
 import components.ScrollDemo;
 import components.ScrollablePicture;
@@ -18,12 +18,14 @@ public class Scrollable extends JPanel implements ItemListener {
     public Scrollable() {
         // Get the image to use.
         // Set up the scroll pane.
+        setLayout(new FlowLayout());
         picture = null;
         pictureScrollPane = new JScrollPane(null);
         add(pictureScrollPane);
         pictureScrollPane.setPreferredSize(new Dimension(950, 700));
         pictureScrollPane.setViewportBorder(BorderFactory.createLineBorder(Color.black));
         setBorder(BorderFactory.createEmptyBorder(50, 20, 20, 20));
+
 
 
 
@@ -36,7 +38,6 @@ public class Scrollable extends JPanel implements ItemListener {
     public void setPicture(ImageIcon i) {
         picture = new ScrollablePicture(i, 10);
         pictureScrollPane.setViewportView(picture);
-        System.out.println(i.getIconWidth());
         picture.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent event) {

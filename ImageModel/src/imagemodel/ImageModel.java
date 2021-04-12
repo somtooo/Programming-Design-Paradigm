@@ -84,7 +84,7 @@ public class ImageModel implements ImageModelInterface {
   }
 
   @Override
-  public void crossStitch(int[][][] image) throws IllegalStateException, IOException {
+  public void crossStitch(int[][][] image) throws IllegalStateException {
     checkState(image);
     Pattern crossStitch = new CrossStitch(Objects.requireNonNull(image));
     this.pattern = crossStitch.generate();

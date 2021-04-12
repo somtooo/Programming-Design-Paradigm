@@ -1,13 +1,7 @@
 package imagepractice;
 
-import imagedemo.Scrollable;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class PracticeView extends JFrame{
     public PracticeView() {
@@ -17,9 +11,17 @@ public class PracticeView extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         Scrollable scrollable = new Scrollable();
-        this.setContentPane(scrollable);
-        JMenuBar menuBar = new MenuBar(scrollable);
+        this.add(scrollable,BorderLayout.CENTER);
+        JPanel bottom = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JSlider slider = new JSlider(JSlider.HORIZONTAL, 0,20,0);
+        slider.setMajorTickSpacing(5);
+        slider.setPaintTicks(true);
+        bottom.add(slider);
+        this.add(bottom, BorderLayout.SOUTH);
+        JMenuBar menuBar = new MenuBar(scrollable, slider);
         this.setJMenuBar(menuBar);
+
+
 
     }
 

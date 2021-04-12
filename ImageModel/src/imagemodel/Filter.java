@@ -9,5 +9,5 @@ public interface Filter {
    * @param intensity how many times do you want to apply this filter operation.
    * @throws IllegalArgumentException if intensity is negative or 0.
    */
-  void applyFilter(int intensity) throws IllegalArgumentException;
+  int[][][] applyFilter(int intensity) throws IllegalArgumentException;
 }

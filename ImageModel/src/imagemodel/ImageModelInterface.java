@@ -62,9 +62,8 @@ public interface ImageModelInterface {
    * Applies the crossStitch operation on an image.
    *
    * @throws IllegalStateException if the image is empty.
-   * @throws IOException if the csv file cant be read.
    */
-  void crossStitch(int[][][] image) throws IllegalStateException, IOException;
+  void crossStitch(int[][][] image) throws IllegalStateException;
 
   /**
    * Loads an image and returns a 2d array representing the image.
