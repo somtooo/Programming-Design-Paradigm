@@ -11,80 +11,107 @@ import javax.imageio.ImageIO;
  * Image utility class that has methods to read an image from file and write to
  * a file.
  */
-public class ImageUtilities {
-  /**
-   * Represents the three image color channels.
-   */
+public final class ImageUtilities {
+
+  /** An enumeration of the different channels in our images. */
   public enum Channel {
-    RED, GREEN, BLUE
+    RED, GREEN, BLUE;
   }
 
   /**
-   * Read an image from a file and return it as a 2D array of RGB colors.
+   * Returns the width of the image file.
    *
-   * @param filename The name of the file containing the image to read
-   * @return a 2D array of RGB colors
-   * @throws IOException if there is an error reading the file
-   */
-  public static int[][][] readImage(String filename) throws IOException {
-    BufferedImage input;
-    input = ImageIO.read(new FileInputStream(filename));
-    int[][][] result = new int[input.getHeight()][input.getWidth()][Channel.values().length];
-    for (int i = 0; i < input.getHeight(); i++) {
-      for (int j = 0; j < input.getWidth(); j++) {
-        int color = input.getRGB(j, i);
-        Color c = new Color(color);
-        result[i][j][0] = c.getRed();
-        result[i][j][1] = c.getGreen();
-        result[i][j][2] = c.getBlue();
-      }
-    }
-    return result;
-  }
-
-
-  /**
-   * The width of the image in a file.
-   *
-   * @param filename The name of the file containing an image.
-   * @return The width of the image contained in the file.
-   * @throws IOException if there is an error reading the file
+   * @param filename the image file to read.
+   * @return the width of the image file.
+   * @throws IOException if the file cannot be found.
    */
   public static int getWidth(String filename) throws IOException {
-    BufferedImage input;
+    checkFilename(filename);
 
-    input = ImageIO.read(new FileInputStream(filename));
+    FileInputStream fi = new FileInputStream(filename);
+    BufferedImage input = ImageIO.read(fi);
+    fi.close();
 
     return input.getWidth();
   }
 
   /**
-   * The height of the image in a file.
+   * Returns the height of the image file.
    *
-   * @param filename The name of the file containing an image.
-   * @return The height of the image contained in the file.
-   * @throws IOException if there is an error reading the file
+   * @param filename the image file to read.
+   * @return the height of the image file.
+   * @throws IOException if the file cannot be found.
    */
   public static int getHeight(String filename) throws IOException {
-    BufferedImage input;
+    checkFilename(filename);
 
-    input = ImageIO.read(new FileInputStream(filename));
+    FileInputStream fi = new FileInputStream(filename);
+    BufferedImage input = ImageIO.read(fi);
+    fi.close();
 
     return input.getHeight();
   }
 
   /**
-   * Write the content of a 2D array of RGB colors to a file.
+   * Reads an image file into an RGB color array.
    *
-   * @param rgb      The 2D array of RGB values that will be written to the file
-   * @param width    The width of the image to be written
-   * @param height   The height of the image to be written
-   * @param filename The name of the file containing the image to read
-   * @throws IOException if there is an error reading the file
+   * @param filename the image file to read.
+   * @return an array of RGB color values.
+   * @throws IOException if the file cannot be found.
+   */
+  public static int[][][] readImage(String filename) throws IOException {
+    checkFilename(filename);
+
+    FileInputStream fi = new FileInputStream(filename);
+    BufferedImage input = ImageIO.read(fi);
+    fi.close();
+
+    int[][][] result = new int[input.getHeight()][input.getWidth()][3];
+
+    for (int i = 0; i < input.getHeight(); i++) {
+      for (int j = 0; j < input.getWidth(); j++) {
+        int color = input.getRGB(j, i);
+        Color c = new Color(color);
+        result[i][j][Channel.RED.ordinal()] = c.getRed();
+        result[i][j][Channel.GREEN.ordinal()] = c.getGreen();
+        result[i][j][Channel.BLUE.ordinal()] = c.getBlue();
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Writes an RGB color array to a file as an image.
+   *
+   * @param rgb      the color array to write to a file.
+   * @param width    the width of the image file.
+   * @param height   the height of the image file.
+   * @param filename the filename of the written image file.
+   * @throws IOException if the file cannot be written to.
    */
   public static void writeImage(int[][][] rgb, int width, int height, String filename)
-      throws IOException {
+          throws IOException {
+    checkFilename(filename);
+    BufferedImage output = getBufferedImage(rgb, width, height);
+    String extension = filename.substring(filename.indexOf(".") + 1);
 
+    FileOutputStream fo = new FileOutputStream(filename);
+    ImageIO.write(output, extension, fo);
+    fo.close();
+  }
+
+  /**
+   * Writes an RGB color array to a file as an image.
+   *
+   * @param rgb      the color array to write to a file.
+   * @param width    the width of the image file.
+   * @param height   the height of the image file.
+   * @throws IOException if the file cannot be written to.
+   */
+  public static BufferedImage getBufferedImage(int[][][] rgb, int width, int height) {
+    if (rgb == null) {
+      throw new IllegalArgumentException("rgb array cannot be null");
+    }
     BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
     for (int i = 0; i < height; i++) {
@@ -100,7 +127,21 @@ public class ImageUtilities {
         output.setRGB(j, i, color);
       }
     }
-    String extension = filename.substring(filename.indexOf(".") + 1);
-    ImageIO.write(output, extension, new FileOutputStream(filename));
+    return output;
   }
+
+  /**
+   * Helper function that validates the filename.
+   *
+   * @param filename the filename that needs to be validated
+   * @throws IllegalArgumentException if the filename is null.
+   */
+  private static void checkFilename(String filename) throws IllegalArgumentException {
+    if (filename == null) {
+      throw new IllegalArgumentException("filename is cannot be null");
+    }
+  }
+
 }
+
+

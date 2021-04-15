@@ -36,6 +36,24 @@ public abstract class AbstractImageModel  {
   }
 
   /**
+   * Deep copies an image array to leave the base image untouched.
+   * @param image the image array to copy.
+   * @return the copy of the image.
+   */
+  protected int[][][] deepCopy(int[][][] image) {
+    int copyArrRow = image.length;
+    int copyArrCol = image[0].length;
+    int initialChannel = image[0][0].length;
+    int[][][] copyArray = new int[copyArrRow][copyArrCol][initialChannel];
+    for (int row = 0; row < copyArrRow; row++) {
+      for (int col = 0; col < copyArrCol; col++) {
+        System.arraycopy(image[row][col], 0, copyArray[row][col], 0, initialChannel);
+      }
+    }
+    return copyArray;
+  }
+
+  /**
    * Checks if the intensity values if equal to or less than zero.
    *
    * @param intensity the value to be checked.

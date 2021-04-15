@@ -6,11 +6,11 @@ import imagemodel.ImageModelInterface;
 /** This command runs the toSepia image operation. */
 public class SepiaImage implements ImageCommand {
   @Override
-  public void run(ImageModelInterface model, int[][][] image)
+  public void run(ImageModelInterface model)
       throws IllegalStateException, IllegalArgumentException {
-    if (image == null | model == null) {
+    if (model == null) {
       throw new IllegalArgumentException("Null arguments not allowed");
     }
-    model.sepia(image);
+    model.sepia();
   }
 }

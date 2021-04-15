@@ -1,9 +1,9 @@
-package controller;
-
 import static org.junit.Assert.assertEquals;
 
+import controller.Controller;
+import controller.IController;
 import imagemodel.ImageModelInterface;
-import imagemodel.MockModel;
+
 import java.io.IOException;
 import java.io.StringReader;
 import org.junit.Test;

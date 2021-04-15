@@ -7,11 +7,11 @@ import imagemodel.ImageModelInterface;
 public class GreyScaleImage implements ImageCommand {
 
   @Override
-  public void run(ImageModelInterface model, int[][][] image)
+  public void run(ImageModelInterface model)
       throws IllegalStateException, IllegalArgumentException {
-    if (image == null | model == null) {
+    if (model == null) {
       throw new IllegalArgumentException("Null arguments not allowed");
     }
-    model.greyScale(image);
+    model.greyScale();
   }
 }

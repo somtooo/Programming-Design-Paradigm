@@ -12,17 +12,18 @@ public class GreyScale extends AbstractColorTransformation implements Transform 
    *
    * @param image the image to be transformed to greyscale.
    */
-  GreyScale(int[][][] image) {
+  public GreyScale(int[][][] image) {
     super(image);
   }
 
   @Override
   public int[][][] applyTransform() {
+    int[][][] copyImage = deepCopy(image);
     float[][] greyScale =
             new float[][] {
               {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}, {0.2126f, 0.7152f, 0.0722f}
             };
-    colorTransformation(image, greyScale);
-    return image;
+    colorTransformation(copyImage, greyScale);
+    return copyImage;
   }
 }

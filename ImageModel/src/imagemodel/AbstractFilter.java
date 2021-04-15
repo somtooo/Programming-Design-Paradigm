@@ -3,6 +3,10 @@ package imagemodel;
 /** Represents calculations used to perform filtering operations in an image. */
 public abstract class AbstractFilter extends AbstractImageModel {
 
+  /**
+   * Default constructor.
+   * @param image set the field of the super class.
+   */
   public AbstractFilter(int[][][] image) {
     super(image);
   }

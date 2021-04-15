@@ -24,11 +24,12 @@ public class Mosaic extends AbstractImageModel implements Chunking {
    */
   public int[][][] apply(int value) {
     checkIfZeroOrLess(value);
-    int[][] seedIndex = new int[0][];
-    seedIndex = generateSeed(value);
+    int[][][] copyImage = deepCopy(image);
+    int[][] seedIndex;
+    seedIndex = generateSeed(value, copyImage);
 
-    for (int row = 0; row < image.length; row++) {
-      for (int col = 0; col < image[0].length; col++) {
+    for (int row = 0; row < copyImage.length; row++) {
+      for (int col = 0; col < copyImage[0].length; col++) {
         int finalRow = 0;
         int finalCol = 0;
         double distance = Double.MAX_VALUE;
@@ -42,10 +43,10 @@ public class Mosaic extends AbstractImageModel implements Chunking {
             finalCol = seedColIndex;
           }
         }
-        image[row][col] = image[finalRow][finalCol];
+        copyImage[row][col] = copyImage[finalRow][finalCol];
       }
     }
-    return image;
+    return copyImage;
   }
 
   /**
@@ -54,7 +55,7 @@ public class Mosaic extends AbstractImageModel implements Chunking {
    * @param value number of pixels in the array.
    * @return a 2d array containing the pixels.
    */
-  private int[][] generateSeed(int value) {
+  private int[][] generateSeed(int value, int[][][] image) {
     int[][] generatedSeeds = new int[value][2];
     Random rand = new Random();
     for (int i = 0; i < value; i++) {

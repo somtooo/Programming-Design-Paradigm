@@ -1,0 +1,24 @@
+load goat.png
+reduce 8
+save goat-dither.png
+load goat.png
+blur 1
+save goat-blur.png
+load goat.png
+sharpen 1
+save goat-sharpen.png
+load goat.png
+greyScale
+save goat-greyScale.png
+load goat.png
+sepia
+save goat-sepia.png
+load goat.png
+pattern
+save goat-newPattern.txt
+load goat.png
+pixelate 100
+save goat-newPixelate.png
+load goat.png
+toMosaic 1650
+save goat-newMosaic.png

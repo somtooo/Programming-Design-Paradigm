@@ -29,15 +29,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package components;
+package view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Rectangle;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.Scrollable;
-import javax.swing.SwingConstants;
+import javax.swing.*;
+import java.awt.*;
 
 /** ScrollablePicture.java is used by ScrollDemo.java. */
 public class ScrollablePicture extends JLabel implements Scrollable {

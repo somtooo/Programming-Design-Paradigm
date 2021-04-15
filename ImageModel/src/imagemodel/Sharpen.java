@@ -11,14 +11,14 @@ public class Sharpen extends AbstractFilter implements Filter {
    *
    * @param image the image to be sharpened.
    */
-  Sharpen(int[][][] image) {
+  public Sharpen(int[][][] image) {
     super(image);
   }
 
   @Override
   public int[][][] applyFilter(int intensity) {
     checkIfZeroOrLess(intensity);
-
+    int[][][] copyImage = deepCopy(image);
     float[][] sharpen =
             new float[][] {
                     {-1f / 8, -1f / 8, -1f / 8, -1f / 8, -1f / 8},
@@ -29,9 +29,9 @@ public class Sharpen extends AbstractFilter implements Filter {
             };
 
     for (int num = 0; num < intensity; num++) {
-      convolve(image, sharpen);
+      convolve(copyImage, sharpen);
     }
 
-    return image;
+    return copyImage;
   }
 }

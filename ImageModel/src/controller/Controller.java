@@ -1,18 +1,8 @@
 package controller;
 
-import controller.commands.BlurImage;
-import controller.commands.ColorReduceImage;
-import controller.commands.GreyScaleImage;
-import controller.commands.MosaicImage;
-import controller.commands.PixelImage;
-import controller.commands.Save;
-import controller.commands.SepiaImage;
-import controller.commands.SharpenImage;
-import controller.commands.ToPattern;
+import controller.commands.*;
 import imagemodel.ImageModelInterface;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -50,22 +40,11 @@ public class Controller implements IController {
       throw new IllegalArgumentException("model cant be null");
     }
     Scanner command = new Scanner(this.in);
-    int[][][] image = new int[0][][];
-
     while (command.hasNext()) {
       String input = command.next();
-      if (input.equals("load")) {
-        try {
-          image = model.loadImage(command.next());
-          this.out.append(String.format("%s command was carried out successfully\n", input));
-        } catch (IOException | NoSuchElementException e) {
-          out.append(String.format("%s command was not carried out successfully\n", input));
-        }
-      }
-
       Function<Scanner, ImageCommand> imageCommandFunction =
           supportedCommands.getOrDefault(input, null);
-      processCommand(model, command, input, imageCommandFunction, image);
+      processCommand(model, command, input, imageCommandFunction);
     }
   }
 
@@ -76,26 +55,18 @@ public class Controller implements IController {
    * @param command the command to process.
    * @param input the current input;
    * @param imageCommandFunction the function of the command.
-   * @param image the image to process the command on.
    * @throws IOException if something is wrong appending to output.
    */
   private void processCommand(
       ImageModelInterface model,
       Scanner command,
       String input,
-      Function<Scanner, ImageCommand> imageCommandFunction,
-      int[][][] image)
+      Function<Scanner, ImageCommand> imageCommandFunction)
       throws IOException {
-    StringWriter sw = new StringWriter();
-    PrintWriter pw = new PrintWriter(sw);
-    ImageCommand imageCommands;
     if (imageCommandFunction == null) {
-      if (!input.equals("load")) {
         this.out.append(String.format("Sorry we do not support the %s command currently\n", input));
-      }
-
     } else {
-      findCommandAndRun(model, command, input, imageCommandFunction, image);
+      findCommandAndRun(model, command, input, imageCommandFunction);
     }
   }
 
@@ -106,21 +77,19 @@ public class Controller implements IController {
    * @param command the command from the user.
    * @param input  the extra inputs from the user.
    * @param imageCommandFunction the command function to get.
-   * @param image the image to work on.
    * @throws IOException if something is wrong appending to output.
    */
   private void findCommandAndRun(
       ImageModelInterface model,
       Scanner command,
       String input,
-      Function<Scanner, ImageCommand> imageCommandFunction,
-      int[][][] image)
+      Function<Scanner, ImageCommand> imageCommandFunction)
       throws IOException {
     ImageCommand imageCommands;
 
     try {
       imageCommands = imageCommandFunction.apply(command);
-      imageCommands.run(model, image);
+      imageCommands.run(model);
       this.out.append(String.format("%s command was carried out successfully\n", input));
     } catch (IOException e) {
       this.out.append(String.format("%s command was not carried out successfully\n", input));
@@ -150,5 +119,6 @@ public class Controller implements IController {
     supportedCommands.put("greyScale", input -> new GreyScaleImage());
     supportedCommands.put("sepia", input -> new SepiaImage());
     supportedCommands.put("pattern", input -> new ToPattern());
+    supportedCommands.put("load", input -> new LoadImage(input.next()));
   }
 }

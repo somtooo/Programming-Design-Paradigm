@@ -31,6 +31,8 @@
 
 package components;
 
+import imagepractice.ScrollablePicture;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;

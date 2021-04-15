@@ -17,11 +17,11 @@ public class BlurImage implements ImageCommand {
   }
 
   @Override
-  public void run(ImageModelInterface model, int[][][] image)
+  public void run(ImageModelInterface model)
       throws IllegalStateException, IllegalArgumentException {
-    if (image == null | model == null) {
+    if (model == null) {
       throw new IllegalArgumentException("Null arguments not allowed");
     }
-    model.blur(intensity, image);
+    model.blur(intensity);
   }
 }

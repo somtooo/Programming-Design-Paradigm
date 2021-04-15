@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="imagepractice.darkui">
+  <grid id="27dc6" binding="root" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="206" y="111" width="1361" height="970"/>
+    </constraints>
+    <properties>
+      <background color="-14800852"/>
+      <foreground color="-16777216"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="cfd82" binding="Jpanel1" layout-manager="FlowLayout" hgap="60" vgap="0" flow-align="0">
+        <constraints border-constraint="West"/>
+        <properties>
+          <background color="-15394532"/>
+        </properties>
+        <border type="none"/>
+        <children/>
+      </grid>
+    </children>
+  </grid>
+</form>

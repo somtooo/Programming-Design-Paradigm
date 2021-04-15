@@ -26,16 +26,17 @@ public class Pixelation extends AbstractImageModel implements Chunking {
    */
   public int[][][] apply(int value) {
     checkIfZeroOrLess(value);
-    float squareWidth = (float) image[0].length / value;
-    int numOfSuperPixelsRows = Math.round((float) image.length / squareWidth);
-    float squareHeight = (float) image.length / numOfSuperPixelsRows;
+    int[][][] copyImage = deepCopy(image);
+    float squareWidth = (float) copyImage[0].length / value;
+    int numOfSuperPixelsRows = Math.round((float) copyImage.length / squareWidth);
+    float squareHeight = (float) copyImage.length / numOfSuperPixelsRows;
 
     for (int superRow = 0; superRow < numOfSuperPixelsRows; superRow++) {
       for (int superCol = 0; superCol < value; superCol++) {
-        pixelate(image, superRow, superCol, squareHeight, squareWidth);
+        pixelate(copyImage, superRow, superCol, squareHeight, squareWidth);
       }
     }
-    return image;
+    return copyImage;
   }
 
   /**

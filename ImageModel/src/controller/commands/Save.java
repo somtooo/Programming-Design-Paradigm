@@ -14,21 +14,23 @@ public class Save implements ImageCommand {
    */
 
   public Save(String filename) {
-
+    if (filename == null) {
+      throw new IllegalArgumentException("null not allowed");
+    }
     this.filename = filename;
   }
 
   @Override
-  public void run(ImageModelInterface model, int[][][] image)
+  public void run(ImageModelInterface model)
       throws IllegalStateException, IOException, IllegalArgumentException {
-    if (image == null | model == null) {
+    if (model == null) {
       throw new IllegalArgumentException("Null arguments not allowed");
     }
     String[] arrOfStr = filename.split("\\.", 2);
     if (arrOfStr[1].equals("txt")) {
       model.savePattern(filename);
     } else {
-      model.saveImage(filename, image);
+      model.saveImage(filename);
     }
   }
 }
