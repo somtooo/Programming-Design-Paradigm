@@ -92,6 +92,7 @@ public class ImageModel extends AbstractImageModel implements ImageModelInterfac
 
   @Override
   public int[][][] toMosaic(int seeds) throws IllegalStateException {
+    System.out.println(seeds);
     checkState(currentModifiedImage);
     currentModifiedImage = mosaic.apply(seeds);
     return deepCopy(currentModifiedImage);
@@ -113,10 +114,10 @@ public class ImageModel extends AbstractImageModel implements ImageModelInterfac
   @Override
   public void loadImage(String filename) throws IOException {
     Objects.requireNonNull(filename);
-    File file = new File("");
-    String path = file.getAbsolutePath() + "\\" + filename;
-    currentModifiedImage =  ImageUtilities.readImage(path);
-    int[][][] loadImage = ImageUtilities.readImage(path);
+//    File file = new File("");
+//    String path = file.getAbsolutePath() + "\\" + filename;
+    currentModifiedImage =  ImageUtilities.readImage(filename);
+    int[][][] loadImage = ImageUtilities.readImage(filename);
     blur = new Blur(loadImage);
     sharpen = new Sharpen(loadImage);
     greyscale = new GreyScale(loadImage);

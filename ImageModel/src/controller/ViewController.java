@@ -11,9 +11,13 @@ import java.io.IOException;
 public class ViewController implements TotalFeatures {
     private ImageModelInterface model;
     private ViewInterface view;
+    private boolean setToMosaic;
+    private  boolean setToBlur;
 
     public ViewController(ImageModelInterface model) {
         this.model = model;
+        this.setToMosaic = false;
+        this.setToBlur = false;
     }
 
     public void setView(ViewInterface viewToSet) {
@@ -34,23 +38,104 @@ public class ViewController implements TotalFeatures {
 
     @Override
     public void blurImage() {
-        model.blur(view.getSliderValue());
+
+        if (!setToBlur) {
+            int input = getInput();
+            view.setSliderListenerToBlur(this,input,input+ 20);
+            setToBlur = true;
+            setToMosaic = false;
+        }
+        try{
+            System.out.println(view.getSliderValue());
+            model.blur(view.getSliderValue());
+        } catch (IllegalStateException e) {
+            view.throwError(e.getMessage(),"Blur Error");
+        }
+        updateImage();
+    }
+
+    private int getInput() {
+        String input = view.getInputDialog("Enter blur value", "Blur");
+        return Integer.parseInt(input);
+    }
+
+    private void updateImage() {
         view.setImagePanel(model.getBufferedImage());
-        view.setSliderListenerToBlur(this);
     }
 
     @Override
     public void sharpenImage() {
-        try {
-            BufferedImage image =
-                    ImageIO.read(
-                            new File(
-                                    "C:\\Users\\chukw\\IdeaProjects\\GuiPractice\\src\\imagepractice\\images\\SnowyTree.png"));
-            System.out.println("I Sharpened image");
-            view.setImagePanel(image);
-            // Add this to the GUI
-        } catch (IOException ex) {
-            System.out.println(ex);
+        try{
+            view.setSliderValue(1, 10);
+            model.sharpen(view.getSliderValue());
+        } catch (IllegalStateException e) {
+            view.throwError(e.getMessage(),"Sharpen Error");
         }
+       view.setImagePanel(model.getBufferedImage());
+       view.setSliderListenerToSharpen(this);
+    }
+
+    @Override
+    public void mosaicImage() {
+
+        if (!setToMosaic) {
+            int input = getInput();
+            view.setSliderListenerToMosaic(this, input, input+20);
+            setToMosaic = true;
+            setToBlur = false;
+        }
+        try{
+            model.toMosaic(view.getSliderValue());
+        } catch (IllegalStateException e) {
+            view.throwError(e.getMessage(),"Mosaic Error");
+        }
+        updateImage();
+    }
+
+    @Override
+    public void pixelateImage() {
+        try{
+            view.setSliderValue(100,150);
+            System.out.println(view.getSliderValue());
+            model.pixelate(view.getSliderValue());
+        } catch (IllegalStateException e) {
+            view.throwError(e.getMessage(),"Pixelate Error");
+        }
+        updateImage();
+        view.setSliderListenerToPixelate(this);
+
+    }
+
+    @Override
+    public void sepiaImage() {
+        try{
+            view.hideSlider();
+            model.sepia();
+        } catch (IllegalStateException e) {
+            view.throwError(e.getMessage(),"Sepia Error");
+        }
+        updateImage();
+    }
+
+    @Override
+    public void greyscaleImage() {
+        try{
+            view.hideSlider();
+            model.greyScale();
+        } catch (IllegalStateException e) {
+            view.throwError(e.getMessage(),"GreyScale Error");
+        }
+        updateImage();
+
+    }
+
+    @Override
+    public void saveImage() {
+
+    }
+
+    @Override
+    public void generatePattern() {
+
     }
 }

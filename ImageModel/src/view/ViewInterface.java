@@ -13,9 +13,22 @@ public interface ViewInterface {
 
     void setFeatures(TotalFeatures controller);
 
-    void setSliderListenerToBlur(TotalFeatures controller);
+    void setSliderListenerToBlur(TotalFeatures controller, int min, int max);
+
+    void setSliderListenerToSharpen(TotalFeatures controller);
+
+    void setSliderListenerToPixelate(TotalFeatures controller);
+
+    void setSliderListenerToMosaic(TotalFeatures controller, int min, int max);
+
+
+    void setSliderValue(int min, int max);
 
     int getSliderValue();
+
+    void hideSlider();
+
+    String getInputDialog(String message, String command);
 
     public void throwError(String error, String errorType);
 

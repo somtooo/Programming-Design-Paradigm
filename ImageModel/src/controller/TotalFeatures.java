@@ -6,4 +6,16 @@ public interface TotalFeatures {
     void blurImage();
 
     void sharpenImage();
+
+    void mosaicImage();
+
+    void pixelateImage();
+
+    void sepiaImage();
+
+    void greyscaleImage();
+
+    void saveImage();
+
+    void generatePattern();
 }

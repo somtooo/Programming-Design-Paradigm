@@ -80,6 +80,7 @@ public final class ImageUtilities {
     return result;
   }
 
+
   /**
    * Writes an RGB color array to a file as an image.
    *

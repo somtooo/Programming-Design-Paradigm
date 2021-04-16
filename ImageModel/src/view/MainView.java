@@ -8,12 +8,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URL;
 
 public class MainView extends JFrame implements ViewInterface{
     private Scrollable imagePanel;
     private MenuInterface menuBar;
     private JSlider slider;
+    JPanel bottom;
+
+
     private ChangeListener sliderListener;
 
 
@@ -51,13 +53,16 @@ public class MainView extends JFrame implements ViewInterface{
         bottom1.add(info);
         this.add(bottom1, BorderLayout.CENTER);
 
-        JPanel bottom = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        bottom = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel bottom2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         bottom.setBackground(new Color(21,25,28));
         slider = new JSlider(JSlider.HORIZONTAL, 1,10,1);
         slider.setBackground(new Color(21,25,28));
         slider.setMajorTickSpacing(2);
         slider.setPaintTicks(true);
         sliderListener = e -> {};
+        slider.addChangeListener(sliderListener);
+        slider.setVisible(true);
         bottom.add(slider);
         JPanel root = new JPanel();
         root.setBackground(new Color(21,25,28));
@@ -81,15 +86,81 @@ public class MainView extends JFrame implements ViewInterface{
     }
 
     @Override
-    public void setSliderListenerToBlur(TotalFeatures controller) {
-        slider.removeChangeListener(sliderListener);
+    public void setSliderListenerToBlur(TotalFeatures controller, int min, int max) {
+        updateSlider(controller, min, max);
+    }
+
+    private void updateSlider(TotalFeatures controller, int min, int max) {
+        bottom.remove(slider);
+        slider = new JSlider(JSlider.HORIZONTAL,min,max,min);
+        slider.setBackground(new Color(21,25,28));
+        slider.setMajorTickSpacing(2);
+        slider.setPaintTicks(true);
+        slider.setVisible(true);
         sliderListener = e -> controller.blurImage();
         slider.addChangeListener(sliderListener);
+        bottom.add(slider);
+        revalidate();
+        repaint();
+    }
+
+    @Override
+    public String getInputDialog(String message, String command) {
+        return JOptionPane.showInputDialog(this,message,command, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void setSliderListenerToSharpen(TotalFeatures controller) {
+        slider.setVisible(true);
+        slider.removeChangeListener(sliderListener);
+        sliderListener = e -> controller.sharpenImage();
+        slider.addChangeListener(sliderListener);
+    }
+
+    @Override
+    public void setSliderListenerToPixelate(TotalFeatures controller) {
+        slider.setVisible(true);
+        slider.removeChangeListener(sliderListener);
+        sliderListener = e -> controller.pixelateImage();
+        slider.addChangeListener(sliderListener);
+
+    }
+
+    @Override
+    public void setSliderListenerToMosaic(TotalFeatures controller, int min, int max) {
+        bottom.remove(slider);
+        slider = new JSlider(JSlider.HORIZONTAL,min,max,min);
+        slider.setBackground(new Color(21,25,28));
+        slider.setMajorTickSpacing(2);
+        slider.setPaintTicks(true);
+        slider.setVisible(true);
+        sliderListener = e -> controller.mosaicImage();
+        slider.addChangeListener(sliderListener);
+        bottom.add(slider);
+        revalidate();
+        repaint();
+
+    }
+
+    @Override
+    public void setSliderValue(int min, int max) {
+//        slider.setMinimum(min);
+//        slider.setMaximum(max);
+//        slider.setMajorTickSpacing(max/min);
     }
 
     @Override
     public int getSliderValue() {
         return slider.getValue();
+    }
+
+    @Override
+    public void hideSlider() {
+        System.out.println(" ia m running");
+        slider.setVisible(false);
+        slider.removeChangeListener(sliderListener);
+        sliderListener = e -> {};
+        slider.addChangeListener(sliderListener);
     }
 
     @Override
@@ -103,7 +174,7 @@ public class MainView extends JFrame implements ViewInterface{
         int result = fc.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
-            return file.getName();
+            return file.getAbsolutePath();
         } else return "";
 
 

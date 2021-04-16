@@ -9,6 +9,13 @@ import java.awt.*;
 
 public class MenuView extends JMenuBar implements MenuInterface {
 
+    private final JMenuItem runSepia;
+    private final JMenuItem runGreyScale;
+    private final JMenuItem runPixelate;
+    private final JMenuItem runMosaic;
+    private final JMenuItem runCross;
+    private final JMenuItem batch;
+    private final JMenuItem save;
     private JMenuItem load;
     private JMenuItem runBlur;
     private JMenuItem runSharpen;
@@ -22,7 +29,7 @@ public class MenuView extends JMenuBar implements MenuInterface {
         this.add(file);
         JMenuItem exit = new JMenuItem("Exit");
         load = new JMenuItem("Load Image");
-        JMenuItem save = new JMenuItem("Save Image As");
+        save = new JMenuItem("Save Image As");
         file.add(load);
         file.add(save);
         file.add(exit);
@@ -42,13 +49,13 @@ public class MenuView extends JMenuBar implements MenuInterface {
         JMenu sepia = new JMenu("Sepia");
         sepia.setForeground(Color.white);
         this.add(sepia);
-        JMenuItem runSepia = new JMenuItem("Apply Default Sepia");
+        runSepia = new JMenuItem("Apply Default Sepia");
         sepia.add(runSepia);
 
         JMenu grey = new JMenu("GreyScale");
         grey.setForeground(Color.white);
         this.add(grey);
-        JMenuItem runGreyScale = new JMenuItem("Apply Default GreyScale");
+        runGreyScale = new JMenuItem("Apply Default GreyScale");
         grey.add(runGreyScale);
 
         JMenu dither = new JMenu("Reduce Color");
@@ -60,25 +67,25 @@ public class MenuView extends JMenuBar implements MenuInterface {
         JMenu pixelate = new JMenu("Pixelate");
         pixelate.setForeground(Color.white);
         this.add(pixelate);
-        JMenuItem runPixelate = new JMenuItem("Apply Default Pixelate");
+        runPixelate = new JMenuItem("Apply Default Pixelate");
         pixelate.add(runPixelate);
 
         JMenu mosaic = new JMenu("Mosaic");
         mosaic.setForeground(Color.white);
         this.add(mosaic);
-        JMenuItem runMosaic = new JMenuItem("Apply Default Mosaic");
+        runMosaic = new JMenuItem("Apply Default Mosaic");
         mosaic.add(runMosaic);
 
         JMenu stitch = new JMenu("Embroidery Pattern");
         stitch.setForeground(Color.white);
         this.add(stitch);
-        JMenuItem runCross = new JMenuItem("Generate CrossStitch Pattern");
+        runCross = new JMenuItem("Generate CrossStitch Pattern");
         stitch.add(runCross);
 
         JMenu settings = new JMenu("Settings");
         settings.setForeground(Color.white);
         this.add(settings);
-        JMenuItem batch = new JMenuItem("Switch to Batch Processing");
+        batch = new JMenuItem("Switch to Batch Processing");
         settings.add(batch);
 
 
@@ -90,7 +97,12 @@ public class MenuView extends JMenuBar implements MenuInterface {
         load.addActionListener(e -> controller.loadImage());
         runBlur.addActionListener(e -> controller.blurImage());
         runSharpen.addActionListener(e -> controller.sharpenImage());
-
+        runGreyScale.addActionListener(e -> controller.greyscaleImage());
+        runSepia.addActionListener(e -> controller.sepiaImage());
+        runMosaic.addActionListener(e -> controller.mosaicImage());
+        runPixelate.addActionListener(e -> controller.pixelateImage());
+        runCross.addActionListener(e -> controller.generatePattern());
+        save.addActionListener(e -> controller.saveImage());
     }
 
 
