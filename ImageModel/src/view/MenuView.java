@@ -16,6 +16,7 @@ public class MenuView extends JMenuBar implements MenuInterface {
     private final JMenuItem runCross;
     private final JMenuItem batch;
     private final JMenuItem save;
+    private final JMenuItem runDither;
     private JMenuItem load;
     private JMenuItem runBlur;
     private JMenuItem runSharpen;
@@ -61,7 +62,7 @@ public class MenuView extends JMenuBar implements MenuInterface {
         JMenu dither = new JMenu("Reduce Color");
         dither.setForeground(Color.white);
         this.add(dither);
-        JMenuItem runDither = new JMenuItem("Apply Dither Color Reduction");
+        runDither = new JMenuItem("Apply Dither Color Reduction");
         dither.add(runDither);
 
         JMenu pixelate = new JMenu("Pixelate");
@@ -102,7 +103,10 @@ public class MenuView extends JMenuBar implements MenuInterface {
         runMosaic.addActionListener(e -> controller.mosaicImage());
         runPixelate.addActionListener(e -> controller.pixelateImage());
         runCross.addActionListener(e -> controller.generatePattern());
+        runDither.addActionListener(e -> controller.ditherImage());
         save.addActionListener(e -> controller.saveImage());
+        batch.addActionListener(e -> controller.runBatchView());
+        runCross.addActionListener(e -> controller.generatePattern());
     }
 
 

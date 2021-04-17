@@ -98,7 +98,9 @@ public interface ImageModelInterface {
    */
   void savePattern(String filename) throws IOException;
 
-  /**
+    void getImagePattern();
+
+    /**
    * Gets a buffered image from an array image
    * @return the buffered image.
    */

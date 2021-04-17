@@ -4,8 +4,8 @@ import imagemodel.utilities.FileUtilities;
 import imagemodel.utilities.ImageUtilities;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -109,6 +109,8 @@ public class ImageModel extends AbstractImageModel implements ImageModelInterfac
   public void crossStitch() throws IllegalStateException {
     checkState(currentModifiedImage);
     this.pattern = crossStitch.generate();
+    currentModifiedImage = crossStitch.getImagePattern();
+
   }
 
   @Override
@@ -141,6 +143,12 @@ public class ImageModel extends AbstractImageModel implements ImageModelInterfac
   public void savePattern(String filename) throws IOException {
     Objects.requireNonNull(filename);
     FileUtilities.writeToFile(filename, pattern);
+  }
+
+  @Override
+  public void getImagePattern() {
+    crossStitch.generate();
+    currentModifiedImage = crossStitch.getImagePattern();
   }
 
   @Override

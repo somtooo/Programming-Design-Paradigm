@@ -15,11 +15,13 @@ public interface ViewInterface {
 
     void setSliderListenerToBlur(TotalFeatures controller, int min, int max);
 
-    void setSliderListenerToSharpen(TotalFeatures controller);
+    void setSliderListenerToSharpen(TotalFeatures controller, int min, int max);
 
-    void setSliderListenerToPixelate(TotalFeatures controller);
+    void setSliderListenerToPixelate(TotalFeatures controller, int min, int max);
 
     void setSliderListenerToMosaic(TotalFeatures controller, int min, int max);
+
+    void setSliderListenerToReduce(TotalFeatures controller, int min, int max);
 
 
     void setSliderValue(int min, int max);
@@ -28,8 +30,14 @@ public interface ViewInterface {
 
     void hideSlider();
 
+    void initiateBatchView();
+
     String getInputDialog(String message, String command);
 
     public void throwError(String error, String errorType);
+
+    public String getImageSaveName();
+
+    public  void throwSuccess(String success, String successType);
 
 }

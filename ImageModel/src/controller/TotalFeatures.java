@@ -18,4 +18,8 @@ public interface TotalFeatures {
     void saveImage();
 
     void generatePattern();
+
+    void ditherImage();
+
+    void runBatchView();
 }

@@ -5,6 +5,8 @@ import controller.IController;
 import controller.ViewController;
 import imagemodel.ImageModel;
 import imagemodel.ImageModelInterface;
+import view.BashView;
+import view.BashViewInterface;
 import view.MainView;
 import view.ViewInterface;
 
@@ -21,7 +23,8 @@ public class ProgramRunner {
    * @param args as input from the user.
    * @throws IOException something goes wrong when controller writes output.
    */
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException{
+
     if (args[0].equals("interactive")) {
       ViewInterface view = new MainView();
       ImageModelInterface modelInterface = new ImageModel();

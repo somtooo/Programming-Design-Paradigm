@@ -5,4 +5,6 @@ public interface Pattern {
 
   /** Generates an embroidery pattern from an image. */
   String generate();
+
+    int[][][] getImagePattern();
 }

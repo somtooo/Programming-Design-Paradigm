@@ -2,7 +2,10 @@ package controller;
 
 import controller.commands.*;
 import imagemodel.ImageModelInterface;
+import view.BashViewInterface;
+
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -15,9 +18,11 @@ import java.util.function.Function;
  * object and transmits all outputs to an Appendable object.
  */
 public class Controller implements IController {
-  private final Readable in;
+  private Readable in;
   private final Appendable out;
   private final Map<String, Function<Scanner, ImageCommand>> supportedCommands;
+  private  BashViewInterface bashView;
+  private ImageModelInterface model;
 
   /**
    * Default Constructor.
@@ -34,11 +39,23 @@ public class Controller implements IController {
     loadCommands();
   }
 
+  public Controller(ImageModelInterface model, BashViewInterface view) {
+    this(new StringReader(""), new StringBuffer());
+    this.model = model;
+    this.bashView = view;
+  }
+
+  @Override
+  public void setView() {
+    bashView.setFeatures(this);
+  }
+
   @Override
   public void start(ImageModelInterface model) throws IOException, IllegalArgumentException {
     if (model == null) {
       throw new IllegalArgumentException("model cant be null");
     }
+    this.model = model;
     Scanner command = new Scanner(this.in);
     while (command.hasNext()) {
       String input = command.next();
@@ -46,6 +63,43 @@ public class Controller implements IController {
           supportedCommands.getOrDefault(input, null);
       processCommand(model, command, input, imageCommandFunction);
     }
+  }
+
+  @Override
+  public void processInput(String text) {
+    bashView.clearInputString();
+    bashView.setAddToList(text);
+  }
+
+  @Override
+  public void runCommand(Object[] toArray) {
+    in = new StringReader(getString(toArray));
+    try {
+      bashView.clearListScreen();
+      start(model);
+      bashView.throwSuccess(out.toString(),"Batch Load Success");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public  void updateScript(String text) {
+    bashView.updateList(text, bashView.getIndex());
+  }
+
+  @Override
+  public void processMouseEvent() {
+    bashView.setInputString(bashView.getInputValue());
+  }
+
+  private String getString(Object[] toArray) {
+    StringBuilder builder = new StringBuilder();
+    for (Object element : toArray ) {
+      builder.append(element).append("\n");
+    }
+
+    return builder.toString();
   }
 
   /**

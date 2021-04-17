@@ -14,6 +14,8 @@ import java.util.Map;
  */
 public class CrossStitch extends AbstractImageModel implements Pattern {
 
+  private int[][][] crossedImage;
+
   /**
    * Default Constructor.
    *
@@ -21,10 +23,12 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
    */
   public CrossStitch(int[][][] image) {
     super(image);
+
   }
 
   @Override
   public String generate() {
+
     File csv = new File("");
     String path = csv.getAbsolutePath() + "\\DMC Cotton Floss converted to RGB Values.csv";
     String[][] dmc = new String[0][];
@@ -37,11 +41,11 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
     replaceColumn(dmc, 1, legend);
     Chunking pixelate = new Pixelation(image);
     int squares = 100;
-    pixelate.apply(squares);
     float squareWidth = (float) image[0].length / squares;
     int numOfSuperPixelsRows = Math.round((float) image.length / squareWidth);
     float squareHeight = (float) image.length / numOfSuperPixelsRows;
 
+//    this.image = pixelate.apply(squares);
     Map<String, String> legendMap = new HashMap<>();
     StringBuilder builder = new StringBuilder();
     builder.append(numOfSuperPixelsRows).append(" x ").append(squares).append("\n");
@@ -82,23 +86,89 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
       float squareHeight,
       int squares,
       Map<String, String> legendMap,
-      StringBuilder builder) {
+      StringBuilder builder)
+
+  {
 
     int[] superChannels = new int[3];
     int[] dmcChannels = new int[3];
     for (int superRow = 0; superRow < numOfSuperPixelsRows; superRow++) {
       for (int superCol = 0; superCol < squares; superCol++) {
-        double distance = Double.MAX_VALUE;
+//        List<int[]> pixels = new ArrayList<>();
+//        getAllPixels(this.image, numOfSuperPixelsRows,squares,squareHeight,squareWidth,pixels);
+
 
         getSuperPixelColor(squareWidth, squareHeight, superChannels, superRow, superCol);
-
+        double distance = Double.MAX_VALUE;
         int dmcIndex = getDmcIndex(dmc, superChannels, dmcChannels, distance);
 
         builder.append(dmc[dmcIndex][1]).append(" ");
+        int[] mc = new int[3];
+        mc[0] = 255;
+        mc[1] =255;
+        mc[2] = 255;
+//        replacePixelValue(pixels,mc);
         legendMap.put(dmc[dmcIndex][1] + " ", "DMC-" + dmc[dmcIndex][0]);
       }
       builder.append("\n");
     }
+  }
+
+  @Override
+  public int[][][] getImagePattern() {
+    return image;
+  }
+
+  protected void getAllPixels(
+          int[][][] image,
+          int superRow,
+          int superCol,
+          float squareHeight,
+          float squareWidth,
+          List<int[]> pixels) {
+    for (int pixelRow = Math.round(superRow * squareHeight);
+         pixelRow < (superRow + 1) * squareHeight;
+         pixelRow++) {
+      for (int pixelCol = Math.round(superCol * squareWidth);
+           pixelCol < (superCol + 1) * squareWidth;
+           pixelCol++) {
+        System.out.println(pixelRow);
+        if (pixelRow < this.image.length) {
+          System.out.println("im running yayyy");
+          pixels.add(image[pixelRow][pixelCol]);
+
+        }
+
+      }
+    }
+  }
+
+
+  protected void replacePixelValue(List<int[]> pixels, int[] channels) {
+    for (int[] pixel : pixels) {
+      pixel[0] = channels[0];
+      pixel[1] = channels[1];
+      pixel[2] = channels[2];
+    }
+  }
+
+  /**
+   * Gets the channel of a Super Pixel.
+   *
+   * @param squareWidth the width of the square.
+   * @param squareHeight the height of the square.
+   * @param superChannels the channel of the super pixel.
+   * @param superRow the row of the superPixel.
+   * @param superCol the col of the superPixel.
+   */
+  private void getSuperPixelColor(
+          float squareWidth, float squareHeight, int[] superChannels, int superRow, int superCol) {
+    superChannels[0] =
+            image[Math.round(superRow * squareHeight)][Math.round(superCol * squareWidth)][0];
+    superChannels[1] =
+            image[Math.round(superRow * squareHeight)][Math.round(superCol * squareWidth)][1];
+    superChannels[2] =
+            image[Math.round(superRow * squareHeight)][Math.round(superCol * squareWidth)][2];
   }
 
   /**
@@ -124,24 +194,7 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
     return dmcIndex;
   }
 
-  /**
-   * Gets the channel of a Super Pixel.
-   *
-   * @param squareWidth the width of the square.
-   * @param squareHeight the height of the square.
-   * @param superChannels the channel of the super pixel.
-   * @param superRow the row of the superPixel.
-   * @param superCol the col of the superPixel.
-   */
-  private void getSuperPixelColor(
-      float squareWidth, float squareHeight, int[] superChannels, int superRow, int superCol) {
-    superChannels[0] =
-        image[Math.round(superRow * squareHeight)][Math.round(superCol * squareWidth)][0];
-    superChannels[1] =
-        image[Math.round(superRow * squareHeight)][Math.round(superCol * squareWidth)][1];
-    superChannels[2] =
-        image[Math.round(superRow * squareHeight)][Math.round(superCol * squareWidth)][2];
-  }
+
 
   /**
    * Calculates the distance between two colors.

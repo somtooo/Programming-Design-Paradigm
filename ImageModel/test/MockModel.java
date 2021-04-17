@@ -2,7 +2,6 @@ import imagemodel.ImageModelInterface;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -128,6 +127,11 @@ public class MockModel implements ImageModelInterface {
     if (filename.equals("fail.txt")) {
       throw new IOException("Cant save file");
     }
+  }
+
+  @Override
+  public void getImagePattern() {
+
   }
 
   @Override

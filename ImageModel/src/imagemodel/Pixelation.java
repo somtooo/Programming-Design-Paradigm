@@ -55,8 +55,11 @@ public class Pixelation extends AbstractImageModel implements Chunking {
     getAllPixels(image, superRow, superCol, squareHeight, squareWidth, pixels);
     int[] channels = new int[3];
     findChannelOfMiddlePixel(pixels, channels);
-
-    replacePixelValue(pixels, channels);
+    int[] mc = new int[3];
+    mc[0] = 255;
+    mc[1] =255;
+    mc[2] = 255;
+    replacePixelValue(pixels,channels);
   }
 
   /**
@@ -69,7 +72,7 @@ public class Pixelation extends AbstractImageModel implements Chunking {
    * @param squareWidth the width of the super pixel.
    * @param pixels the list to store the pixels in.
    */
-  private void getAllPixels(
+  protected void getAllPixels(
       int[][][] image,
       int superRow,
       int superCol,
@@ -115,7 +118,7 @@ public class Pixelation extends AbstractImageModel implements Chunking {
    * @param pixels pixel whose color is to be replaced.
    * @param channels the middle pixels color.
    */
-  private void replacePixelValue(List<int[]> pixels, int[] channels) {
+  protected void replacePixelValue(List<int[]> pixels, int[] channels) {
     for (int[] pixel : pixels) {
       pixel[0] = channels[0];
       pixel[1] = channels[1];
