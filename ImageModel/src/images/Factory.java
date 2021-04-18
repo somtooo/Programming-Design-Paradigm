@@ -6,11 +6,7 @@ import controller.TotalFeatures;
 import controller.ViewController;
 import imagemodel.ImageModel;
 import imagemodel.ImageModelInterface;
-import view.ColorPicker;
-import view.MainView;
-import view.SecondaryView;
-import view.SecondaryViewInterface;
-import view.ViewInterface;
+import view.*;
 
 /** Represent methods that create view objects. */
 public class Factory {
@@ -31,6 +27,7 @@ public class Factory {
    */
   public ViewInterface createView() {
     ViewInterface view = new MainView();
+    ColorPickerInterface colorPicker = new ColorPicker();
     TotalFeatures mainController = new ViewController(model, view);
     model.attach(mainController);
     mainController.setView();
@@ -49,15 +46,5 @@ public class Factory {
     return bashView;
   }
 
-  /**
-   * Creates the color picker view object.
-   *
-   * @return the color picker view object.
-   */
-  public SecondaryViewInterface createColorPickerView() {
-    SecondaryViewInterface colorPicker = new ColorPicker();
-    IController colorPickerController = new Controller(model, colorPicker);
-    colorPickerController.setView();
-    return colorPicker;
-  }
+
 }

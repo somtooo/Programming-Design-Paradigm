@@ -30,6 +30,8 @@ public interface TotalFeatures {
 
     void update();
 
+    void showDmcDialog(int x, int y);
+
     void loadDmc();
 
     void handleColorClick(String selectedValue);

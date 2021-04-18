@@ -90,6 +90,8 @@ public interface ViewInterface {
   /** Sets the slider visibility to false. */
   void hideSlider();
 
+  void setScrollable(TotalFeatures controller);
+
   /**
    * Adds information on the JPanel in the main view.
    *
@@ -133,11 +135,48 @@ public interface ViewInterface {
    */
   void throwSuccess(String success, String successType);
 
-  /** Makes visible the ColorPicker view that in the main view. */
-  void showDmcDialog();
+  /** Gives control to the controller to handle the scrollable view element listeners.
+   *
+   * @param viewController the controller to give control too.
+   * */
+  void showDmcDialog(TotalFeatures viewController);
 
   /**
    * Clears the JPanel info so new info can be set.
    */
   void clearInfo();
+
+  /**
+   * Clears the input string of the color picker view.
+   */
+  void clearInputString();
+
+  /**
+   * Adds an element to the color picker view's JList.
+   *
+   * @param dmcValue the element to add.
+   */
+  void setAddToList(String dmcValue);
+
+  /**
+   * Gets all the elements in the color picker views JList.
+   * @return an array that contains the elements.
+   */
+  int[] getListElementColor();
+
+  /**
+   * Sets the color pickers view JList elements color.
+   *
+   * @param color the color to set the JList element with.
+   */
+  void setListElementColor(Color color);
+
+  /**
+   * Sets the color pickers JList color.
+   *
+   * @param red the red color.
+   * @param green the green color value.
+   * @param blue the blue color value.
+   */
+  void setListColor(int red, int green, int blue);
 }

@@ -16,13 +16,14 @@ import java.util.List;
 public class ViewController implements TotalFeatures {
     private final ImageModelInterface model;
     private static ViewInterface view;
-    private ColorPickerInterface colorPickerView;
     private boolean setToMosaic;
     private  boolean setToBlur;
     private  boolean setToSharpen;
     private boolean setToPixelate;
     private  boolean setToDither;
     private static boolean  setToCrossStitch;
+    private  int xCoordinate;
+    private int yCoordinate;
 
     public ViewController(ImageModelInterface model, ViewInterface viewToSet) {
         this.model = model;
@@ -32,6 +33,8 @@ public class ViewController implements TotalFeatures {
         this.setToPixelate = false;
         this.setToDither = false;
         setToCrossStitch = false;
+        xCoordinate = 0;
+        yCoordinate = 0;
         view = viewToSet;
 
     }
@@ -39,7 +42,6 @@ public class ViewController implements TotalFeatures {
     @Override
     public void setView() {
         view.setFeatures(this);
-        colorPickerView.resetFeatures(this);
     }
 
     @Override
@@ -168,6 +170,7 @@ public class ViewController implements TotalFeatures {
             if (!setToCrossStitch) {
                 view.hideSlider();
                 model.crossStitch();
+                view.setScrollable(this);
             }
 
         } catch (IllegalStateException e) {
@@ -222,32 +225,31 @@ public class ViewController implements TotalFeatures {
     }
 
 
-    public static void showDmcDialog() {
-
-        if (setToCrossStitch) {
-            view.showDmcDialog();
-
-        }
+    @Override
+    public void showDmcDialog(int x, int y) {
+        this.xCoordinate = x;
+        this.yCoordinate = y;
+        view.showDmcDialog(this);
     }
 
     @Override
     public void loadDmc() {
-        colorPickerView.clearInputString();
+        view.clearInputString();
         String[] dmcValues = model.getDmcValues();
         for (String dmcValue : dmcValues) {
-            colorPickerView.setAddToList(dmcValue);
+            view.setAddToList(dmcValue);
         }
     }
 
     @Override
     public void handleColorClick(String selectedValue) {
         int[] rgb = model.getDmcRgb(selectedValue);
-        int[] listRgb = colorPickerView.getListElementColor();
+        int[] listRgb = view.getListElementColor();
 
         if (Arrays.equals(rgb, listRgb)) {
-            colorPickerView.setListElementColor(new Color(255-listRgb[0], 255-listRgb[1],255 - listRgb[2]));
+            view.setListElementColor(new Color(255-listRgb[0], 255-listRgb[1],255 - listRgb[2]));
         }
-        colorPickerView.setListColor(rgb[0],rgb[1],rgb[2]);
+        view.setListColor(rgb[0],rgb[1],rgb[2]);
 
     }
 

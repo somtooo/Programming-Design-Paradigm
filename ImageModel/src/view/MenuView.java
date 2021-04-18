@@ -2,6 +2,7 @@ package view;
 
 import controller.TotalFeatures;
 import java.awt.Color;
+import java.util.Objects;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -23,6 +24,7 @@ public class MenuView extends JMenuBar implements MenuInterface {
   private final JMenuItem load;
   private final JMenuItem runBlur;
   private final JMenuItem runSharpen;
+  private final JMenuItem exit;
 
   /** Default constructor builds the menu so the main view can use it. */
   public MenuView() {
@@ -36,7 +38,7 @@ public class MenuView extends JMenuBar implements MenuInterface {
     save = new JMenuItem("Save Image As");
     file.add(load);
     file.add(save);
-    JMenuItem exit = new JMenuItem("Exit");
+    exit = new JMenuItem("Exit");
     file.add(exit);
 
     JMenu blur = new JMenu("Blur");
@@ -101,6 +103,7 @@ public class MenuView extends JMenuBar implements MenuInterface {
    */
   @Override
   public void setFeatures(TotalFeatures controller) {
+    Objects.requireNonNull(controller);
     load.addActionListener(e -> controller.loadImage());
     runBlur.addActionListener(e -> controller.blurImage());
     runSharpen.addActionListener(e -> controller.sharpenImage());
@@ -113,5 +116,6 @@ public class MenuView extends JMenuBar implements MenuInterface {
     save.addActionListener(e -> controller.saveImage());
     batch.addActionListener(e -> controller.runBatchView());
     runCross.addActionListener(e -> controller.generatePattern());
+    exit.addActionListener(e -> System.exit(0));
   }
 }

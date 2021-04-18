@@ -1,7 +1,6 @@
 package view;
 
-import controller.Controller;
-import controller.ViewController;
+import controller.TotalFeatures;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -38,17 +37,26 @@ public class Scrollable extends JPanel implements ItemListener {
   public void setPicture(ImageIcon i) {
     picture = new ScrollablePicture(i, 10);
     pictureScrollPane.setViewportView(picture);
+    if (picture.getMouseListeners().length > 0) {
+      picture.removeMouseListener(picture.getMouseListeners()[0]);
+    }
+  }
+
+  /**
+   * Gives control to the controller to handle its elements listeners.
+   *
+   * @param controller the controller to give control too.
+   */
+  public void setFeatures(TotalFeatures controller) {
     picture.addMouseListener(
         new MouseAdapter() {
           @Override
           public void mouseClicked(MouseEvent event) {
-            ViewController.showDmcDialog();
-            Controller.setCoordinates(event.getX(), event.getY());
+            controller.showDmcDialog(event.getX(), event.getY());
           }
         });
   }
 
-  public void setFeatue
   @Override
   public void itemStateChanged(ItemEvent e) {
     picture.setMaxUnitIncrement(10);

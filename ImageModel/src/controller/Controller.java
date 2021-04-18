@@ -21,10 +21,6 @@ public class Controller implements IController {
   private final Map<String, Function<Scanner, ImageCommand>> supportedCommands;
   private SecondaryViewInterface bashView;
   private ImageModelInterface model;
-  private String[] dmcValues;
-  private static int xCoordinate;
-  private static int yCoordinate;
-
 
   /**
    * Default Constructor.
@@ -45,9 +41,6 @@ public class Controller implements IController {
     this(new StringReader(""), new StringBuffer());
     this.model = model;
     this.bashView = view;
-    dmcValues = model.getDmcValues();
-    xCoordinate = 0;
-    yCoordinate = 0;
   }
 
   @Override
@@ -103,56 +96,6 @@ public class Controller implements IController {
   @Override
   public void processMouseEvent() {
     bashView.setInputString(bashView.getInputValue());
-  }
-
-  @Override
-  public void loadDmc() {
-    for (String dmcValue : dmcValues) {
-      processInput(dmcValue);
-    }
-  }
-
-  @Override
-  public void handleColorClick(String selectedValue) {
-    int[] rgb = model.getDmcRgb(selectedValue);
-    int[] listRgb = bashView.getListElementColor();
-
-    if (Arrays.equals(rgb, listRgb)) {
-        bashView.setListElementColor(new Color(255-listRgb[0], 255-listRgb[1],255 - listRgb[2]));
-      }
-        bashView.setListColor(rgb[0],rgb[1],rgb[2]);
-
-  }
-
-  @Override
-  public void replaceColor(String color) {
-    if (!(color == null)) {
-      model.updateColorInImage(color, xCoordinate, yCoordinate);
-
-    }
-
-  }
-
-  @Override
-  public void removeColorFromImage(String selectedValue) {
-    model.removeColorFromImage(yCoordinate,xCoordinate);
-  }
-
-  @Override
-  public void handleMultipleSelection(List<String> selectedValuesList) {
-    model.setDmc(selectedValuesList);
-    model.crossStitch();
-  }
-
-  /**
-   * Sets the x and y coordinates of the image color.
-   * @param x the x coordinates.
-   * @param y the y coordinates.
-   */
-  public static void setCoordinates(int x, int y) {
-    xCoordinate = x;
-    yCoordinate = y;
-
   }
 
   private String getString(Object[] toArray) {

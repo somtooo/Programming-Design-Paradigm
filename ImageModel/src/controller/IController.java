@@ -33,23 +33,5 @@ public interface IController {
 
   void processMouseEvent();
 
-  /**
-   * Loads the dmc palette to the view.
-   */
-  void loadDmc();
 
-  /**
-   * Makes the background of the view change color based on what color is selected.
-   * @param selectedValue
-   */
-  void handleColorClick(String selectedValue);
-
-  /**
-   * Handles replacing one dmc color with another in an image.
-   */
-  void replaceColor(String color);
-
-    void removeColorFromImage(String selectedValue);
-
-    void handleMultipleSelection(List<String> selectedValuesList);
 }

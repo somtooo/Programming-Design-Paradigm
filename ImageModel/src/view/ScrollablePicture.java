@@ -34,6 +34,7 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.util.Objects;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Scrollable;
@@ -95,6 +96,7 @@ public class ScrollablePicture extends JLabel implements Scrollable {
 
   @Override
   public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
+    Objects.requireNonNull(visibleRect);
     // Get the current position.
     int currentPosition;
     if (orientation == SwingConstants.HORIZONTAL) {
@@ -115,6 +117,7 @@ public class ScrollablePicture extends JLabel implements Scrollable {
 
   @Override
   public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
+    Objects.requireNonNull(visibleRect);
     if (orientation == SwingConstants.HORIZONTAL) {
       return visibleRect.width - maxUnitIncrement;
     } else {

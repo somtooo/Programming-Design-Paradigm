@@ -1,6 +1,7 @@
 package view;
 
 import controller.TotalFeatures;
+import controller.ViewController;
 import images.Factory;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,7 +36,7 @@ public class MainView extends JFrame implements ViewInterface {
   private final Scrollable imagePanel;
   private final MenuInterface menuBar;
   private final JPanel bottom;
-  private final SecondaryViewInterface colorPicker;
+  private final ColorPickerInterface colorPicker;
   private final SecondaryViewInterface batchView;
   private JSlider slider;
   private ChangeListener sliderListener;
@@ -54,7 +55,7 @@ public class MainView extends JFrame implements ViewInterface {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new BorderLayout());
     Factory factory = new Factory();
-    colorPicker = factory.createColorPickerView();
+    colorPicker = new ColorPicker();
     batchView = factory.createBashView();
     imagePanel = new Scrollable();
     imagePanel.setBackground(new Color(34, 40, 44));
@@ -136,6 +137,11 @@ public class MainView extends JFrame implements ViewInterface {
     update(min, max);
     sliderListener = e -> controller.blurImage();
     updateFrame();
+  }
+
+  @Override
+  public void setScrollable(TotalFeatures controller) {
+    imagePanel.setFeatures(controller);
   }
 
   @Override
@@ -264,7 +270,8 @@ public class MainView extends JFrame implements ViewInterface {
   }
 
   @Override
-  public void showDmcDialog() {
+  public void showDmcDialog(TotalFeatures viewController) {
+    colorPicker.resetFeatures(viewController);
     colorPicker.start();
   }
 
@@ -273,5 +280,30 @@ public class MainView extends JFrame implements ViewInterface {
     info.removeAll();
     repaint();
     revalidate();
+  }
+
+  @Override
+  public void clearInputString() {
+    colorPicker.clearInputString();
+  }
+
+  @Override
+  public void setAddToList(String dmcValue) {
+    colorPicker.setAddToList(dmcValue);
+  }
+
+  @Override
+  public int[] getListElementColor() {
+    return colorPicker.getListElementColor();
+  }
+
+  @Override
+  public void setListElementColor(Color color) {
+    colorPicker.setListElementColor(color);
+  }
+
+  @Override
+  public void setListColor(int red, int green, int blue) {
+    colorPicker.setListColor(red, green, blue);
   }
 }

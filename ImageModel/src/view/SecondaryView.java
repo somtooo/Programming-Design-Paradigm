@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +22,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import view.utilities.ViewUtilities;
-
 
 /**
  * Represents a secondary view that is used to serve other functionality the main view cant It's
@@ -97,7 +97,6 @@ public class SecondaryView extends JFrame implements SecondaryViewInterface {
     add(root);
   }
 
-
   @Override
   public void start() {
     this.setVisible(true);
@@ -105,6 +104,9 @@ public class SecondaryView extends JFrame implements SecondaryViewInterface {
 
   @Override
   public void setFeatures(IController controller) {
+    if (controller == null) {
+      throw new IllegalArgumentException("Null not allowed");
+    }
     addToList.addActionListener(e -> controller.processInput(input.getText()));
     run.addActionListener(e -> controller.runCommand(defaultModel.toArray()));
 
@@ -117,10 +119,12 @@ public class SecondaryView extends JFrame implements SecondaryViewInterface {
         });
 
     update.addActionListener(e -> controller.updateScript(input.getText()));
+
     input.addKeyListener(
         new KeyListener() {
           @Override
           public void keyTyped(KeyEvent e) {
+            Objects.requireNonNull(e, "null not allowed");
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
               controller.processInput(input.getText());
             }
@@ -128,6 +132,7 @@ public class SecondaryView extends JFrame implements SecondaryViewInterface {
 
           @Override
           public void keyPressed(KeyEvent e) {
+            Objects.requireNonNull(e, "null not allowed");
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
               controller.processInput(input.getText());
             }
@@ -150,16 +155,20 @@ public class SecondaryView extends JFrame implements SecondaryViewInterface {
 
   @Override
   public void setAddToList(String command) {
+    Objects.requireNonNull(command, "Input can't be null");
     defaultModel.addElement(command);
   }
 
   @Override
   public void throwSuccess(String success, String successType) {
+    Objects.requireNonNull(success, "Input cant be null");
+    Objects.requireNonNull(successType, "Input can't be null");
     JOptionPane.showMessageDialog(this, success, successType, JOptionPane.INFORMATION_MESSAGE);
   }
 
   @Override
   public void updateList(String command, int index) {
+    Objects.requireNonNull(command, "Input cant be null");
     defaultModel.setElementAt(command, index);
     clearInputString();
   }
@@ -176,8 +185,7 @@ public class SecondaryView extends JFrame implements SecondaryViewInterface {
 
   @Override
   public void setInputString(String text) {
+    Objects.requireNonNull(text, "Input cant be null");
     input.setText(text);
   }
-
-
 }
