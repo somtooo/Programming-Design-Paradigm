@@ -2,12 +2,8 @@ package images;
 
 import controller.Controller;
 import controller.IController;
-import controller.ViewController;
 import imagemodel.ImageModel;
 import imagemodel.ImageModelInterface;
-import view.BashView;
-import view.BashViewInterface;
-import view.MainView;
 import view.ViewInterface;
 
 import java.io.FileReader;
@@ -26,10 +22,7 @@ public class ProgramRunner {
   public static void main(String[] args) throws IOException{
 
     if (args[0].equals("interactive")) {
-      ViewInterface view = new MainView();
-      ImageModelInterface modelInterface = new ImageModel();
-      ViewController controller = new ViewController(modelInterface);
-      controller.setView(view);
+      ViewInterface view = new Factory().createView();
       view.start();
 
     } else {

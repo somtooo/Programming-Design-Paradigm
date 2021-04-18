@@ -1,10 +1,29 @@
 package imagemodel;
 
+import controller.TotalFeatures;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 /** Represents filtering and transformation operations that can be performed on an image. */
 public interface ImageModelInterface {
+  /**
+   * Registers Student grade observer/listener to receive updates on changes.
+   */
+  void attach(TotalFeatures observer);
+
+  /**
+   * Removes Student grade observer/listener to stop receiving updates on
+   * changes.
+   */
+  void detach(TotalFeatures observer);
+
+  /**
+   * Adds a new record to Student Grade.
+   */
+  void notifyOfImageChange();
+
   /**
    * Applies the blur operation on an image.
    *
@@ -98,11 +117,47 @@ public interface ImageModelInterface {
    */
   void savePattern(String filename) throws IOException;
 
-    void getImagePattern();
+
 
     /**
    * Gets a buffered image from an array image
    * @return the buffered image.
    */
   BufferedImage getBufferedImage();
+
+  /**
+   * Gets the dmc color value code names.
+   * @return the dmc values.
+   */
+    String[] getDmcValues();
+
+  /**
+   * Gets the corresponding rgb for a dmc value.
+   * @param selectedValue the dmc code to use and check.
+   * @return the corresponding rgb.
+   */
+  int[] getDmcRgb(String selectedValue);
+
+  /**
+   * Updates the color in the specified index with a new one.
+   * @param color the new color to be used.
+   * @param x the x index of the color.
+   * @param y the y index of the color.
+   */
+  void updateColorInImage(String color, int x, int y);
+
+
+  /**
+   * Gets the colors used to generate a pattern.
+   * @return a list containing the used colors.
+   */
+  List<String> getDmcColorsUsed();
+
+  void setDmc(List<String> colorToUse);
+
+  String getLegendIcon(String dmcValue);
+
+  String getPattern();
+
+  void removeColorFromImage(int yCoordinate, int xCoordinate);
 }

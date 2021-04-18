@@ -8,27 +8,33 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewController implements TotalFeatures {
     private final ImageModelInterface model;
-    private ViewInterface view;
+    private static ViewInterface view;
     private boolean setToMosaic;
     private  boolean setToBlur;
     private  boolean setToSharpen;
     private boolean setToPixelate;
     private  boolean setToDither;
+    private static boolean  setToCrossStitch;
 
-    public ViewController(ImageModelInterface model) {
+    public ViewController(ImageModelInterface model, ViewInterface viewToSet) {
         this.model = model;
         this.setToMosaic = false;
         this.setToBlur = false;
         this.setToSharpen = false;
         this.setToPixelate = false;
         this.setToDither = false;
+        setToCrossStitch = false;
+        view = viewToSet;
+
     }
 
-    public void setView(ViewInterface viewToSet) {
-        view = viewToSet;
+    @Override
+    public void setView() {
         view.setFeatures(this);
     }
 
@@ -36,11 +42,10 @@ public class ViewController implements TotalFeatures {
     public void loadImage() {
         try {
             model.loadImage(view.getImage());
-            view.setImagePanel(model.getBufferedImage());
         } catch (IOException e) {
             view.throwError(e.getMessage(), "Load Error");
         }
-        setCommands(false,false,false,false,false);
+        setCommands(false,false,false,false,false,false);
     }
 
     @Override
@@ -48,14 +53,14 @@ public class ViewController implements TotalFeatures {
         if (!setToBlur) {
             int input = getInput("Enter Blur Value","Blur");
             view.setSliderListenerToBlur(this,input,input+ 20);
-            setCommands(false,true,false,false,false);
+            setCommands(false,true,false,false,false,false);
         }
         try{
             model.blur(view.getSliderValue());
         } catch (IllegalStateException e) {
             view.throwError(e.getMessage(),"Blur Error");
         }
-        updateImage();
+
     }
 
     private int getInput(String message, String command) {
@@ -63,16 +68,14 @@ public class ViewController implements TotalFeatures {
         return Integer.parseInt(input);
     }
 
-    private void updateImage() {
-        view.setImagePanel(model.getBufferedImage());
-    }
 
-    private void setCommands(boolean isSharpen, boolean isBlur, boolean isDither, boolean isPixelate, boolean isMosaic) {
+    private void setCommands(boolean isSharpen, boolean isBlur, boolean isDither, boolean isPixelate, boolean isMosaic, boolean isCrossStitch) {
         setToSharpen = isSharpen;
         setToBlur = isBlur;
         setToDither = isDither;
         setToPixelate = isPixelate;
         setToMosaic = isMosaic;
+        setToCrossStitch = isCrossStitch;
     }
 
     @Override
@@ -80,14 +83,14 @@ public class ViewController implements TotalFeatures {
         if (!setToSharpen) {
             int input = getInput("Enter Sharpen Value","Sharpen");
             view.setSliderListenerToSharpen(this,input,input+ 20);
-            setCommands(true,false,false,false,false);
+            setCommands(true,false,false,false,false,false);
         }
         try{
             model.sharpen(view.getSliderValue());
         } catch (IllegalStateException e) {
             view.throwError(e.getMessage(),"Sharpen Error");
         }
-       view.setImagePanel(model.getBufferedImage());
+
     }
 
     @Override
@@ -96,14 +99,14 @@ public class ViewController implements TotalFeatures {
         if (!setToMosaic) {
             int input = getInput("Enter Number of Seeds", "Mosaic");
             view.setSliderListenerToMosaic(this, input, input+20);
-            setCommands(false,false,false,false,true);
+            setCommands(false,false,false,false,true,false);
         }
         try{
             model.toMosaic(view.getSliderValue());
         } catch (IllegalStateException e) {
             view.throwError(e.getMessage(),"Mosaic Error");
         }
-        updateImage();
+
     }
 
     @Override
@@ -111,14 +114,13 @@ public class ViewController implements TotalFeatures {
         if (!setToPixelate) {
             int input = getInput("Enter Number of Squares", "Pixelate");
             view.setSliderListenerToPixelate(this, input, input+20);
-            setCommands(false,false,false,true,false);
+            setCommands(false,false,false,true,false,false);
         }
         try{
             model.pixelate(view.getSliderValue());
         } catch (IllegalStateException e) {
             view.throwError(e.getMessage(),"Pixelate Error");
         }
-        updateImage();
     }
 
     @Override
@@ -129,8 +131,7 @@ public class ViewController implements TotalFeatures {
         } catch (IllegalStateException e) {
             view.throwError(e.getMessage(),"Sepia Error");
         }
-        setCommands(false,false,false,false,false);
-        updateImage();
+        setCommands(false,false,false,false,false,false);
     }
 
     @Override
@@ -141,8 +142,7 @@ public class ViewController implements TotalFeatures {
         } catch (IllegalStateException e) {
             view.throwError(e.getMessage(),"GreyScale Error");
         }
-        setCommands(false,false,false,false,false);
-        updateImage();
+        setCommands(false,false,false,false,false,false);
 
     }
 
@@ -153,20 +153,32 @@ public class ViewController implements TotalFeatures {
         } catch (IOException  | IllegalStateException e) {
             view.throwError(e.getMessage(), "Save Error");
         }
-        setCommands(false,false,false,false,false);
+        setCommands(false,false,false,false,false,false);
         view.throwSuccess("Saved Image", "Save");
     }
 
     @Override
     public void generatePattern() {
+        setCommands(false,false,false,false,false,true);
         try{
             view.hideSlider();
             model.crossStitch();
         } catch (IllegalStateException e) {
             view.throwError(e.getMessage(), "CrossStitch Error");
         }
-        setCommands(false,false,false,false,false);
-        updateImage();
+
+
+    }
+
+    private void updateLegend() {
+        List<String> colorsUsed = model.getDmcColorsUsed();
+        if (colorsUsed.size() > 0) {
+            for (String colors : colorsUsed  ) {
+                String icon = model.getLegendIcon(colors);
+                int[] rgb = model.getDmcRgb(colors);
+                view.addToInfo(icon + " - " + colors,new Color(rgb[0],rgb[1],rgb[2]));
+            }
+        }
 
     }
 
@@ -175,14 +187,14 @@ public class ViewController implements TotalFeatures {
         if (!setToDither) {
             int input = getInput("Enter Number of Colors", "Reduce Color");
             view.setSliderListenerToReduce(this, input, input+20);
-            setCommands(false,false,true,false,false);
+            setCommands(false,false,true,false,false,false);
         }
         try{
             model.reduceColor(view.getSliderValue());
         } catch (IllegalStateException e) {
             view.throwError(e.getMessage(),"Color Reduction Error");
         }
-        updateImage();
+
 
     }
 
@@ -190,5 +202,21 @@ public class ViewController implements TotalFeatures {
     public void runBatchView() {
         view.initiateBatchView();
 
+    }
+
+    @Override
+    public void update() {
+    BufferedImage image = model.getBufferedImage();
+    view.setImagePanel(image);
+    updateLegend();
+    }
+
+
+    public static void showDmcDialog() {
+
+        if (setToCrossStitch) {
+            view.showDmcDialog();
+
+        }
     }
 }

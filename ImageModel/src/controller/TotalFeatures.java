@@ -1,6 +1,8 @@
 package controller;
 
 public interface TotalFeatures {
+    void setView();
+
     void loadImage();
 
     void blurImage();
@@ -22,4 +24,7 @@ public interface TotalFeatures {
     void ditherImage();
 
     void runBatchView();
+
+
+    void update();
 }

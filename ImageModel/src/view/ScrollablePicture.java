@@ -31,22 +31,27 @@
 
 package view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.Scrollable;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.SwingConstants;
 
-/** ScrollablePicture.java is used by ScrollDemo.java. */
+/** ScrollablePicture.java is used by Scrollable represents an image that has
+ * the ability to scroll if it is bigger than the set size. */
 public class ScrollablePicture extends JLabel implements Scrollable {
 
   /** Generated version id. */
   private static final long serialVersionUID = 1155266866575390163L;
 
-  private int maxUnitIncrement = 1;
-  private boolean missingPicture = false;
+  private int maxUnitIncrement;
+  private boolean missingPicture;
 
   /**
    * Creates a scrollable picture with an image icon.
-   * 
+   *
    * @param i the image icon to use
    * @param m the increment unit
    */
@@ -67,7 +72,7 @@ public class ScrollablePicture extends JLabel implements Scrollable {
 
   /**
    * Sets the maximum unit increment.
-   * 
+   *
    * @param pixels the new value
    */
   public void setMaxUnitIncrement(int pixels) {
@@ -91,7 +96,7 @@ public class ScrollablePicture extends JLabel implements Scrollable {
   @Override
   public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
     // Get the current position.
-    int currentPosition = 0;
+    int currentPosition;
     if (orientation == SwingConstants.HORIZONTAL) {
       currentPosition = visibleRect.x;
     } else {

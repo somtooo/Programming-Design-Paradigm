@@ -1,8 +1,5 @@
 package imagemodel;
 
-import imagemodel.utilities.FileUtilities;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +12,9 @@ import java.util.Map;
 public class CrossStitch extends AbstractImageModel implements Pattern {
 
   private int[][][] crossedImage;
+  private final HashMap<String, String> legendMap;
+  private String legendText;
+  private String[][] dmc;
 
   /**
    * Default Constructor.
@@ -23,32 +23,23 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
    */
   public CrossStitch(int[][][] image) {
     super(image);
-
+    crossedImage = new int[0][][];
+    legendMap = new HashMap<>();
+    dmc = new Dmc().getDmcColors();
+    legendText = "";
   }
 
   @Override
   public String generate() {
-
-    File csv = new File("");
-    String path = csv.getAbsolutePath() + "\\DMC Cotton Floss converted to RGB Values.csv";
-    String[][] dmc = new String[0][];
-    try {
-      dmc = FileUtilities.loadCsvFile(path);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    List<String> legend = getLegend();
-    replaceColumn(dmc, 1, legend);
-    Chunking pixelate = new Pixelation(image);
+    crossedImage = deepCopy(image);
+    Chunking pixelate = new Pixelation(crossedImage);
     int squares = 100;
-    float squareWidth = (float) image[0].length / squares;
-    int numOfSuperPixelsRows = Math.round((float) image.length / squareWidth);
-    float squareHeight = (float) image.length / numOfSuperPixelsRows;
+    crossedImage = pixelate.apply(squares);
+    float squareWidth = (float) crossedImage[0].length / squares;
+    int numOfSuperPixelsRows = Math.round((float) crossedImage.length / squareWidth);
+    float squareHeight = (float) crossedImage.length / numOfSuperPixelsRows;
 
-//    this.image = pixelate.apply(squares);
-    Map<String, String> legendMap = new HashMap<>();
     StringBuilder builder = new StringBuilder();
-    builder.append(numOfSuperPixelsRows).append(" x ").append(squares).append("\n");
     mapToFlossColor(dmc, squareWidth, numOfSuperPixelsRows, squareHeight, squares, legendMap,
             builder);
     builder.append("\n").append("Legend").append("\n");
@@ -57,6 +48,10 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
     return builder.toString();
   }
 
+  @Override
+  public void setDmc(Dmc dmcToSet) {
+    this.dmc = dmcToSet.getDmcColors();
+  }
   /**
    * Maps the legend symbols to their respective DMC values.
    *
@@ -67,6 +62,16 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
     for (String legends : legendMap.keySet()) {
       builder.append(legends).append(legendMap.get(legends)).append("\n");
     }
+  }
+
+  @Override
+  public List<String> getUsedColors() {
+    List<String> usedColors = new ArrayList<>();
+    for (String legends: legendMap.keySet()) {
+      usedColors.add(legendMap.get(legends));
+    }
+
+    return usedColors;
   }
 
   /**
@@ -92,83 +97,48 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
 
     int[] superChannels = new int[3];
     int[] dmcChannels = new int[3];
+    StringBuilder builder1 = new StringBuilder();
     for (int superRow = 0; superRow < numOfSuperPixelsRows; superRow++) {
       for (int superCol = 0; superCol < squares; superCol++) {
-//        List<int[]> pixels = new ArrayList<>();
-//        getAllPixels(this.image, numOfSuperPixelsRows,squares,squareHeight,squareWidth,pixels);
-
-
-        getSuperPixelColor(squareWidth, squareHeight, superChannels, superRow, superCol);
+        int imageRow = Math.round(superRow * squareHeight);
+        int imageCol = Math.round(superCol * squareWidth);
+        getSuperPixelColor(superChannels,imageRow, imageCol);
         double distance = Double.MAX_VALUE;
-        int dmcIndex = getDmcIndex(dmc, superChannels, dmcChannels, distance);
+        int dmcIndex = getDmcIndex(dmc, superChannels, dmcChannels, distance, imageRow, imageCol, superRow, squareHeight,squareWidth,superCol);
 
         builder.append(dmc[dmcIndex][1]).append(" ");
-        int[] mc = new int[3];
-        mc[0] = 255;
-        mc[1] =255;
-        mc[2] = 255;
-//        replacePixelValue(pixels,mc);
-        legendMap.put(dmc[dmcIndex][1] + " ", "DMC-" + dmc[dmcIndex][0]);
+        builder1.append(dmc[dmcIndex][1]).append(" ");
+        legendMap.put(dmc[dmcIndex][1] + " ", "DMC " + dmc[dmcIndex][0]);
       }
       builder.append("\n");
     }
+    legendText = builder1.toString();
   }
 
   @Override
   public int[][][] getImagePattern() {
-    return image;
+    return deepCopy(crossedImage);
   }
 
-  protected void getAllPixels(
-          int[][][] image,
-          int superRow,
-          int superCol,
-          float squareHeight,
-          float squareWidth,
-          List<int[]> pixels) {
-    for (int pixelRow = Math.round(superRow * squareHeight);
-         pixelRow < (superRow + 1) * squareHeight;
-         pixelRow++) {
-      for (int pixelCol = Math.round(superCol * squareWidth);
-           pixelCol < (superCol + 1) * squareWidth;
-           pixelCol++) {
-        System.out.println(pixelRow);
-        if (pixelRow < this.image.length) {
-          System.out.println("im running yayyy");
-          pixels.add(image[pixelRow][pixelCol]);
-
-        }
-
-      }
-    }
+  @Override
+  public String getStringIcon() {
+    return new String(legendText.toString());
   }
 
-
-  protected void replacePixelValue(List<int[]> pixels, int[] channels) {
-    for (int[] pixel : pixels) {
-      pixel[0] = channels[0];
-      pixel[1] = channels[1];
-      pixel[2] = channels[2];
-    }
-  }
 
   /**
    * Gets the channel of a Super Pixel.
    *
-   * @param squareWidth the width of the square.
-   * @param squareHeight the height of the square.
    * @param superChannels the channel of the super pixel.
-   * @param superRow the row of the superPixel.
-   * @param superCol the col of the superPixel.
    */
   private void getSuperPixelColor(
-          float squareWidth, float squareHeight, int[] superChannels, int superRow, int superCol) {
+          int[] superChannels,int imageRow, int imageCol) {
     superChannels[0] =
-            image[Math.round(superRow * squareHeight)][Math.round(superCol * squareWidth)][0];
+            crossedImage[imageRow][imageCol][0];
     superChannels[1] =
-            image[Math.round(superRow * squareHeight)][Math.round(superCol * squareWidth)][1];
+            crossedImage[imageRow][imageCol][1];
     superChannels[2] =
-            image[Math.round(superRow * squareHeight)][Math.round(superCol * squareWidth)][2];
+            crossedImage[imageRow][imageCol][2];
   }
 
   /**
@@ -180,7 +150,7 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
    * @param distance the distance between dmc and super pixel channels
    * @return the index.
    */
-  private int getDmcIndex(String[][] dmc, int[] superChannels, int[] dmcChannels, double distance) {
+  private int getDmcIndex(String[][] dmc, int[] superChannels, int[] dmcChannels, double distance, int imageRow, int imageCol, int superRow, float squareHeight, float squareWidth, int superCol ) {
     int dmcIndex = 0;
     for (int row = 0; row < dmc.length; row++) {
       dmcChannels[0] = Integer.parseInt(dmc[row][2]);
@@ -188,9 +158,16 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
       dmcChannels[2] = Integer.parseInt(dmc[row][4]);
       if (colourDistance(superChannels, dmcChannels) < distance) {
         distance = colourDistance(superChannels, dmcChannels);
+
         dmcIndex = row;
       }
     }
+    for (int i = imageRow; i < (superRow + 1) * squareHeight; i++)
+      for (int j = imageCol; j < (superCol + 1) * squareWidth; j++) {
+        crossedImage[i][j][0] = Integer.parseInt(dmc[dmcIndex][2]);
+        crossedImage[i][j][1] = Integer.parseInt(dmc[dmcIndex][3]);
+        crossedImage[i][j][2] = Integer.parseInt(dmc[dmcIndex][4]);
+      }
     return dmcIndex;
   }
 
@@ -214,32 +191,5 @@ public class CrossStitch extends AbstractImageModel implements Pattern {
             + (((2 + ((255 - rmean) / 256.0)) * blueChange * blueChange)));
   }
 
-  /**
-   * Replaces a column in the  DMC values array.
-   *
-   * @param dmc the array whose column is to be replaced.
-   * @param columnNumber the column number to be replaced.
-   * @param legend the list that contains the new column values.
-   */
-  private void replaceColumn(String[][] dmc, int columnNumber, List<String> legend) {
-    for (int row = 0; row < dmc.length; row++) {
-      dmc[row][columnNumber] = legend.get(row);
-    }
-  }
 
-  /**
-   * Builds a list of legends which is all two letter combination of the alphabets.
-   *
-   * @return a list containing the alphabet combination.
-   */
-  private List<String> getLegend() {
-    List<String> legend = new ArrayList<String>();
-
-    for (int i = 97; i <= 122; i++) {
-      for (int j = 97; j <= 122; j++) {
-        legend.add((char) i + String.valueOf((char) j));
-      }
-    }
-    return legend;
-  }
 }

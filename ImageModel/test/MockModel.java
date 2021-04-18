@@ -1,7 +1,9 @@
+import controller.TotalFeatures;
 import imagemodel.ImageModelInterface;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -23,6 +25,21 @@ public class MockModel implements ImageModelInterface {
     }
     image = new int[0][][];
     this.log = log;
+  }
+
+  @Override
+  public void attach(TotalFeatures observer) {
+
+  }
+
+  @Override
+  public void detach(TotalFeatures observer) {
+
+  }
+
+  @Override
+  public void notifyOfImageChange() {
+
   }
 
   @Override
@@ -129,13 +146,51 @@ public class MockModel implements ImageModelInterface {
     }
   }
 
-  @Override
-  public void getImagePattern() {
-
-  }
 
   @Override
   public BufferedImage getBufferedImage() {
     return null;
   }
+
+  @Override
+  public String[] getDmcValues() {
+    return new String[0];
+  }
+
+  @Override
+  public int[] getDmcRgb(String selectedValue) {
+    return new int[0];
+  }
+
+  @Override
+  public void updateColorInImage(String color, int x, int y) {
+
+  }
+
+  @Override
+  public List<String> getDmcColorsUsed() {
+    return null;
+  }
+
+  @Override
+  public void setDmc(List<String> colorToUse) {
+
+  }
+
+  @Override
+  public String getLegendIcon(String dmcValue) {
+    return null;
+  }
+
+  @Override
+  public String getPattern() {
+    return null;
+  }
+
+  @Override
+  public void removeColorFromImage(int yCoordinate, int xCoordinate) {
+
+  }
+
+
 }

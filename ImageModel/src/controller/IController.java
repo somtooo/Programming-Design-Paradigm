@@ -2,6 +2,7 @@ package controller;
 
 import imagemodel.ImageModelInterface;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * The controller interface for the ImageModel. Represents methods that have been designed to give
@@ -19,7 +20,11 @@ public interface IController {
    */
   void start(ImageModelInterface model) throws IOException, IllegalArgumentException;
 
-    void processInput(String text);
+  /**
+   * Processes input gotten from view and tells the view what to do next.
+   * @param text the input gotten from the view.
+   */
+  void processInput(String text);
 
   void runCommand(Object[] toArray);
 
@@ -27,4 +32,24 @@ public interface IController {
 
 
   void processMouseEvent();
+
+  /**
+   * Loads the dmc palette to the view.
+   */
+  void loadDmc();
+
+  /**
+   * Makes the background of the view change color based on what color is selected.
+   * @param selectedValue
+   */
+  void handleColorClick(String selectedValue);
+
+  /**
+   * Handles replacing one dmc color with another in an image.
+   */
+  void replaceColor(String color);
+
+    void removeColorFromImage(String selectedValue);
+
+    void handleMultipleSelection(List<String> selectedValuesList);
 }

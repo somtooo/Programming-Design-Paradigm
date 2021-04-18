@@ -2,6 +2,7 @@ package view;
 
 import controller.TotalFeatures;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public interface ViewInterface {
@@ -24,11 +25,11 @@ public interface ViewInterface {
     void setSliderListenerToReduce(TotalFeatures controller, int min, int max);
 
 
-    void setSliderValue(int min, int max);
-
     int getSliderValue();
 
     void hideSlider();
+
+    void addToInfo(String info, Color colorOfInfo);
 
     void initiateBatchView();
 
@@ -40,4 +41,5 @@ public interface ViewInterface {
 
     public  void throwSuccess(String success, String successType);
 
+    void showDmcDialog();
 }

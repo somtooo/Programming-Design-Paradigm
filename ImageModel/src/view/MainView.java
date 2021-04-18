@@ -1,6 +1,7 @@
 package view;
 
 import controller.TotalFeatures;
+import images.Factory;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
@@ -11,48 +12,63 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainView extends JFrame implements ViewInterface{
+    private final JPanel info;
+    private final JScrollPane pane;
     private Scrollable imagePanel;
     private MenuInterface menuBar;
     private JSlider slider;
     JPanel bottom;
     private ChangeListener sliderListener;
+    private SecondaryViewInterface colorPicker;
+    private SecondaryViewInterface batchView;
+    private Factory factory;
+
+    protected final DefaultListModel<String> modelForList =  new DefaultListModel<String>();
 
 
-    public MainView() throws MalformedURLException {
+    public MainView() {
         super("Practice View");
-//        JWindow window = new JWindow();
-//        window.getContentPane().add(
-//                new JLabel("", new ImageIcon(new URL("https://i.stack.imgur.com/hzk6C.gif")), SwingConstants.CENTER));
-//        centreWindow(window,287, 141);
-//        window.setSize(287,141);
-//        window.setVisible(true);
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        window.setVisible(false);
+        try {
+            loadSplashScreen();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         centreWindow(this,1800,900);
         this.setSize(1800,900);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
+        factory = new Factory();
+        colorPicker = factory.createColorPickerView();
+        batchView = factory.createBashView();
         imagePanel = new Scrollable();
         imagePanel.setBackground(new Color(34,40,44));
         imagePanel.setOpaque(true);
 //        this.add(imagePanel,BorderLayout.CENTER);
-        JPanel info  = new JPanel();
-        info.setPreferredSize(new Dimension(350,200));
-        info.setBackground(new Color(44,52,58));
-//        this.add(info, BorderLayout.EAST);
-        JPanel bottom1 = new JPanel(new FlowLayout());
+        info  = new JPanel();
+        info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
+
+
+        info.setBackground(new Color(21,25,28));
+//        info.setOpaque(true);
+
+
+        pane = new JScrollPane(info,   ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        pane.setPreferredSize(new Dimension(300, 500));
+//        JScrollPane pane = new JScrollPane(info);
+//        pane.setBackground(new Color(44,52,58));
+        pane.setVisible(false);
+
+//        this.add(info, .EAST);
+        FlowLayout layout = new FlowLayout();
+        layout.setHgap(30);
+        JPanel bottom1 = new JPanel(layout);
         bottom1.setBackground(new Color(34,40,44));
         bottom1.add(imagePanel);
-        bottom1.add(info);
+        bottom1.add(pane);
         this.add(bottom1, BorderLayout.CENTER);
         bottom = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JPanel bottom2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         bottom.setBackground(new Color(34,40,44));
         slider = new JSlider(JSlider.HORIZONTAL, 1,10,1);
         slider.setBackground(new Color(34,40,44));
@@ -69,6 +85,21 @@ public class MainView extends JFrame implements ViewInterface{
         this.setJMenuBar((JMenuBar) menuBar);
 
 
+    }
+
+    private void loadSplashScreen() throws MalformedURLException {
+        JWindow window = new JWindow();
+        window.getContentPane().add(
+                new JLabel("", new ImageIcon(new URL("https://i.stack.imgur.com/hzk6C.gif")), SwingConstants.CENTER));
+        centreWindow(window,287, 141);
+        window.setSize(287,141);
+        window.setVisible(true);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        window.setVisible(false);
     }
 
     @Override
@@ -91,9 +122,18 @@ public class MainView extends JFrame implements ViewInterface{
     }
 
     @Override
+    public void addToInfo(String text, Color colorOfInfo) {
+        JLabel addToInfo = new JLabel(text);
+        addToInfo.setForeground(colorOfInfo);
+        addToInfo.setBackground(colorOfInfo.darker());
+        addToInfo.setFont(new Font("Roboto Th",Font.PLAIN, 28));
+        info.add(addToInfo);
+        pane.setVisible(true);
+    }
+
+    @Override
     public void initiateBatchView() {
-      BashInterface run = new BatchScriptRunner();
-      run.start();
+      batchView.start();
     }
 
 
@@ -150,13 +190,6 @@ public class MainView extends JFrame implements ViewInterface{
     }
 
     @Override
-    public void setSliderValue(int min, int max) {
-//        slider.setMinimum(min);
-//        slider.setMaximum(max);
-//        slider.setMajorTickSpacing(max/min);
-    }
-
-    @Override
     public int getSliderValue() {
         return slider.getValue();
     }
@@ -196,7 +229,6 @@ public class MainView extends JFrame implements ViewInterface{
     }
 
 
-
     @Override
     public String getImageSaveName() {
         JFileChooser fileChooser = new JFileChooser();
@@ -208,6 +240,11 @@ public class MainView extends JFrame implements ViewInterface{
         }
         return "";
 
+    }
+
+    @Override
+    public void showDmcDialog() {
+        colorPicker.start();
     }
 
     public static void centreWindow(JWindow frame, int width, int height) {
