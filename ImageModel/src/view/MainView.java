@@ -146,6 +146,8 @@ public class MainView extends JFrame implements ViewInterface {
     addToInfo.setFont(new Font("Roboto Th", Font.PLAIN, 28));
     info.add(addToInfo);
     pane.setVisible(true);
+    repaint();
+    revalidate();
   }
 
   @Override
@@ -264,5 +266,12 @@ public class MainView extends JFrame implements ViewInterface {
   @Override
   public void showDmcDialog() {
     colorPicker.start();
+  }
+
+  @Override
+  public void clearInfo() {
+    info.removeAll();
+    repaint();
+    revalidate();
   }
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import imagemodel.ImageModelInterface;
+import view.ColorPickerInterface;
 import view.ViewInterface;
 
 import javax.imageio.ImageIO;
@@ -9,11 +10,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ViewController implements TotalFeatures {
     private final ImageModelInterface model;
     private static ViewInterface view;
+    private ColorPickerInterface colorPickerView;
     private boolean setToMosaic;
     private  boolean setToBlur;
     private  boolean setToSharpen;
@@ -36,6 +39,7 @@ public class ViewController implements TotalFeatures {
     @Override
     public void setView() {
         view.setFeatures(this);
+        colorPickerView.resetFeatures(this);
     }
 
     @Override
@@ -81,6 +85,7 @@ public class ViewController implements TotalFeatures {
     @Override
     public void sharpenImage() {
         if (!setToSharpen) {
+            System.out.println("i rannnn");
             int input = getInput("Enter Sharpen Value","Sharpen");
             view.setSliderListenerToSharpen(this,input,input+ 20);
             setCommands(true,false,false,false,false,false);
@@ -159,19 +164,24 @@ public class ViewController implements TotalFeatures {
 
     @Override
     public void generatePattern() {
-        setCommands(false,false,false,false,false,true);
         try{
-            view.hideSlider();
-            model.crossStitch();
+            if (!setToCrossStitch) {
+                view.hideSlider();
+                model.crossStitch();
+            }
+
         } catch (IllegalStateException e) {
             view.throwError(e.getMessage(), "CrossStitch Error");
         }
+        setCommands(false,false,false,false,false,true);
+
 
 
     }
 
     private void updateLegend() {
         List<String> colorsUsed = model.getDmcColorsUsed();
+        view.clearInfo();
         if (colorsUsed.size() > 0) {
             for (String colors : colorsUsed  ) {
                 String icon = model.getLegendIcon(colors);
@@ -218,5 +228,46 @@ public class ViewController implements TotalFeatures {
             view.showDmcDialog();
 
         }
+    }
+
+    @Override
+    public void loadDmc() {
+        colorPickerView.clearInputString();
+        String[] dmcValues = model.getDmcValues();
+        for (String dmcValue : dmcValues) {
+            colorPickerView.setAddToList(dmcValue);
+        }
+    }
+
+    @Override
+    public void handleColorClick(String selectedValue) {
+        int[] rgb = model.getDmcRgb(selectedValue);
+        int[] listRgb = colorPickerView.getListElementColor();
+
+        if (Arrays.equals(rgb, listRgb)) {
+            colorPickerView.setListElementColor(new Color(255-listRgb[0], 255-listRgb[1],255 - listRgb[2]));
+        }
+        colorPickerView.setListColor(rgb[0],rgb[1],rgb[2]);
+
+    }
+
+    @Override
+    public void replaceColor(String color) {
+        if (!(color == null)) {
+            model.updateColorInImage(color, xCoordinate, yCoordinate);
+
+        }
+
+    }
+
+    @Override
+    public void removeColorFromImage(String selectedValue) {
+        model.removeColorFromImage(yCoordinate,xCoordinate);
+    }
+
+    @Override
+    public void handleMultipleSelection(List<String> selectedValuesList) {
+        model.setDmc(selectedValuesList);
+        model.crossStitch();
     }
 }

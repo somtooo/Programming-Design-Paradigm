@@ -129,7 +129,6 @@ public class ImageModel extends AbstractImageModel implements ImageModelInterfac
 
   @Override
   public int[][][] toMosaic(int seeds) throws IllegalStateException {
-    System.out.println(seeds);
     checkState(currentModifiedImage);
     currentModifiedImage = mosaic.apply(seeds);
     notifyOfImageChange();
@@ -218,11 +217,14 @@ public class ImageModel extends AbstractImageModel implements ImageModelInterfac
         }
       }
     }
+    dmcColorsUsed.remove(dmc.getDmcCodeFromRgb(removeColor));
+    dmcColorsUsed.add(color);
     notifyOfImageChange();
   }
 
   @Override
   public List<String> getDmcColorsUsed() {
+    System.out.println(dmcColorsUsed);
     return new ArrayList<>(dmcColorsUsed);
   }
 
@@ -230,7 +232,6 @@ public class ImageModel extends AbstractImageModel implements ImageModelInterfac
   public void setDmc(List<String> colorToUse) {
     dmc.setDmcColors(colorToUse);
     crossStitch.setDmc(dmc);
-    System.out.println(Arrays.deepToString(dmc.getDmcColors()));
   }
 
   @Override
@@ -249,6 +250,7 @@ public class ImageModel extends AbstractImageModel implements ImageModelInterfac
     String dmcColorName = dmc.getDmcCodeFromRgb(removeColor);
     dmcColorsUsed.remove(dmcColorName);
     patternWithoutLegend = patternWithoutLegend.replace(getLegendIcon(dmcColorName),".");
+    notifyOfImageChange();
 
   }
 

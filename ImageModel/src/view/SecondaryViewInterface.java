@@ -68,26 +68,5 @@ public interface SecondaryViewInterface {
    */
   int getIndex();
 
-  /**
-   * Sets the color of the Jlist.
-   *
-   * @param red the red color value.
-   * @param green the green color value.
-   * @param blue the blue color value.
-   */
-  void setListColor(int red, int green, int blue);
 
-  /**
-   * Gets the color of the views JList.
-   *
-   * @return the color values.
-   */
-  int[] getListElementColor();
-
-  /**
-   * Sets the Jlist Element colors.
-   *
-   * @param color the color to use to set.
-   */
-  void setListElementColor(Color color);
 }

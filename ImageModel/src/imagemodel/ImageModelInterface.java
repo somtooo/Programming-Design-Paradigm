@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
 
-/** Represents filtering and transformation operations that can be performed on an image. */
+/** Represents filtering and transformation operations that can be performed on an image. And other color operations. */
 public interface ImageModelInterface {
   /**
    * Registers Student grade observer/listener to receive updates on changes.

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 public interface TotalFeatures {
     void setView();
 
@@ -27,4 +29,14 @@ public interface TotalFeatures {
 
 
     void update();
+
+    void loadDmc();
+
+    void handleColorClick(String selectedValue);
+
+    void replaceColor(String color);
+
+    void removeColorFromImage(String selectedValue);
+
+    void handleMultipleSelection(List<String> selectedValuesList);
 }

@@ -1,6 +1,8 @@
 package view;
 
 import controller.IController;
+import controller.TotalFeatures;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -16,7 +18,7 @@ import javax.swing.ListSelectionModel;
 /**
  * Child class to SecondaryView represents a view that handles all color functionality of the GUI.
  */
-public class ColorPicker extends SecondaryView {
+public class ColorPicker extends SecondaryView implements ColorPickerInterface {
 
   private final JButton submitMultipleSelect;
   private final JMenuItem exit;
@@ -53,45 +55,64 @@ public class ColorPicker extends SecondaryView {
     right.add(submitMultipleSelect);
   }
 
-  @Override
-  public void setFeatures(IController controller) {
-    addToList.addActionListener(e -> controller.replaceColor(list.getSelectedValue()));
-    run.addActionListener(e -> controller.loadDmc());
-    list.addMouseListener(
-        new MouseAdapter() {
-          @Override
-          public void mouseClicked(MouseEvent event) {
-            input.setText(list.getSelectedValue());
-            controller.handleColorClick(list.getSelectedValue());
-          }
-        });
+    @Override
+    public void resetFeatures(TotalFeatures controller) {
+        addToList.addActionListener(e -> controller.replaceColor(list.getSelectedValue()));
+        run.addActionListener(e -> controller.loadDmc());
+        list.addMouseListener(
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent event) {
+                        input.setText(list.getSelectedValue());
+                        controller.handleColorClick(list.getSelectedValue());
+                    }
+                });
 
-    update.addActionListener(e -> controller.removeColorFromImage(list.getSelectedValue()));
+        update.addActionListener(e -> controller.removeColorFromImage(list.getSelectedValue()));
 
-    switchMultiple.addActionListener(
-        e -> {
-          addToList.setVisible(false);
-          input.setVisible(false);
-          list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-          submitMultipleSelect.setVisible(true);
-        });
+        switchMultiple.addActionListener(
+                e -> {
+                    addToList.setVisible(false);
+                    input.setVisible(false);
+                    list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+                    submitMultipleSelect.setVisible(true);
+                });
 
-    exit.addActionListener(e -> System.exit(0));
+        exit.addActionListener(e -> System.exit(0));
 
-    switchBack.addActionListener(
-        e -> {
-          addToList.setVisible(true);
-          input.setVisible(true);
-          list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-          submitMultipleSelect.setVisible(false);
-        });
+        switchBack.addActionListener(
+                e -> {
+                    addToList.setVisible(true);
+                    input.setVisible(true);
+                    list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                    submitMultipleSelect.setVisible(false);
+                });
 
-    submitMultipleSelect.addActionListener(
-        e -> controller.handleMultipleSelection(list.getSelectedValuesList()));
-  }
+        submitMultipleSelect.addActionListener(
+                e -> controller.handleMultipleSelection(list.getSelectedValuesList()));
+    }
 
   @Override
   public void start() {
     super.start();
   }
+
+    @Override
+    public void setListColor(int r, int g, int b) {
+        list.setBackground(new Color(r, g, b));
+    }
+
+    @Override
+    public int[] getListElementColor() {
+        int[] rgb = new int[3];
+        rgb[0] = list.getForeground().getRed();
+        rgb[1] = list.getForeground().getGreen();
+        rgb[2] = list.getForeground().getBlue();
+        return rgb;
+    }
+
+    @Override
+    public void setListElementColor(Color color) {
+        list.setForeground(color);
+    }
 }

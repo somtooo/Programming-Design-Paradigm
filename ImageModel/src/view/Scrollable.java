@@ -48,6 +48,7 @@ public class Scrollable extends JPanel implements ItemListener {
         });
   }
 
+  public void setFeatue
   @Override
   public void itemStateChanged(ItemEvent e) {
     picture.setMaxUnitIncrement(10);

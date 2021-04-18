@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -21,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import view.utilities.ViewUtilities;
+
 
 /**
  * Represents a secondary view that is used to serve other functionality the main view cant It's
@@ -42,7 +43,7 @@ public class SecondaryView extends JFrame implements SecondaryViewInterface {
     JPanel root = new JPanel();
     root.setLayout(new BorderLayout());
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    centreWindow(this, 800, 600);
+    ViewUtilities.centreWindow(this, 800, 600);
     this.setSize(800, 600);
 
     JPanel top = new JPanel();
@@ -96,17 +97,6 @@ public class SecondaryView extends JFrame implements SecondaryViewInterface {
     add(root);
   }
 
-  public static void centreWindow(JFrame frame, int width, int height) {
-    Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
-    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-
-    // calculate perfect center
-    int perf_x = x - width / 2;
-    int perf_y = y - height / 2;
-
-    frame.setLocation(perf_x, perf_y);
-  }
 
   @Override
   public void start() {
@@ -189,22 +179,5 @@ public class SecondaryView extends JFrame implements SecondaryViewInterface {
     input.setText(text);
   }
 
-  @Override
-  public void setListColor(int r, int g, int b) {
-    list.setBackground(new Color(r, g, b));
-  }
 
-  @Override
-  public int[] getListElementColor() {
-    int[] rgb = new int[3];
-    rgb[0] = list.getForeground().getRed();
-    rgb[1] = list.getForeground().getGreen();
-    rgb[2] = list.getForeground().getBlue();
-    return rgb;
-  }
-
-  @Override
-  public void setListElementColor(Color color) {
-    list.setForeground(color);
-  }
 }
